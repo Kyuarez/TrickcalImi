@@ -30,5 +30,6 @@ public class SheetManager
 
     }
 
-    
+    private Dictionary<int, Sheet_StageData> stageDict = new Dictionary<int, Sheet_StageData>();
+    private Dictionary<int, Sheet_UnitData> unitDict = new Dictionary<int, Sheet_UnitData>();
 }
