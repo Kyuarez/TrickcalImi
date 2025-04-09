@@ -4,6 +4,6 @@ public class UIDepolySlotManager : MonoBehaviour
 {
     public void OnDepolyHero()
     {
-
+            
     }
 }

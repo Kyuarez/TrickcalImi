@@ -17,16 +17,15 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    [RuntimeInitializeOnLoadMethod]
-    public void InitSingleton()
+    protected virtual void Awake()
     {
         if(instance == null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
         else if(instance != this as T)
-        {
+        {   
             Destroy(gameObject);
         }
     }
