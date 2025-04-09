@@ -1597,7 +1597,66 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ground_decor_0: -3286092049423190579
+      ground_decor_1: -4058760378008809238
+      ground_decor_10: -2952385738443335925
+      ground_decor_11: 3164914695254469741
+      ground_decor_12: -7303804133082007286
+      ground_decor_13: 8447222462953917948
+      ground_decor_14: -3024024959979582009
+      ground_decor_15: 8576125810495194598
+      ground_decor_16: -1825125261399996364
+      ground_decor_17: 5169933370191027804
+      ground_decor_18: -1808593658743468967
+      ground_decor_19: 6876041026903727589
+      ground_decor_2: 1369458443045194827
+      ground_decor_20: 4031087438366388810
+      ground_decor_21: 1361138412189860533
+      ground_decor_22: -4418503046916054844
+      ground_decor_23: -5120610414126867710
+      ground_decor_24: 4874718331449660149
+      ground_decor_25: -1137205536602305339
+      ground_decor_26: 1303114029883611636
+      ground_decor_27: -1818800988471019694
+      ground_decor_28: -6219810120556898262
+      ground_decor_29: 873588474960017461
+      ground_decor_3: 866693564384796234
+      ground_decor_30: 8809918673247018065
+      ground_decor_31: 7863345299716060560
+      ground_decor_32: -7961853844817754168
+      ground_decor_33: -3368969884863645582
+      ground_decor_34: -7276289514907819302
+      ground_decor_35: 6579259863899382155
+      ground_decor_36: -618290038628912016
+      ground_decor_37: -4391744422420193667
+      ground_decor_38: 4673665325603074405
+      ground_decor_39: -8317169749917131919
+      ground_decor_4: 4469531357705282007
+      ground_decor_40: -2535288436463573345
+      ground_decor_41: -9061527740871286094
+      ground_decor_42: -7916341025289910976
+      ground_decor_43: -3894881911262504592
+      ground_decor_44: 9070438938892098386
+      ground_decor_45: 32526110545303510
+      ground_decor_46: -8604330477361611712
+      ground_decor_47: -3064585704947710314
+      ground_decor_48: -73061010016755130
+      ground_decor_49: 3382787648391058715
+      ground_decor_5: 3859226990985809821
+      ground_decor_50: -7576901218493314191
+      ground_decor_51: -6727635059636105477
+      ground_decor_52: 7521223175277114714
+      ground_decor_53: 3801606981926339393
+      ground_decor_54: -3118328214993695047
+      ground_decor_55: 3595088228532266448
+      ground_decor_56: -6671979012021886902
+      ground_decor_57: 3965321509994814691
+      ground_decor_58: 4961206998193006545
+      ground_decor_6: 574662356198821996
+      ground_decor_7: 7494833466689773434
+      ground_decor_8: -1816316748877425173
+      ground_decor_9: 9069738946001409359
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

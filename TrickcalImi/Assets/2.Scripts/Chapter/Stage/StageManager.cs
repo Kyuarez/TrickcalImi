@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageManager : MonoSingleton<StageManager>
 {
 
     //@tk (25.04.09) 지금은 프로토타입 제작 때문에, 데이터를 강제로 주입했지만 이후로는 챕터로 부터 받아오기

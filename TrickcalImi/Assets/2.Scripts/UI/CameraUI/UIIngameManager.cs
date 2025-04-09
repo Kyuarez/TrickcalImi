@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class UIIngameManager : MonoBehaviour
+public class UIIngameManager : MonoSingleton<UIIngameManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static UIDepolySlotManager DepolySlotManager;
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+
+        //cast
+        DepolySlotManager = GetComponentInChildren<UIDepolySlotManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        DepolySlotManager.InitDepoly();
     }
 }

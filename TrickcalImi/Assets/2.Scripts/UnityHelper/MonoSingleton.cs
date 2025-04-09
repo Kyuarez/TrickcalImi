@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private T instance;
-    public T Instance
+    private static T instance;
+    public static T Instance
     {
         get 
         {
             if (instance == null)
             {
-                Debug.Assert(false, $"{this.GetType().Name} is null");
+                Debug.Assert(false, $"{typeof(T).Name} is null");
                 throw new NullReferenceException();
             }
             return instance; 
