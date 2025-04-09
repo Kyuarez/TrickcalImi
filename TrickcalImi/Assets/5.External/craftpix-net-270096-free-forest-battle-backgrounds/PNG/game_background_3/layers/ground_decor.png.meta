@@ -1,0 +1,1482 @@
+fileFormatVersion: 2
+guid: 1e1bba0af67fb694da5ca3651c2f1a8c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3286092049423190579
+    second: ground_decor_0
+  - first:
+      213: -4058760378008809238
+    second: ground_decor_1
+  - first:
+      213: 1369458443045194827
+    second: ground_decor_2
+  - first:
+      213: 866693564384796234
+    second: ground_decor_3
+  - first:
+      213: 4469531357705282007
+    second: ground_decor_4
+  - first:
+      213: 3859226990985809821
+    second: ground_decor_5
+  - first:
+      213: 574662356198821996
+    second: ground_decor_6
+  - first:
+      213: 7494833466689773434
+    second: ground_decor_7
+  - first:
+      213: -1816316748877425173
+    second: ground_decor_8
+  - first:
+      213: 9069738946001409359
+    second: ground_decor_9
+  - first:
+      213: -2952385738443335925
+    second: ground_decor_10
+  - first:
+      213: 3164914695254469741
+    second: ground_decor_11
+  - first:
+      213: -7303804133082007286
+    second: ground_decor_12
+  - first:
+      213: 8447222462953917948
+    second: ground_decor_13
+  - first:
+      213: -3024024959979582009
+    second: ground_decor_14
+  - first:
+      213: 8576125810495194598
+    second: ground_decor_15
+  - first:
+      213: -1825125261399996364
+    second: ground_decor_16
+  - first:
+      213: 5169933370191027804
+    second: ground_decor_17
+  - first:
+      213: -1808593658743468967
+    second: ground_decor_18
+  - first:
+      213: 6876041026903727589
+    second: ground_decor_19
+  - first:
+      213: 4031087438366388810
+    second: ground_decor_20
+  - first:
+      213: 1361138412189860533
+    second: ground_decor_21
+  - first:
+      213: -4418503046916054844
+    second: ground_decor_22
+  - first:
+      213: -5120610414126867710
+    second: ground_decor_23
+  - first:
+      213: 4874718331449660149
+    second: ground_decor_24
+  - first:
+      213: -1137205536602305339
+    second: ground_decor_25
+  - first:
+      213: 1303114029883611636
+    second: ground_decor_26
+  - first:
+      213: -1818800988471019694
+    second: ground_decor_27
+  - first:
+      213: -6219810120556898262
+    second: ground_decor_28
+  - first:
+      213: 873588474960017461
+    second: ground_decor_29
+  - first:
+      213: 8809918673247018065
+    second: ground_decor_30
+  - first:
+      213: 7863345299716060560
+    second: ground_decor_31
+  - first:
+      213: -7961853844817754168
+    second: ground_decor_32
+  - first:
+      213: -3368969884863645582
+    second: ground_decor_33
+  - first:
+      213: -7276289514907819302
+    second: ground_decor_34
+  - first:
+      213: 6579259863899382155
+    second: ground_decor_35
+  - first:
+      213: -618290038628912016
+    second: ground_decor_36
+  - first:
+      213: -4391744422420193667
+    second: ground_decor_37
+  - first:
+      213: 4673665325603074405
+    second: ground_decor_38
+  - first:
+      213: -8317169749917131919
+    second: ground_decor_39
+  - first:
+      213: -2535288436463573345
+    second: ground_decor_40
+  - first:
+      213: -9061527740871286094
+    second: ground_decor_41
+  - first:
+      213: -7916341025289910976
+    second: ground_decor_42
+  - first:
+      213: -3894881911262504592
+    second: ground_decor_43
+  - first:
+      213: 9070438938892098386
+    second: ground_decor_44
+  - first:
+      213: 32526110545303510
+    second: ground_decor_45
+  - first:
+      213: -8604330477361611712
+    second: ground_decor_46
+  - first:
+      213: -3064585704947710314
+    second: ground_decor_47
+  - first:
+      213: -73061010016755130
+    second: ground_decor_48
+  - first:
+      213: 3382787648391058715
+    second: ground_decor_49
+  - first:
+      213: -7576901218493314191
+    second: ground_decor_50
+  - first:
+      213: -6727635059636105477
+    second: ground_decor_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ground_decor_0
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 1346
+        width: 84
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc535e601b47562d0800000000000000
+      internalID: -3286092049423190579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_1
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1359
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae0da50c0f26ca7c0800000000000000
+      internalID: -4058760378008809238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_2
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 1367
+        width: 115
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c4e50c23b410310800000000000000
+      internalID: 1369458443045194827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_3
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 1387
+        width: 70
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4ed542743d170c00800000000000000
+      internalID: 866693564384796234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_4
+      rect:
+        serializedVersion: 2
+        x: 2947
+        y: 1382
+        width: 73
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d12e78d617f60e30800000000000000
+      internalID: 4469531357705282007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_5
+      rect:
+        serializedVersion: 2
+        x: 3066
+        y: 1351
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f0f41508abe8530800000000000000
+      internalID: 3859226990985809821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_6
+      rect:
+        serializedVersion: 2
+        x: 3154
+        y: 1375
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6015074e5c99f700800000000000000
+      internalID: 574662356198821996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_7
+      rect:
+        serializedVersion: 2
+        x: 3582
+        y: 1369
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7fd0c0245ff20860800000000000000
+      internalID: 7494833466689773434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_8
+      rect:
+        serializedVersion: 2
+        x: 1982
+        y: 1332
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be591974a852bc6e0800000000000000
+      internalID: -1816316748877425173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_9
+      rect:
+        serializedVersion: 2
+        x: 3183
+        y: 1350
+        width: 60
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4590f1948f2edd70800000000000000
+      internalID: 9069738946001409359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_10
+      rect:
+        serializedVersion: 2
+        x: 2058
+        y: 1299
+        width: 84
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07d72430d40707d0800000000000000
+      internalID: -2952385738443335925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_11
+      rect:
+        serializedVersion: 2
+        x: 2185
+        y: 1273
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c6e0b95290ceb20800000000000000
+      internalID: 3164914695254469741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_12
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1234
+        width: 115
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a09fd9296dca3aa90800000000000000
+      internalID: -7303804133082007286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_13
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 1249
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfd811323109a3570800000000000000
+      internalID: 8447222462953917948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_14
+      rect:
+        serializedVersion: 2
+        x: 2146
+        y: 1225
+        width: 70
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd808422518806d0800000000000000
+      internalID: -3024024959979582009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1193
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e500a38cf4840770800000000000000
+      internalID: 8576125810495194598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_16
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1180
+        width: 77
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43849a3ae3adba6e0800000000000000
+      internalID: -1825125261399996364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_17
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 1200
+        width: 77
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e9caa320b4fb740800000000000000
+      internalID: 5169933370191027804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_18
+      rect:
+        serializedVersion: 2
+        x: 3201
+        y: 1171
+        width: 83
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95c429356a596e6e0800000000000000
+      internalID: -1808593658743468967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_19
+      rect:
+        serializedVersion: 2
+        x: 3612
+        y: 1171
+        width: 77
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eddb9512ea9c6f50800000000000000
+      internalID: 6876041026903727589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_20
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 1149
+        width: 83
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a423e56eaac41f730800000000000000
+      internalID: 4031087438366388810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_21
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 1043
+        width: 78
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b247bc9c2cb3e210800000000000000
+      internalID: 1361138412189860533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_22
+      rect:
+        serializedVersion: 2
+        x: 2612
+        y: 984
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c0669993e25ea2c0800000000000000
+      internalID: -4418503046916054844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_23
+      rect:
+        serializedVersion: 2
+        x: 2224
+        y: 881
+        width: 78
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b5dc065ffefe8b0800000000000000
+      internalID: -5120610414126867710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_24
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 838
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f2542ebe7a76a340800000000000000
+      internalID: 4874718331449660149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_25
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 695
+        width: 83
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc4632f695d730f0800000000000000
+      internalID: -1137205536602305339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_26
+      rect:
+        serializedVersion: 2
+        x: 2703
+        y: 728
+        width: 53
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f95a055e47951210800000000000000
+      internalID: 1303114029883611636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_27
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 691
+        width: 33
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2573e0d232252c6e0800000000000000
+      internalID: -1818800988471019694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_28
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 666
+        width: 33
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2893d936abcea9a0800000000000000
+      internalID: -6219810120556898262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_29
+      rect:
+        serializedVersion: 2
+        x: 3451
+        y: 572
+        width: 115
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 538fdd9e61c9f1c00800000000000000
+      internalID: 873588474960017461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_30
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 504
+        width: 78
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15c18fa3b5e134a70800000000000000
+      internalID: 8809918673247018065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_31
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 425
+        width: 60
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09530d763e6302d60800000000000000
+      internalID: 7863345299716060560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_32
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 449
+        width: 68
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c74f02ac10d18190800000000000000
+      internalID: -7961853844817754168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_33
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 403
+        width: 67
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278b6b14db30f31d0800000000000000
+      internalID: -3368969884863645582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_34
+      rect:
+        serializedVersion: 2
+        x: 2179
+        y: 391
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad22505dc3d650b90800000000000000
+      internalID: -7276289514907819302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_35
+      rect:
+        serializedVersion: 2
+        x: 3629
+        y: 379
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8125b0ecf93e4b50800000000000000
+      internalID: 6579259863899382155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_36
+      rect:
+        serializedVersion: 2
+        x: 3355
+        y: 344
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0747c575c746b67f0800000000000000
+      internalID: -618290038628912016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_37
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 283
+        width: 73
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e575d57b36d03c0800000000000000
+      internalID: -4391744422420193667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_38
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 280
+        width: 70
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 561b1abf9d13cd040800000000000000
+      internalID: 4673665325603074405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_39
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 298
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17b909fbd2a739c80800000000000000
+      internalID: -8317169749917131919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_40
+      rect:
+        serializedVersion: 2
+        x: 1801
+        y: 276
+        width: 53
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f96ee6d7998d0dcd0800000000000000
+      internalID: -2535288436463573345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_41
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 291
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2e40b978cfe3280800000000000000
+      internalID: -9061527740871286094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_42
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 265
+        width: 33
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0454eb2b7c1832290800000000000000
+      internalID: -7916341025289910976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_43
+      rect:
+        serializedVersion: 2
+        x: 1764
+        y: 192
+        width: 73
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0799a15a98992f9c0800000000000000
+      internalID: -3894881911262504592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_44
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 207
+        width: 70
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25bd88d582ca0ed70800000000000000
+      internalID: 9070438938892098386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_45
+      rect:
+        serializedVersion: 2
+        x: 2311
+        y: 208
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d75af0435e837000800000000000000
+      internalID: 32526110545303510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_46
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 215
+        width: 68
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c3bceb407479880800000000000000
+      internalID: -8604330477361611712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_47
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 152
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6960ad8c9876875d0800000000000000
+      internalID: -3064585704947710314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_48
+      rect:
+        serializedVersion: 2
+        x: 3404
+        y: 147
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6422503066f6cfef0800000000000000
+      internalID: -73061010016755130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_49
+      rect:
+        serializedVersion: 2
+        x: 3521
+        y: 146
+        width: 60
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b159de4817312fe20800000000000000
+      internalID: 3382787648391058715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_50
+      rect:
+        serializedVersion: 2
+        x: 3596
+        y: 180
+        width: 70
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17b4b756c7079d690800000000000000
+      internalID: -7576901218493314191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_decor_51
+      rect:
+        serializedVersion: 2
+        x: 2978
+        y: 123
+        width: 73
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfe0debce83a2a2a0800000000000000
+      internalID: -6727635059636105477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ground_decor_0: -3286092049423190579
+      ground_decor_1: -4058760378008809238
+      ground_decor_10: -2952385738443335925
+      ground_decor_11: 3164914695254469741
+      ground_decor_12: -7303804133082007286
+      ground_decor_13: 8447222462953917948
+      ground_decor_14: -3024024959979582009
+      ground_decor_15: 8576125810495194598
+      ground_decor_16: -1825125261399996364
+      ground_decor_17: 5169933370191027804
+      ground_decor_18: -1808593658743468967
+      ground_decor_19: 6876041026903727589
+      ground_decor_2: 1369458443045194827
+      ground_decor_20: 4031087438366388810
+      ground_decor_21: 1361138412189860533
+      ground_decor_22: -4418503046916054844
+      ground_decor_23: -5120610414126867710
+      ground_decor_24: 4874718331449660149
+      ground_decor_25: -1137205536602305339
+      ground_decor_26: 1303114029883611636
+      ground_decor_27: -1818800988471019694
+      ground_decor_28: -6219810120556898262
+      ground_decor_29: 873588474960017461
+      ground_decor_3: 866693564384796234
+      ground_decor_30: 8809918673247018065
+      ground_decor_31: 7863345299716060560
+      ground_decor_32: -7961853844817754168
+      ground_decor_33: -3368969884863645582
+      ground_decor_34: -7276289514907819302
+      ground_decor_35: 6579259863899382155
+      ground_decor_36: -618290038628912016
+      ground_decor_37: -4391744422420193667
+      ground_decor_38: 4673665325603074405
+      ground_decor_39: -8317169749917131919
+      ground_decor_4: 4469531357705282007
+      ground_decor_40: -2535288436463573345
+      ground_decor_41: -9061527740871286094
+      ground_decor_42: -7916341025289910976
+      ground_decor_43: -3894881911262504592
+      ground_decor_44: 9070438938892098386
+      ground_decor_45: 32526110545303510
+      ground_decor_46: -8604330477361611712
+      ground_decor_47: -3064585704947710314
+      ground_decor_48: -73061010016755130
+      ground_decor_49: 3382787648391058715
+      ground_decor_5: 3859226990985809821
+      ground_decor_50: -7576901218493314191
+      ground_decor_51: -6727635059636105477
+      ground_decor_6: 574662356198821996
+      ground_decor_7: 7494833466689773434
+      ground_decor_8: -1816316748877425173
+      ground_decor_9: 9069738946001409359
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
