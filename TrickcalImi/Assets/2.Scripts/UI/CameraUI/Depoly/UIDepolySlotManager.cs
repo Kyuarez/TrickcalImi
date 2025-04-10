@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UIDepolySlotManager : MonoBehaviour
 {
+    [SerializeField] private GameObject panel;
+
     private List<UIDepolySlot> slotLists = new List<UIDepolySlot>();
 
     public bool IsPossibleDepoly
@@ -17,6 +19,24 @@ public class UIDepolySlotManager : MonoBehaviour
                 }
             }
             return false;
+        }
+    }
+
+    public void SetActivePanel(bool active)
+    {
+        if(active == true)
+        {
+            if(panel.activeSelf == false)
+            {
+                panel.SetActive(true);
+            }
+        }
+        else
+        {
+            if (panel.activeSelf == true)
+            {
+                panel.SetActive(false);
+            }
         }
     }
 
@@ -38,12 +58,15 @@ public class UIDepolySlotManager : MonoBehaviour
         {
             if(slot.IsDepoly == false)
             {
-                HeroManager hero = Instantiate(prefab, slot.transform.position, Quaternion.identity).GetComponent<HeroManager>();
+                HeroManager hero = Instantiate(prefab).GetComponent<HeroManager>();
                 if(hero != null)
                 {
                     slot.OnDepoly(hero);
-
                     break;
+                }
+                else
+                {
+                    Destroy(hero);
                 }
             }
         }

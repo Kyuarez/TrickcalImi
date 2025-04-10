@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class UIDepolySlot : MonoBehaviour
 {
-    [SerializeField] private HeroManager currentDepolyHero;
+    [SerializeField] private Transform spawnPos_Center; //pivot
+    [SerializeField] private Transform spawnPos_Bottom;
+
+    private HeroManager currentDepolyHero;
     
     public bool IsDepoly
     {
@@ -15,7 +18,7 @@ public class UIDepolySlot : MonoBehaviour
         }
     }
 
-    public void OnDepoly(HeroManager hero)
+    public void OnDepoly(HeroManager hero, bool isPivotBottom = false)
     {
         if(IsDepoly == true)
         {
@@ -23,7 +26,8 @@ public class UIDepolySlot : MonoBehaviour
         }
 
         currentDepolyHero = hero;
-        
+        hero.transform.position = (isPivotBottom == true) ? spawnPos_Bottom.position : spawnPos_Center.position;
+        hero.transform.rotation = Quaternion.identity;
     }
 
     

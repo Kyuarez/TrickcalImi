@@ -25,4 +25,25 @@ public enum IngameModeType
     Result,
 }
 
+public enum HeroState
+{
+    None,
+    Idle,
+    Walk,
+    Chase,
+    Attack,
+    Hit,
+    Die,
+}
+
+public enum EnemyState 
+{
+    None,
+    Idle,
+    Walk,
+    Chase,
+    Attack,
+    Hit,
+    Die,
+}
 #endregion
