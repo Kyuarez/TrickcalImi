@@ -14,6 +14,9 @@ public class UIIngameHUD : MonoBehaviour
         ingameHUD = GetComponent<UIIngameHUD>();
         waveHUD = GetComponentInChildren<UIWaveHUD>();
 
+    }
+    private void Start()
+    {
         StageManager.Instance.OnTickAction += ingameTimer.UpdateUIIngameTimer;
         StageManager.Instance.OnSetupAction += OnSetupAction;
         StageManager.Instance.OnCombatAction += OnCombatAction;

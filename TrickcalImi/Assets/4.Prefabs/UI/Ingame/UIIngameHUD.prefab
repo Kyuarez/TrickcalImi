@@ -898,6 +898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1db7bc9734f84449930c3d0b73ef10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btn_AutoBattle: {fileID: 2590479087873603794}
+  btn_IngameSpeed: {fileID: 2167470121286072372}
+  btn_Pause: {fileID: 8894575494150149734}
 --- !u!1 &6465196059360857075
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +914,7 @@ GameObject:
   - component: {fileID: 6265896520721057728}
   - component: {fileID: 2167470121286072372}
   m_Layer: 5
-  m_Name: btn_Play
+  m_Name: btn_ingameSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

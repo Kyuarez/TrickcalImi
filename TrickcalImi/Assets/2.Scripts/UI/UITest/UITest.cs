@@ -11,7 +11,10 @@ public class UITest : MonoBehaviour
     {
         btn_Depoly.onClick.AddListener(OnClickDeployHero);
         btn_CombatMode.onClick.AddListener(OnClickOnCombatMode);
+    }
 
+    private void Start()
+    {
         StageManager.Instance.OnSetupAction += OnSetupAction;
         StageManager.Instance.OnCombatAction += OnCombatAction;
     }
