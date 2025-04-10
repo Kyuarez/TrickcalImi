@@ -1,13 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
+/* [25.04.10]
+ 적의 타겟팅은 무조건 거리 가까운 순으로 잡기
+ */
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer shadowSpr;
+
     private float moveSpeed = 2.0f;
     private float chaseSpeed = 5.0f;
 
     private Animator anim;
     private SpriteRenderer spr;
+    
 
     private EnemyState currentState;
     private Coroutine stateCoroutine;
@@ -18,6 +24,9 @@ public class EnemyManager : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+
+        spr.sortingOrder = Define.OrderLayer_HeroFirst;
+        shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
     }
 
     private void OnEnable()
@@ -35,6 +44,8 @@ public class EnemyManager : MonoBehaviour
     {
         
     }
+
+
 
     public void SetEnemyState(EnemyState enemyState)
     {

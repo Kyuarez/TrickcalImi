@@ -10,6 +10,9 @@ public class StageManager : MonoSingleton<StageManager>
     public int testEnemyCount = 5;
     #endregion
 
+    [Header("Elements")]
+    [SerializeField] private SpriteRenderer backgroundSpr;
+
 
     private IngameModeType currentMode;
     //@tk 이거 나중에 챕터로부터 받기
@@ -18,10 +21,12 @@ public class StageManager : MonoSingleton<StageManager>
     private float setupLimitTime = 60.0f;
     private float combatLimitTime = 120.0f;
 
-    private StageSpawnArea spawnArea; 
-    
+    private StageSpawnArea spawnArea;
+    private LocalTimer timer;
+
     public Action OnSetupAction; //card setup
     public Action OnCombatAction; //wave
+    public Action<float, float> OnTickAction; //local Timer
 
 
     public int CurrentWaveCount => currentWaveCount;
@@ -33,12 +38,25 @@ public class StageManager : MonoSingleton<StageManager>
     protected override void Awake()
     {
         base.Awake();
+        backgroundSpr.sortingOrder = Define.OrderLayer_background;
+
         spawnArea = GetComponentInChildren<StageSpawnArea>();
+        
+        timer = new LocalTimer();
     }
 
     private void Start()
     {
         OnSetupMode();
+    }
+
+    private void Update()
+    {
+        if(currentMode == IngameModeType.Setup || currentMode == IngameModeType.Combat)
+        {
+            timer?.UpdateTimer(Time.deltaTime);
+            
+        }   
     }
 
     public void OnSetupMode()
@@ -51,6 +69,13 @@ public class StageManager : MonoSingleton<StageManager>
         currentMode = IngameModeType.Setup;
         currentWaveCount = Mathf.Min(totalWaveCount, currentWaveCount++);
 
+        timer.OnTick = null;
+        timer.OnTick += UpdateOnTick;
+
+        timer.OnTimeOver = null;
+        timer.OnTimeOver += OnCombatMode;
+        timer.OnTimer(setupLimitTime);
+
         OnSetupAction?.Invoke();
     }
 
@@ -62,7 +87,13 @@ public class StageManager : MonoSingleton<StageManager>
         }
 
         currentMode = IngameModeType.Combat;
-
+        
+        timer.OnTick = null;
+        timer.OnTick += UpdateOnTick;
+        timer.OnTimeOver = null;
+        timer.OnTimeOver += OnFailureMode;
+        timer.OnTimer(combatLimitTime);
+        
         OnCombatAction?.Invoke();
 
         //알아서 몬스터 생성?
@@ -73,5 +104,37 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
 
-    
+    public void OnSuccessMode()
+    {
+        if(currentMode == IngameModeType.Success)
+        {
+            return;
+        }
+
+        currentMode = IngameModeType.Success;
+    }
+
+    public void OnFailureMode()
+    {
+        if (currentMode == IngameModeType.Failure)
+        {
+            return;
+        }
+
+        currentMode = IngameModeType.Failure;
+    }
+
+    public void UpdateOnTick()
+    {
+        if(currentMode == IngameModeType.Setup)
+        {
+            OnTickAction?.Invoke(timer.GetRemainingTime(), SetupLimitTime);
+        }
+        else if(currentMode == IngameModeType.Combat)
+        {
+            OnTickAction?.Invoke(timer.GetRemainingTime(), combatLimitTime);
+        }
+
+        return;
+    }
 }

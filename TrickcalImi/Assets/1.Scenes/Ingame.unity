@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testEnemyCount: 5
+  backgroundSpr: {fileID: 1109997785}
 --- !u!1 &30252377
 GameObject:
   m_ObjectHideFlags: 0

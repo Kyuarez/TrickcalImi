@@ -1,8 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
+/* [25.04.10]
+ 영웅은 타겟팅을 후보군 중 우선 순위 점수 높은 애를 타겟팅하기
+-> 고려 요소 : 거리, 어그로(위험도) 등 종합 점수로 타겟팅
+ */
 public class HeroManager : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer shadowSpr;
+
     private float moveSpeed = 2.0f;
     private float chaseSpeed = 5.0f;
 
@@ -20,6 +26,10 @@ public class HeroManager : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+
+        //@TODO : tk 이거 이제 열마다 따로 세팅
+        spr.sortingOrder = Define.OrderLayer_HeroSecond;
+        shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
     }
 
     private void Start()

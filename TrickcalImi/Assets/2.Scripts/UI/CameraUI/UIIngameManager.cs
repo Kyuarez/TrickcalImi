@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class UIIngameManager : MonoSingleton<UIIngameManager>
 {
+    private Canvas canvas;
+
     public static UIDepolySlotManager DepolySlotManager;
 
     protected override void Awake()
     {
         base.Awake();
+        canvas = GetComponent<Canvas>();
+        canvas.sortingOrder = Define.OrderLayer_ingameUI;
 
         //cast
         DepolySlotManager = GetComponentInChildren<UIDepolySlotManager>();
