@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StageManager : MonoSingleton<StageManager>
@@ -28,6 +29,8 @@ public class StageManager : MonoSingleton<StageManager>
     public Action OnCombatAction; //wave
     public Action<float, float> OnTickAction; //local Timer
 
+    private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>();
+
 
     public int CurrentWaveCount => currentWaveCount;
     public int TotalWaveCount => totalWaveCount;
@@ -47,7 +50,7 @@ public class StageManager : MonoSingleton<StageManager>
 
     private void Start()
     {
-        OnSetupMode();
+        OnStage();
     }
 
     private void Update()
@@ -57,6 +60,11 @@ public class StageManager : MonoSingleton<StageManager>
             timer?.UpdateTimer(Time.deltaTime);
             
         }   
+    }
+
+    public void OnStage() //stage 진입
+    {
+        OnSetupMode(); 
     }
 
     public void OnSetupMode()
@@ -112,6 +120,8 @@ public class StageManager : MonoSingleton<StageManager>
         }
 
         currentMode = IngameModeType.Success;
+
+        ResetCurrentHeros();
     }
 
     public void OnFailureMode()
@@ -122,6 +132,8 @@ public class StageManager : MonoSingleton<StageManager>
         }
 
         currentMode = IngameModeType.Failure;
+        
+        ResetCurrentHeros();
     }
 
     public void UpdateOnTick()
@@ -137,4 +149,71 @@ public class StageManager : MonoSingleton<StageManager>
 
         return;
     }
+
+    private void AddCurrentHeros(int index, HeroManager hero)
+    {
+        if(currentHeros.ContainsKey(index) == true)
+        {
+            if (currentHeros[index] == hero)
+            {
+                Debug.AssertFormat(false, $"Hero is duplicated : [{hero.name}]");
+            }
+            else
+            {
+                Debug.AssertFormat(false, $"Depoly slot is duplicated : [{index}]");
+            }
+
+            return;
+        }
+
+        currentHeros.Add(index, hero);
+    }
+
+    private void ResetCurrentHeros()
+    {
+        currentHeros.Clear();
+    }
+
+    public void SpawnHeroInStage()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        int slotIndex = UIIngameManager.DepolySlotManager.GetHeroDepolySlotData(ref spawnPosition);
+
+        if((spawnPosition != null || spawnPosition != Vector3.zero) && slotIndex != -1)
+        {
+            GameObject obj = Resources.Load<GameObject>("Prefabs/Objects/Hero/TestHero");
+            HeroManager hero = Instantiate(obj).GetComponent<HeroManager>();
+            hero.transform.position = spawnPosition;
+            hero.transform.localRotation = Quaternion.identity;
+
+            AddCurrentHeros(slotIndex, hero);
+            UIIngameManager.DepolySlotManager.SetSlotDeployState(slotIndex);
+        }
+        else
+        {
+            //TODO : UI상으로 경고하기
+        }
+    }
+
+    //@tk : 일단 적이 타겟을 세팅.
+    public HeroManager GetRandomHeroInStage()
+    {
+        if(currentHeros == null || currentHeros.Count == 0)
+        {
+            return null;
+        }
+
+        int randNum = UnityEngine.Random.Range(1, currentHeros.Count + 1);
+
+        if(currentHeros.ContainsKey(randNum) == false)
+        {
+            Debug.AssertFormat(false, $"currentHeros Dict's key is strange : get key ({randNum})");
+            return null;
+        }
+
+        return currentHeros[randNum];
+    }
+
+
+
 }

@@ -21,6 +21,8 @@ public class HeroManager : MonoBehaviour
     private Coroutine stateCoroutine;
 
     private Transform currentTarget;
+    private float distanceToEnemy;
+
 
     private void Awake()
     {
@@ -38,18 +40,19 @@ public class HeroManager : MonoBehaviour
         StageManager.Instance.OnCombatAction += OnCombatAction;
     }
 
+
     public void OnSetupAction()
     {
         //TODO : 이거 원 위치 복구해야 함.
-        SetEnemyState(HeroState.Idle);
+        SetHeroState(HeroState.Walk);
     }
 
     public void OnCombatAction()
     {
-        SetEnemyState(HeroState.Walk);
+        SetHeroState(HeroState.Idle);
     }
 
-    public void SetEnemyState(HeroState heroState)
+    public void SetHeroState(HeroState heroState)
     {
         if (currentState == heroState)
         {
@@ -76,6 +79,7 @@ public class HeroManager : MonoBehaviour
 
     private IEnumerator Idle()
     {
+        anim.Play("Idle");
         yield return null;
     }
     private IEnumerator Walk()
@@ -84,21 +88,28 @@ public class HeroManager : MonoBehaviour
 
         while (true)
         {
-            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
             yield return null;
         }
     }
     private IEnumerator Chase()
     {
-        yield return null;
+        anim.Play("Run");
+        while (true)
+        {
+            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
     }
     private IEnumerator Attack()
     {
+        anim.Play("Attack");
+
         yield return null;
     }
 
     private IEnumerator Hit()
     {
+        anim.Play("Hit");
         yield return null;
     }
     private IEnumerator Die()

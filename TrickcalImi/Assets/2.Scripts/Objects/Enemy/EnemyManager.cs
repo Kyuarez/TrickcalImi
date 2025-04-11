@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 /* [25.04.10]
@@ -18,7 +19,14 @@ public class EnemyManager : MonoBehaviour
     private EnemyState currentState;
     private Coroutine stateCoroutine;
 
-    private Transform currentTarget;
+    private HeroManager currentTarget;
+    private float distanceToTarget = -1f;
+    private float trackingRange = 10.0f;
+    private float attackRange = 2.5f;
+    private float attackDelay = 0.75f;
+    
+
+    private bool isFirstCall = true; //pool에서 OnEnable 막을려고 만든 코드
 
     private void Awake()
     {
@@ -31,21 +39,33 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SetEnemyState(EnemyState.Walk);
+        if(isFirstCall == true)
+        {
+            isFirstCall = false;
+        }
+        else
+        {
+            currentTarget = StageManager.Instance.GetRandomHeroInStage();
+            SetEnemyState(EnemyState.Idle);
+        }
+
     }
 
     private void OnDisable()
     {
         SetEnemyState(EnemyState.None);
         stateCoroutine = null;
+        currentTarget = null;
+        distanceToTarget = -1f;
     }
 
     private void Update()
     {
-        
+        if(currentTarget != null)
+        {
+            distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+        }             
     }
-
-
 
     public void SetEnemyState(EnemyState enemyState)
     {
@@ -74,7 +94,28 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator Idle()
     {
-        yield return null;
+        anim.Play("Idle");
+        while (true)
+        {
+            if (distanceToTarget <= trackingRange)
+            {
+                if (currentTarget != null && distanceToTarget <= attackRange)
+                {
+                    SetEnemyState(EnemyState.Attack);
+                    yield break;
+                }
+
+                SetEnemyState(EnemyState.Chase);
+                yield break;
+            }
+            else
+            {
+                SetEnemyState(EnemyState.Walk);
+                yield break;
+            }
+
+            yield return null;
+        }
     }
     private IEnumerator Walk()
     {
@@ -82,21 +123,59 @@ public class EnemyManager : MonoBehaviour
         
         while (true) 
         {
+            if (distanceToTarget <= trackingRange)
+            {
+                if (currentTarget != null && distanceToTarget <= attackRange)
+                {
+                    SetEnemyState(EnemyState.Attack);
+                    yield break;
+                }
+
+                SetEnemyState(EnemyState.Chase);
+                yield break;
+            }
+
             transform.position += Vector3.left * moveSpeed * Time.deltaTime;
             yield return null;
         }
     }
     private IEnumerator Chase()
     {
-        yield return null;
+        anim.Play("Run");
+        while (true)
+        {
+            if(currentTarget != null && distanceToTarget <= trackingRange)
+            {
+                if (currentTarget != null && distanceToTarget <= attackRange)
+                {
+                    SetEnemyState(EnemyState.Attack);
+                    yield break;
+                }
+
+                Vector3 currentPosition = transform.position;
+                Vector3 targetPosition = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, currentPosition.z);
+                transform.position = Vector3.Lerp(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                SetEnemyState(EnemyState.Walk);
+                yield break;
+            }
+
+            yield return null;
+        }
     }
     private IEnumerator Attack()
     {
+        anim.Play("Attack");
+        yield return new WaitForSeconds(attackDelay);
+        SetEnemyState(EnemyState.Idle);
         yield return null;
     }
 
     private IEnumerator Hit()
     {
+        anim.Play("Hit");
         yield return null;
     }
     private IEnumerator Die()

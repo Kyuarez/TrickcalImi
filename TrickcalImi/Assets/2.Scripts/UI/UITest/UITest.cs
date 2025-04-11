@@ -39,8 +39,7 @@ public class UITest : MonoBehaviour
     #region OnClick
     public void OnClickDeployHero()
     {
-        GameObject obj = Resources.Load<GameObject>("Prefabs/Objects/Hero/TestHero");
-        UIIngameManager.DepolySlotManager.OnDepolyHero(obj);
+        StageManager.Instance.SpawnHeroInStage();
     }
 
     public void OnClickOnCombatMode() 
