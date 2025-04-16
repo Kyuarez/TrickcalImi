@@ -30,7 +30,6 @@ public enum IngameModeType
 
 public enum HeroState
 {
-    None,
     Idle,
     Walk,
     Chase,
@@ -41,7 +40,6 @@ public enum HeroState
 
 public enum EnemyState 
 {
-    None,
     Idle,
     Walk,
     Chase,

@@ -1,11 +1,11 @@
+using FSM;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 /* [25.04.10]
  적의 타겟팅은 무조건 거리 가까운 순으로 잡기
  */
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : IngameObject
 {
     [SerializeField] private SpriteRenderer shadowSpr;
 
@@ -17,7 +17,8 @@ public class EnemyManager : MonoBehaviour
     
 
     private EnemyState currentState;
-    private Coroutine stateCoroutine;
+    private StateManager<EnemyManager> stateManager;
+    private State<EnemyManager>[] states;
 
     private HeroManager currentTarget;
     private float distanceToTarget = -1f;
@@ -28,6 +29,23 @@ public class EnemyManager : MonoBehaviour
 
     private bool isFirstCall = true; //pool에서 OnEnable 막을려고 만든 코드
 
+    public bool IsPossibleChase
+    {
+        get { return distanceToTarget <= trackingRange; }
+    }
+    public bool IsPossibleAttack
+    {
+        get 
+        { 
+            if( currentTarget != null)
+            {
+                return distanceToTarget <= attackRange;
+            }
+            return false;
+        } 
+    }
+    public float AttackDelay => this.attackDelay;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -35,6 +53,16 @@ public class EnemyManager : MonoBehaviour
 
         spr.sortingOrder = Define.OrderLayer_HeroFirst;
         shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
+
+        stateManager = new StateManager<EnemyManager>();
+        states = new State<EnemyManager>[]
+        {
+            new EnemyIdleState(),
+            new EnemyWalkState(),
+            new EnemyChaseState(),
+            new EnemyAttackState(),
+            new EnemyHitState(),
+        };
     }
 
     private void OnEnable()
@@ -46,15 +74,15 @@ public class EnemyManager : MonoBehaviour
         else
         {
             currentTarget = StageManager.Instance.GetRandomHeroInStage();
-            SetEnemyState(EnemyState.Idle);
+            currentState = EnemyState.Idle;
+            stateManager.Setup(this, states[(int)EnemyState.Idle]);
         }
 
     }
 
     private void OnDisable()
     {
-        SetEnemyState(EnemyState.None);
-        stateCoroutine = null;
+        SetEnemyState(EnemyState.Idle);
         currentTarget = null;
         distanceToTarget = -1f;
     }
@@ -67,6 +95,14 @@ public class EnemyManager : MonoBehaviour
         }             
     }
 
+    public void Updated()
+    {
+        if (stateManager != null)
+        {
+            stateManager.Excute();
+        }
+    }
+
     public void SetEnemyState(EnemyState enemyState)
     {
         if(currentState == enemyState)
@@ -75,112 +111,23 @@ public class EnemyManager : MonoBehaviour
         }
 
         currentState = enemyState;
-
-
-
-        if(stateCoroutine != null)
-        {
-            StopCoroutine(stateCoroutine);
-            stateCoroutine = null;
-        }
-
-        if(currentState == EnemyState.None)
-        {
-            return;
-        }
-
-        stateCoroutine = StartCoroutine(currentState.ToString());
+        stateManager.ChangeState(states[(int)currentState]);
     }
 
-    private IEnumerator Idle()
+    public void TestMove()
     {
-        anim.Play("Idle");
-        while (true)
-        {
-            if (distanceToTarget <= trackingRange)
-            {
-                if (currentTarget != null && distanceToTarget <= attackRange)
-                {
-                    SetEnemyState(EnemyState.Attack);
-                    yield break;
-                }
-
-                SetEnemyState(EnemyState.Chase);
-                yield break;
-            }
-            else
-            {
-                SetEnemyState(EnemyState.Walk);
-                yield break;
-            }
-
-            yield return null;
-        }
+        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
     }
-    private IEnumerator Walk()
+
+    public void TestChase()
     {
-        anim.Play("Walk");
-        
-        while (true) 
-        {
-            if (distanceToTarget <= trackingRange)
-            {
-                if (currentTarget != null && distanceToTarget <= attackRange)
-                {
-                    SetEnemyState(EnemyState.Attack);
-                    yield break;
-                }
-
-                SetEnemyState(EnemyState.Chase);
-                yield break;
-            }
-
-            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-            yield return null;
-        }
+        Vector3 currentPosition = transform.position;
+        Vector3 targetPosition = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, currentPosition.z);
+        transform.position = Vector3.Lerp(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
     }
-    private IEnumerator Chase()
+
+    public void PlayAnim(EnemyState state)
     {
-        anim.Play("Run");
-        while (true)
-        {
-            if(currentTarget != null && distanceToTarget <= trackingRange)
-            {
-                if (currentTarget != null && distanceToTarget <= attackRange)
-                {
-                    SetEnemyState(EnemyState.Attack);
-                    yield break;
-                }
-
-                Vector3 currentPosition = transform.position;
-                Vector3 targetPosition = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, currentPosition.z);
-                transform.position = Vector3.Lerp(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                SetEnemyState(EnemyState.Walk);
-                yield break;
-            }
-
-            yield return null;
-        }
+        anim.Play(state.ToString());
     }
-    private IEnumerator Attack()
-    {
-        anim.Play("Attack");
-        yield return new WaitForSeconds(attackDelay);
-        SetEnemyState(EnemyState.Idle);
-        yield return null;
-    }
-
-    private IEnumerator Hit()
-    {
-        anim.Play("Hit");
-        yield return null;
-    }
-    private IEnumerator Die()
-    {
-        yield return null;
-    }
-
 }

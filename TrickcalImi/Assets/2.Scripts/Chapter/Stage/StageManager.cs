@@ -30,7 +30,7 @@ public class StageManager : MonoSingleton<StageManager>
     public Action<float, float> OnTickAction; //local Timer
 
     private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>();
-
+    private List<EnemyManager> currentEnemyList = new List<EnemyManager>();
 
     public int CurrentWaveCount => currentWaveCount;
     public int TotalWaveCount => totalWaveCount;
@@ -58,8 +58,23 @@ public class StageManager : MonoSingleton<StageManager>
         if(currentMode == IngameModeType.Setup || currentMode == IngameModeType.Combat)
         {
             timer?.UpdateTimer(Time.deltaTime);
-            
         }   
+
+        if(currentHeros.Count > 0)
+        {
+            foreach (HeroManager hero in currentHeros.Values)
+            {
+                hero.Updated();
+            }
+        }
+
+        if(currentEnemyList.Count > 0)
+        {
+            foreach (EnemyManager enemy in currentEnemyList)
+            {
+                enemy.Updated();
+            }
+        }
     }
 
     public void OnStage() //stage ¡¯¿‘
@@ -108,7 +123,11 @@ public class StageManager : MonoSingleton<StageManager>
         for (int i = 0; i < testEnemyCount; i++)
         {
             Vector3 worldPos = spawnArea.GetRandomPosByArea();
-            PoolManager.Instance.SpawnObject("TestEnemy", worldPos);
+            EnemyManager enemy = PoolManager.Instance.SpawnObject("TestEnemy", worldPos).GetComponent<EnemyManager>();
+            if(enemy != null)
+            {
+                currentEnemyList.Add(enemy);
+            }
         }
     }
 
@@ -150,7 +169,7 @@ public class StageManager : MonoSingleton<StageManager>
         return;
     }
 
-    private void AddCurrentHeros(int index, HeroManager hero)
+    public void AddCurrentHeros(int index, HeroManager hero)
     {
         if(currentHeros.ContainsKey(index) == true)
         {
@@ -167,6 +186,21 @@ public class StageManager : MonoSingleton<StageManager>
         }
 
         currentHeros.Add(index, hero);
+    }
+
+    public void AddCurrentEnemy(EnemyManager enemy)
+    {
+        if(currentEnemyList != null)
+        {
+            currentEnemyList.Add(enemy);
+        }
+    }
+    public void RemoveCurrentEnemy(EnemyManager enemy)
+    {
+        if (currentEnemyList != null)
+        {
+            currentEnemyList.Remove(enemy);
+        }
     }
 
     private void ResetCurrentHeros()

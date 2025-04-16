@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using FSM;
 
 /* [25.04.10]
  영웅은 타겟팅을 후보군 중 우선 순위 점수 높은 애를 타겟팅하기
 -> 고려 요소 : 거리, 어그로(위험도) 등 종합 점수로 타겟팅
  */
-public class HeroManager : MonoBehaviour
+public class HeroManager : IngameObject
 {
     [SerializeField] private SpriteRenderer shadowSpr;
 
@@ -19,6 +20,8 @@ public class HeroManager : MonoBehaviour
 
     private HeroState currentState;
     private Coroutine stateCoroutine;
+    private StateManager<HeroManager> stateManager;
+    private State<HeroManager>[] states;
 
     private Transform currentTarget;
     private float distanceToEnemy;
@@ -32,6 +35,24 @@ public class HeroManager : MonoBehaviour
         //@TODO : tk 이거 이제 열마다 따로 세팅
         spr.sortingOrder = Define.OrderLayer_HeroSecond;
         shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
+
+        stateManager = new StateManager<HeroManager>();
+        states = new State<HeroManager>[]
+        {
+            new HeroIdleState(),
+            new HeroWalkState(),
+            new HeroChaseState(),
+            new HeroAttackState(),
+            new HeroHitState(),
+        };
+
+        currentState = HeroState.Idle;
+        stateManager.Setup(this, states[(int)EnemyState.Idle]);
+    }
+
+    private void OnEnable()
+    {
+        SetHeroState(HeroState.Idle);
     }
 
     private void Start()
@@ -40,6 +61,13 @@ public class HeroManager : MonoBehaviour
         StageManager.Instance.OnCombatAction += OnCombatAction;
     }
 
+    public void Updated()
+    {
+        if(stateManager != null)
+        {
+            stateManager.Excute();
+        }
+    }
 
     public void OnSetupAction()
     {
@@ -60,60 +88,17 @@ public class HeroManager : MonoBehaviour
         }
 
         currentState = heroState;
-
-
-
-        if (stateCoroutine != null)
-        {
-            StopCoroutine(stateCoroutine);
-            stateCoroutine = null;
-        }
-
-        if (currentState == HeroState.None)
-        {
-            return;
-        }
-
-        stateCoroutine = StartCoroutine(currentState.ToString());
+        stateManager.ChangeState(states[(int)currentState]);
     }
 
-    private IEnumerator Idle()
-    {
-        anim.Play("Idle");
-        yield return null;
-    }
-    private IEnumerator Walk()
-    {
-        anim.Play("Walk");
 
-        while (true)
-        {
-            yield return null;
-        }
-    }
-    private IEnumerator Chase()
+    public void PlayAnim(HeroState state)
     {
-        anim.Play("Run");
-        while (true)
-        {
-            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-            yield return null;
-        }
-    }
-    private IEnumerator Attack()
-    {
-        anim.Play("Attack");
-
-        yield return null;
+        anim.Play(state.ToString());
     }
 
-    private IEnumerator Hit()
+    public void TestMove()
     {
-        anim.Play("Hit");
-        yield return null;
-    }
-    private IEnumerator Die()
-    {
-        yield return null;
+        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
     }
 }
