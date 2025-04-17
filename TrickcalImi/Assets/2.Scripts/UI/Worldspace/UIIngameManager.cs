@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/*
+ Ingame 상에서 worldspace 캔버스 UI 관리
+ */
 public class UIIngameManager : MonoSingleton<UIIngameManager>
 {
     private Canvas canvas;

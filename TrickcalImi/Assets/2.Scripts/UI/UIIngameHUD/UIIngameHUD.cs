@@ -8,6 +8,14 @@ public class UIIngameHUD : MonoBehaviour
     private UIIngameHUD ingameHUD;
     private UIWaveHUD waveHUD;
 
+    public void SetActivePanel(bool isActive)
+    {
+        if (panel.activeSelf == !isActive)
+        {
+            panel.SetActive(isActive);
+        }
+    }
+
     private void Awake()
     {
         ingameTimer = GetComponentInChildren<UIIngameTimer>();

@@ -19,14 +19,16 @@ public class StageManager : MonoSingleton<StageManager>
     //@tk 이거 나중에 챕터로부터 받기
     private int currentWaveCount = 0; 
     private int totalWaveCount = 5;
-    private float setupLimitTime = 60.0f;
-    private float combatLimitTime = 120.0f;
+    private float setupLimitTime = 10.0f;
+    private float combatLimitTime = 10.0f;
 
     private StageSpawnArea spawnArea;
     private LocalTimer timer;
 
     public Action OnSetupAction; //card setup
     public Action OnCombatAction; //wave
+    public Action OnSuccessAction;
+    public Action OnFailureAction;
     public Action<float, float> OnTickAction; //local Timer
 
     private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>();
@@ -46,11 +48,6 @@ public class StageManager : MonoSingleton<StageManager>
         spawnArea = GetComponentInChildren<StageSpawnArea>();
         
         timer = new LocalTimer();
-    }
-
-    private void Start()
-    {
-        OnStage();
     }
 
     private void Update()
@@ -90,7 +87,7 @@ public class StageManager : MonoSingleton<StageManager>
         }
 
         currentMode = IngameModeType.Setup;
-        currentWaveCount = Mathf.Min(totalWaveCount, currentWaveCount++);
+        currentWaveCount = Mathf.Min(totalWaveCount, ++currentWaveCount);
 
         timer.OnTick = null;
         timer.OnTick += UpdateOnTick;
@@ -138,7 +135,9 @@ public class StageManager : MonoSingleton<StageManager>
             return;
         }
 
+        Time.timeScale = 0.0f;
         currentMode = IngameModeType.Success;
+        OnSuccessAction?.Invoke();
 
         ResetCurrentHeros();
     }
@@ -150,8 +149,10 @@ public class StageManager : MonoSingleton<StageManager>
             return;
         }
 
+        Time.timeScale = 0.0f;
         currentMode = IngameModeType.Failure;
-        
+        OnFailureAction?.Invoke();
+
         ResetCurrentHeros();
     }
 

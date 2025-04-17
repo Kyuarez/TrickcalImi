@@ -19,6 +19,14 @@ public class UITest : MonoBehaviour
         StageManager.Instance.OnCombatAction += OnCombatAction;
     }
 
+    public void SetActivePanel(bool isActive)
+    {
+        if(panel.activeSelf == !isActive)
+        {
+            panel.SetActive(isActive);
+        }
+    }
+
 
     public void OnSetupAction()
     {

@@ -16,6 +16,10 @@ public static class Define
     public static readonly int OrderLayer_HeroSecond = 2;
     public static readonly int OrderLayer_HeroThird = 3;
 
+    #region Res
+    public static readonly string Res_UI_LobbyBackground = "Sprites/UI/Lobby/BackgroundImage";
+    #endregion
+
     #region Color
     public static Color Color_UI_HP_Hero = new Color(0f, 1f, 0f);
     public static Color Color_UI_HP_Monster = new Color(128f/255f, 0f, 128f/255f);
@@ -25,6 +29,20 @@ public static class Define
 }
 
 #region EnumType
+public enum GameSceneType
+{
+    Title,
+    Lobby,
+    Ingame,
+}
+
+public enum LobbyType
+{
+    LobbyMain,
+    LobbyAdventure,
+    LobbySelectStage,
+}
+
 public enum IngameModeType
 {
     None,
