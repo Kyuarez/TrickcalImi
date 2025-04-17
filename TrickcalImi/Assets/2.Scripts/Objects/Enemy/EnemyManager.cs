@@ -12,10 +12,6 @@ public class EnemyManager : IngameObject
     private float moveSpeed = 2.0f;
     private float chaseSpeed = 5.0f;
 
-    private Animator anim;
-    private SpriteRenderer spr;
-    
-
     private EnemyState currentState;
     private StateManager<EnemyManager> stateManager;
     private State<EnemyManager>[] states;
@@ -46,10 +42,9 @@ public class EnemyManager : IngameObject
     }
     public float AttackDelay => this.attackDelay;
 
-    private void Awake()
+    protected override void Awake()
     {
-        anim = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>();
+        base.Awake();
 
         spr.sortingOrder = Define.OrderLayer_HeroFirst;
         shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
@@ -65,9 +60,14 @@ public class EnemyManager : IngameObject
         };
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        if(isFirstCall == true)
+     
+        base.OnEnable();
+
+        healthManager = new HealthManager(100f, 100f);
+
+        if (isFirstCall == true)
         {
             isFirstCall = false;
         }
@@ -80,8 +80,19 @@ public class EnemyManager : IngameObject
 
     }
 
-    private void OnDisable()
+    protected override void Start()
     {
+        base.Start();
+
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        healthManager.ResetHealthManager();
+        healthManager = null;
+
         SetEnemyState(EnemyState.Idle);
         currentTarget = null;
         distanceToTarget = -1f;

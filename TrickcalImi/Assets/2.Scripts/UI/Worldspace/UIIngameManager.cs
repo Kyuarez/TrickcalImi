@@ -5,6 +5,7 @@ public class UIIngameManager : MonoSingleton<UIIngameManager>
     private Canvas canvas;
 
     public static UIDepolySlotManager DepolySlotManager;
+    public static UIBillboardManager BillboardManager;
 
     protected override void Awake()
     {
@@ -14,6 +15,7 @@ public class UIIngameManager : MonoSingleton<UIIngameManager>
 
         //cast
         DepolySlotManager = GetComponentInChildren<UIDepolySlotManager>();
+        BillboardManager = GetComponentInChildren<UIBillboardManager>();
 
         DepolySlotManager.InitDepoly();
 

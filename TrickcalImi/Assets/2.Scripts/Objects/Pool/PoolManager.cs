@@ -9,11 +9,13 @@ using UnityEngine;
  */
 public class PoolManager : MonoSingleton<PoolManager>
 {
+    //@tk 임시 변수 : 나중엔 json으로 처린
     [SerializeField] private int enemyCount;
     [SerializeField] private int fxCount;
 
     private Transform parent_Enemy;
     private Transform parent_FX;
+    private Transform parent_UI;
 
     protected override void Awake()
     {
@@ -21,6 +23,7 @@ public class PoolManager : MonoSingleton<PoolManager>
         //Casting
         parent_Enemy = transform.FindRecursiveChild(Define.Name_Pool_Enemy);
         parent_FX = transform.FindRecursiveChild(Define.Name_Pool_FX);
+        parent_UI = transform.FindRecursiveChild(Define.Name_Pool_UI);
         //Init
         InitPoolManager();
     }
@@ -43,6 +46,8 @@ public class PoolManager : MonoSingleton<PoolManager>
         }
 
         //FX
+
+        //UI
     }
 
     private void AddPool(string path, IPool pool)

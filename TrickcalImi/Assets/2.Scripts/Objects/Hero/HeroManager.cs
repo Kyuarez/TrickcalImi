@@ -15,22 +15,16 @@ public class HeroManager : IngameObject
 
     private bool isAutoBattle;
 
-    private Animator anim;
-    private SpriteRenderer spr;
-
     private HeroState currentState;
-    private Coroutine stateCoroutine;
     private StateManager<HeroManager> stateManager;
     private State<HeroManager>[] states;
 
     private Transform currentTarget;
     private float distanceToEnemy;
 
-
-    private void Awake()
+    protected override void Awake()
     {
-        anim = GetComponent<Animator>();
-        spr = GetComponent<SpriteRenderer>();
+        base.Awake();
 
         //@TODO : tk 이거 이제 열마다 따로 세팅
         spr.sortingOrder = Define.OrderLayer_HeroSecond;
@@ -50,13 +44,27 @@ public class HeroManager : IngameObject
         stateManager.Setup(this, states[(int)EnemyState.Idle]);
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
+        //@tk : 임시 데이터, 나중에 json으로 처리
+        healthManager = new HealthManager(100f, 100f);
         SetHeroState(HeroState.Idle);
     }
 
-    private void Start()
+    protected override void OnDisable()
     {
+        base.OnDisable();
+
+        healthManager.ResetHealthManager();
+        healthManager = null;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
         StageManager.Instance.OnSetupAction += OnSetupAction;
         StageManager.Instance.OnCombatAction += OnCombatAction;
     }
