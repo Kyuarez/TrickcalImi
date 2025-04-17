@@ -18,6 +18,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     protected override void Awake()
     {
+        base.Awake();
         canvas = GetComponent<Canvas>();
 
         canvas.sortingOrder = Define.OrderLayer_baseUI;

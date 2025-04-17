@@ -30,6 +30,7 @@ public class UILobby : MonoBehaviour
 
         //UISetting
         lobbyHUD.SetLobbyHUD(lobbyType);
+        lobbyBackground.SetBackgroundLobbyMain();
 
         switch (lobbyType)
         {

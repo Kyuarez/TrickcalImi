@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class UILobbyBackground : MonoBehaviour
 {
+    [SerializeField] private Image backgroundImage;
+    
     private Sprite[] backgroundLobbyMains;
-    private Image backgroundImage;
 
     private void Awake()
     {
-        //casting
-        backgroundImage = GetComponentInChildren<Image>();
-
         //backgroundImage Load
         Sprite[] arr = Resources.LoadAll<Sprite>(Define.Res_UI_LobbyBackground);
 
@@ -22,7 +20,8 @@ public class UILobbyBackground : MonoBehaviour
             return;
         }
 
-        Array.Copy(backgroundLobbyMains, arr, arr.Length);
+        backgroundLobbyMains = new Sprite[arr.Length];
+        Array.Copy(arr, backgroundLobbyMains, arr.Length);
         SetBackgroundLobbyMain();
     }
 
