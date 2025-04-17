@@ -21,6 +21,12 @@ public class UIStageInfo : MonoBehaviour
         btn_SelectDeque.onClick.AddListener(OnClickSelectDeque);
     }
 
+    private void Start()
+    {
+        UIManager.LobbySelectStage.OnSelectSlot += SetUIStageInfo;
+    }
+
+
     public void SetActivePanel(bool active)
     {
         if(panel.activeSelf == !active)
@@ -29,8 +35,9 @@ public class UIStageInfo : MonoBehaviour
         }
     }
 
-    public void SetUIStageInfo(/*Stage Data*/)
+    public void SetUIStageInfo(UIStageSlot slots)
     {
+        SetActivePanel(true);
         //stageHeaderText
         //stageDescText
     }

@@ -19,8 +19,8 @@ public class StageManager : MonoSingleton<StageManager>
     //@tk 이거 나중에 챕터로부터 받기
     private int currentWaveCount = 0; 
     private int totalWaveCount = 5;
-    private float setupLimitTime = 10.0f;
-    private float combatLimitTime = 10.0f;
+    private float setupLimitTime = 60.0f;
+    private float combatLimitTime = 70.0f;
 
     private StageSpawnArea spawnArea;
     private LocalTimer timer;
@@ -76,6 +76,7 @@ public class StageManager : MonoSingleton<StageManager>
 
     public void OnStage() //stage 진입
     {
+        UIManager.Instance.OnIngame();
         OnSetupMode(); 
     }
 

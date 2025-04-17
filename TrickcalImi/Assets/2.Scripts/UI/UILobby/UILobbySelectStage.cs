@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UILobbySelectStage : MonoBehaviour
@@ -7,14 +9,14 @@ public class UILobbySelectStage : MonoBehaviour
     private UIStageManager uiStageManager;
     private UIStageInfo uiStageInfo;
 
-    private UIStageSlot currentSlot;
+    public Action<UIStageSlot> OnSelectSlot;
 
     private void Awake()
     {
         uiStageManager = GetComponentInChildren<UIStageManager>();
         uiStageInfo = GetComponentInChildren<UIStageInfo>();
 
-        currentSlot = null;
+        uiStageManager.InitUIStageManager();
     }
 
     public void SetActivePanel(bool active)

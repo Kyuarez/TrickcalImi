@@ -18,6 +18,7 @@ public static class Define
 
     #region Res
     public static readonly string Res_UI_LobbyBackground = "Sprites/UI/Lobby/BackgroundImage";
+    public static readonly string Res_UI_LobbyStageSlot = "Prefabs/UI/Lobby/UIStageSlot";
     #endregion
 
     #region Color

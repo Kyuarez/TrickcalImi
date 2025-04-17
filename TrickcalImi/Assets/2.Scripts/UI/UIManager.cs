@@ -7,6 +7,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     //Lobby
     public static UILobby Lobby;
+    public static UILobbySelectStage LobbySelectStage;
 
     //Ingame
     public static UITest Test;
@@ -25,6 +26,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         //casting
         Lobby = GetComponentInChildren<UILobby>();
+        LobbySelectStage = GetComponentInChildren<UILobbySelectStage>();
 
         Test = GetComponentInChildren<UITest>();
         IngameHUD = GetComponentInChildren<UIIngameHUD>();
@@ -54,7 +56,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         Test.SetActivePanel(true);
         IngameHUD.SetActivePanel(true);
-        IngameResult.SetActivePanel(true);
+        IngameResult.SetActivePanel(false);
     }
 
     //Ingame

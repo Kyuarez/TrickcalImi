@@ -4,10 +4,16 @@ using UnityEngine.UI;
 
 public class UIStageSlot : MonoBehaviour
 {
+    private int stageNumber;
     private Button btn_onlick;
     private Image lockImage;
     private TextMeshProUGUI stageHeaderText;
 
+    public int StageNumber
+    {
+        get { return stageNumber; }
+        set { stageNumber = value; }
+    }
 
     public void InitStageSlot(/*StageData*/)
     {
@@ -17,6 +23,6 @@ public class UIStageSlot : MonoBehaviour
 
     public void OnClickSlot()
     {
-
+        UIManager.LobbySelectStage.OnSelectSlot?.Invoke(this);
     }
 }
