@@ -10,6 +10,7 @@ public class UIStageInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI stageDescText;
     [SerializeField] private TextMeshProUGUI rewardHeaderText;
 
+    [SerializeField] private Button exitArea;
     [SerializeField] private Button btn_Exit;
     [SerializeField] private Button btn_Absolution;
     [SerializeField] private Button btn_SelectDeque;
@@ -17,6 +18,7 @@ public class UIStageInfo : MonoBehaviour
     private void Awake()
     {
         btn_Exit.onClick.AddListener(OnClickExit);
+        exitArea.onClick.AddListener(OnClickExit);
         btn_Absolution.onClick.AddListener(OnClickAbsolution);
         btn_SelectDeque.onClick.AddListener(OnClickSelectDeque);
     }

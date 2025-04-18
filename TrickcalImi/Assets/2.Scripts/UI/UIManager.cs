@@ -38,8 +38,12 @@ public class UIManager : MonoSingleton<UIManager>
         IngameResult.InitIngameResult();
 
         //TODO : 지금은 그냥 넣는데, 앞으로는 챕터 실행 시, 스테이지 들어가면 그 때 연결 해제하는 작업 필요
+        StageManager.Instance.OnTickAction += OnTickAction;
+        StageManager.Instance.OnSetupAction += OnSetupAction;
+        StageManager.Instance.OnCombatAction += OnCombatAction;
         StageManager.Instance.OnSuccessAction += OnSuccessAction;
         StageManager.Instance.OnFailureAction += OnFailureAction;
+        StageManager.Instance.OnResetAction += OnResetAction;
     }
 
     public void OnLobby(LobbyType type) 
@@ -60,6 +64,18 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     //Ingame
+    public void OnTickAction(float remainingTime, float limitTime)
+    {
+        IngameHUD.OnTickAction(remainingTime, limitTime);
+    }
+    public void OnSetupAction()
+    {
+        IngameHUD.OnSetupAction();
+    }
+    public void OnCombatAction()
+    {
+        IngameHUD.OnCombatAction();
+    }
     public void OnSuccessAction() 
     {
         IngameResult.OnIngameResult(IngameModeType.Success);
@@ -67,5 +83,9 @@ public class UIManager : MonoSingleton<UIManager>
     public void OnFailureAction()
     {
         IngameResult.OnIngameResult(IngameModeType.Failure);
+    }
+    public void OnResetAction()
+    {
+        IngameHUD.OnResetAction();
     }
 }

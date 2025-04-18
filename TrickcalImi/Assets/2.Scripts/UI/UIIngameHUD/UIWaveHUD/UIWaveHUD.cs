@@ -10,4 +10,8 @@ public class UIWaveHUD : MonoBehaviour
     {
         waveText.text = $"{StageManager.Instance.CurrentWaveCount}/{StageManager.Instance.TotalWaveCount}";
     }
+    public void ResetWaveHUD()
+    {
+        waveText.text = string.Empty;
+    }
 }

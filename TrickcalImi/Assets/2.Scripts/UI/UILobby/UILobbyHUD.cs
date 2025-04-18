@@ -7,15 +7,15 @@ public class UILobbyHUD : MonoBehaviour
     [Header("panel")]
     [SerializeField] private GameObject panel;
 
-
-
-    [Header("HeaderHUD")]
-    [SerializeField] private Button btn_back;
-    [SerializeField] private TextMeshProUGUI headerText;
+    private CurrencyHUD currency;
+    private UserInfoHUD userInfo;
+    private HeaderHUD header;
 
     private void Awake()
     {
-        btn_back.onClick.AddListener(OnClickBackward);
+        currency = GetComponentInChildren<CurrencyHUD>();
+        userInfo = GetComponentInChildren<UserInfoHUD>();
+        header = GetComponentInChildren<HeaderHUD>();
     }
 
     public void SetActivePanel(bool active)
@@ -25,37 +25,10 @@ public class UILobbyHUD : MonoBehaviour
             panel.SetActive(active);
         }
     }
-
     public void SetLobbyHUD(LobbyType type)
     {
-        SetLobbyHeader(type);
+        userInfo.SetLobbyUserInfo(type);
+        header.SetLobbyHeader(type);
+        currency.SetLobbyCurrency(type);
     }
-
-    public void SetLobbyHeader(LobbyType type)
-    {
-        switch (type)
-        {
-            case LobbyType.LobbyMain:
-                SetActivePanel(false);
-                break;
-            case LobbyType.LobbyAdventure:
-                SetActivePanel(true);
-                headerText.text = "모험하기";
-                break;
-            case LobbyType.LobbySelectStage:
-                SetActivePanel(true);
-                headerText.text = "스테이지 리스트";
-                break;
-            default:
-                break;
-        }
-    }
-
-    #region OnClick
-    public void OnClickBackward()
-    {
-        
-        GameSceneManager.Instance.OnLobby(LobbyType.LobbyMain);
-    }
-    #endregion
 }

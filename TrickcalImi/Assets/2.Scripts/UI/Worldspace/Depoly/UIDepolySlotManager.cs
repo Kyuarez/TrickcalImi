@@ -52,6 +52,14 @@ public class UIDepolySlotManager : MonoBehaviour
         }
     }
 
+    public void ResetStage()
+    {
+        foreach (UIDepolySlot slot in slotDicts.Values)
+        {
+            slot.IsDepoly = false;
+        }
+    }
+
     public int GetHeroDepolySlotData(ref Vector3 spawnPosition)
     {
         //Todo : 지금은 순서대로 넣지만, 나중엔 로컬 저장 위치 슬롯 대로 위치에 넣도록 수정

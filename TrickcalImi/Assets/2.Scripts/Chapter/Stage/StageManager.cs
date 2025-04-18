@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class StageManager : MonoSingleton<StageManager>
 {
@@ -29,11 +30,13 @@ public class StageManager : MonoSingleton<StageManager>
     public Action OnCombatAction; //wave
     public Action OnSuccessAction;
     public Action OnFailureAction;
+    public Action OnResetAction; //stage reset
     public Action<float, float> OnTickAction; //local Timer
 
     private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>();
     private List<EnemyManager> currentEnemyList = new List<EnemyManager>();
 
+    public IngameModeType CurrentMode => currentMode;
     public int CurrentWaveCount => currentWaveCount;
     public int TotalWaveCount => totalWaveCount;
     public float SetupLimitTime => setupLimitTime;
@@ -54,8 +57,16 @@ public class StageManager : MonoSingleton<StageManager>
     {
         if(currentMode == IngameModeType.Setup || currentMode == IngameModeType.Combat)
         {
-            timer?.UpdateTimer(Time.deltaTime);
+            timer?.UpdateTimer(Time.deltaTime);            
         }   
+
+        if(currentMode == IngameModeType.Combat)
+        {
+            if(currentHeros.Count == 0) //영웅 다 사망
+            {
+                OnFailureMode();
+            }
+        }
 
         if(currentHeros.Count > 0)
         {
@@ -78,6 +89,19 @@ public class StageManager : MonoSingleton<StageManager>
     {
         UIManager.Instance.OnIngame();
         OnSetupMode(); 
+    }
+
+    public void ResetStage() //Stage Reset
+    {
+        //Timer Reset
+        timer.ResetTimer();
+        timer.OnTick = null;
+        timer.OnTick = null;
+
+        //Stage Reset
+        currentWaveCount = 0;
+        RemoveAllEntityInStage();
+        OnResetAction?.Invoke();
     }
 
     public void OnSetupMode()
@@ -125,6 +149,7 @@ public class StageManager : MonoSingleton<StageManager>
             if(enemy != null)
             {
                 currentEnemyList.Add(enemy);
+                UIIngameManager.BillboardManager.OnSpawnIngameObject(enemy, false);
             }
         }
     }
@@ -140,7 +165,6 @@ public class StageManager : MonoSingleton<StageManager>
         currentMode = IngameModeType.Success;
         OnSuccessAction?.Invoke();
 
-        ResetCurrentHeros();
     }
 
     public void OnFailureMode()
@@ -153,8 +177,6 @@ public class StageManager : MonoSingleton<StageManager>
         Time.timeScale = 0.0f;
         currentMode = IngameModeType.Failure;
         OnFailureAction?.Invoke();
-
-        ResetCurrentHeros();
     }
 
     public void UpdateOnTick()
@@ -205,10 +227,31 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
 
-    private void ResetCurrentHeros()
+
+    private void RemoveAllEntityInStage()
     {
-        currentHeros.Clear();
+        if(currentHeros != null)
+        {
+            foreach (HeroManager hero in currentHeros.Values)
+            {
+                Destroy(hero.gameObject);
+            }
+
+            currentHeros.Clear();
+        }
+
+        if (currentEnemyList != null)
+        {
+            foreach (EnemyManager enemy in currentEnemyList)
+            {
+                PoolManager.Instance.DespawnObject("TestEnemy", enemy.gameObject);
+            }
+
+            currentEnemyList.Clear();
+        }
     }
+
+    
 
     public void SpawnHeroInStage()
     {
@@ -223,6 +266,7 @@ public class StageManager : MonoSingleton<StageManager>
             hero.transform.localRotation = Quaternion.identity;
 
             AddCurrentHeros(slotIndex, hero);
+            UIIngameManager.BillboardManager.OnSpawnIngameObject(hero);
             UIIngameManager.DepolySlotManager.SetSlotDeployState(slotIndex);
         }
         else
@@ -231,7 +275,6 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
 
-    //@tk : 일단 적이 타겟을 세팅.
     public HeroManager GetRandomHeroInStage()
     {
         if(currentHeros == null || currentHeros.Count == 0)
@@ -250,6 +293,73 @@ public class StageManager : MonoSingleton<StageManager>
         return currentHeros[randNum];
     }
 
+    public HeroManager GetNearestHero(Vector3 enemyPosition)
+    {
+        if (currentHeros == null || currentHeros.Count == 0)
+        {
+            return null;
+        }
+
+        HeroManager nearestHero = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (KeyValuePair<int, HeroManager> kv in currentHeros)
+        {
+            HeroManager hero = kv.Value;
+            if (hero == null) 
+            {
+                continue; 
+            }
+
+            float distance = Vector3.Distance(enemyPosition, hero.transform.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestHero = hero;
+            }
+        }
+
+        return nearestHero;
+    }
+    public EnemyManager GetNearestEnemy(Vector3 heroPosition)
+    {
+        if (currentEnemyList == null || currentEnemyList.Count == 0)
+        {
+            return null;
+        }
+
+        EnemyManager nearestEnemy = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach (EnemyManager enemy in currentEnemyList)
+        {
+            if (enemy == null)
+            {
+                continue;
+            }
+
+            float distance = Vector3.Distance(heroPosition, enemy.transform.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestEnemy = enemy;
+            }
+        }
+
+        return nearestEnemy;
+    }
 
 
+    /// <summary>
+    /// CombatMode 제외하고 다 Idle 처리 체크 메소드
+    /// </summary>
+    public bool IsPossibleGetTarget()
+    {
+        if(currentMode != IngameModeType.Combat)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

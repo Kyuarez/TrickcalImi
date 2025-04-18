@@ -19,8 +19,8 @@ public class HeroManager : IngameObject
     private StateManager<HeroManager> stateManager;
     private State<HeroManager>[] states;
 
-    private Transform currentTarget;
-    private float distanceToEnemy;
+    private EnemyManager currentTarget;
+    private float distanceToTarget;
 
     protected override void Awake()
     {
@@ -30,7 +30,6 @@ public class HeroManager : IngameObject
         spr.sortingOrder = Define.OrderLayer_HeroSecond;
         shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
 
-        stateManager = new StateManager<HeroManager>();
         states = new State<HeroManager>[]
         {
             new HeroIdleState(),
@@ -40,8 +39,6 @@ public class HeroManager : IngameObject
             new HeroHitState(),
         };
 
-        currentState = HeroState.Idle;
-        stateManager.Setup(this, states[(int)EnemyState.Idle]);
     }
 
     protected override void OnEnable()
@@ -50,23 +47,46 @@ public class HeroManager : IngameObject
 
         //@tk : 임시 데이터, 나중에 json으로 처리
         healthManager = new HealthManager(100f, 100f);
+        stateManager = new StateManager<HeroManager>();
         SetHeroState(HeroState.Idle);
+
+        StageManager.Instance.OnSetupAction += OnSetupAction;
+        StageManager.Instance.OnCombatAction += OnCombatAction;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
 
+        StageManager.Instance.OnSetupAction -= OnSetupAction;
+        StageManager.Instance.OnCombatAction -= OnCombatAction;
+
         healthManager.ResetHealthManager();
         healthManager = null;
+
+        ResetHeroState();
     }
 
     protected override void Start()
     {
         base.Start();
+    }
+    private void Update()
+    {
+        if (StageManager.Instance.IsPossibleGetTarget() == false)
+        {
+            return;
+        }
 
-        StageManager.Instance.OnSetupAction += OnSetupAction;
-        StageManager.Instance.OnCombatAction += OnCombatAction;
+        if (currentTarget == null)
+        {
+            currentTarget = StageManager.Instance.GetNearestEnemy(transform.position);
+        }
+
+        if (currentTarget != null)
+        {
+            distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+        }
     }
 
     public void Updated()
@@ -97,6 +117,12 @@ public class HeroManager : IngameObject
 
         currentState = heroState;
         stateManager.ChangeState(states[(int)currentState]);
+    }
+
+    public void ResetHeroState()
+    {
+        currentState = HeroState.None;
+        stateManager = null;
     }
 
 

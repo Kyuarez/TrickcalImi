@@ -23,11 +23,10 @@ public class UIIngameHUD : MonoBehaviour
         waveHUD = GetComponentInChildren<UIWaveHUD>();
 
     }
-    private void Start()
+    //Stage
+    public void OnTickAction(float remainingTime, float limitTime)
     {
-        StageManager.Instance.OnTickAction += ingameTimer.UpdateUIIngameTimer;
-        StageManager.Instance.OnSetupAction += OnSetupAction;
-        StageManager.Instance.OnCombatAction += OnCombatAction;
+        ingameTimer.UpdateUIIngameTimer(remainingTime, limitTime);
     }
 
     public void OnSetupAction()
@@ -38,6 +37,10 @@ public class UIIngameHUD : MonoBehaviour
     public void OnCombatAction()
     {
         //TODO
+    }
+    public void OnResetAction()
+    {
+        waveHUD.ResetWaveHUD();
     }
 
 }

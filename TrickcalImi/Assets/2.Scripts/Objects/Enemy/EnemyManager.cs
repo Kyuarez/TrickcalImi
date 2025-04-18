@@ -49,7 +49,6 @@ public class EnemyManager : IngameObject
         spr.sortingOrder = Define.OrderLayer_HeroFirst;
         shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
 
-        stateManager = new StateManager<EnemyManager>();
         states = new State<EnemyManager>[]
         {
             new EnemyIdleState(),
@@ -62,9 +61,9 @@ public class EnemyManager : IngameObject
 
     protected override void OnEnable()
     {
-     
         base.OnEnable();
 
+        stateManager = new StateManager<EnemyManager>();
         healthManager = new HealthManager(100f, 100f);
 
         if (isFirstCall == true)
@@ -73,7 +72,6 @@ public class EnemyManager : IngameObject
         }
         else
         {
-            currentTarget = StageManager.Instance.GetRandomHeroInStage();
             currentState = EnemyState.Idle;
             stateManager.Setup(this, states[(int)EnemyState.Idle]);
         }
@@ -93,13 +91,24 @@ public class EnemyManager : IngameObject
         healthManager.ResetHealthManager();
         healthManager = null;
 
-        SetEnemyState(EnemyState.Idle);
+        ResetEnemyState();
+
         currentTarget = null;
         distanceToTarget = -1f;
     }
 
     private void Update()
     {
+        if(StageManager.Instance.IsPossibleGetTarget() == false)
+        {
+            return;
+        }
+
+        if(currentTarget == null)
+        {
+            currentTarget = StageManager.Instance.GetNearestHero(transform.position);
+        }
+
         if(currentTarget != null)
         {
             distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
@@ -123,6 +132,11 @@ public class EnemyManager : IngameObject
 
         currentState = enemyState;
         stateManager.ChangeState(states[(int)currentState]);
+    }
+    public void ResetEnemyState()
+    {
+        currentState = EnemyState.None;
+        stateManager = null;
     }
 
     public void TestMove()

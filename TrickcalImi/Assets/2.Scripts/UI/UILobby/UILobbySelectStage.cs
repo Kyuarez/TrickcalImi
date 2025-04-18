@@ -16,6 +16,10 @@ public class UILobbySelectStage : MonoBehaviour
         uiStageManager = GetComponentInChildren<UIStageManager>();
         uiStageInfo = GetComponentInChildren<UIStageInfo>();
 
+    }
+
+    private void Start()
+    {
         uiStageManager.InitUIStageManager();
     }
 

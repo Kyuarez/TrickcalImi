@@ -11,19 +11,22 @@ namespace FSM
 
         public override void Excute(EnemyManager owner)
         {
-            if (owner.IsPossibleChase == true)
+            if(StageManager.Instance.IsPossibleGetTarget() == true)
             {
-                if (owner.IsPossibleAttack == true)
+                if (owner.IsPossibleChase == true)
                 {
-                    owner.SetEnemyState(EnemyState.Attack);
-                    return;
-                }
+                    if (owner.IsPossibleAttack == true)
+                    {
+                        owner.SetEnemyState(EnemyState.Attack);
+                        return;
+                    }
 
-                owner.SetEnemyState(EnemyState.Chase);
-            }
-            else
-            {
-                owner.SetEnemyState(EnemyState.Walk);
+                    owner.SetEnemyState(EnemyState.Chase);
+                }
+                else
+                {
+                    owner.SetEnemyState(EnemyState.Walk);
+                }
             }
         }
 
@@ -43,15 +46,22 @@ namespace FSM
 
         public override void Excute(EnemyManager owner)
         {
-            if (owner.IsPossibleChase == true)
+            if(StageManager.Instance.IsPossibleGetTarget() == true)
             {
-                if (owner.IsPossibleAttack == true)
+                if (owner.IsPossibleChase == true)
                 {
-                    owner.SetEnemyState(EnemyState.Attack);
-                    return;
-                }
+                    if (owner.IsPossibleAttack == true)
+                    {
+                        owner.SetEnemyState(EnemyState.Attack);
+                        return;
+                    }
 
-                owner.SetEnemyState(EnemyState.Chase);
+                    owner.SetEnemyState(EnemyState.Chase);
+                }
+            }
+            else
+            {
+                owner.SetEnemyState(EnemyState.Idle);
             }
 
             owner.TestMove();           
@@ -72,20 +82,28 @@ namespace FSM
 
         public override void Excute(EnemyManager owner)
         {
-            if (owner.IsPossibleChase == true)
+            if(StageManager.Instance.IsPossibleGetTarget() == true)
             {
-                if (owner.IsPossibleAttack == true)
+                if (owner.IsPossibleChase == true)
                 {
-                    owner.SetEnemyState(EnemyState.Attack);
-                    return;
+                    if (owner.IsPossibleAttack == true)
+                    {
+                        owner.SetEnemyState(EnemyState.Attack);
+                        return;
+                    }
+                }
+                else
+                {
+                    owner.SetEnemyState(EnemyState.Walk);
                 }
 
                 owner.TestChase();
             }
             else
             {
-                owner.SetEnemyState(EnemyState.Walk);
+                owner.SetEnemyState(EnemyState.Idle);
             }
+
         }
 
         public override void Exit(EnemyManager owner)
@@ -108,6 +126,11 @@ namespace FSM
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= owner.AttackDelay)
             {
+                if(owner.AttackManager != null /* && owner.*/)
+                {
+                    //Target¿¡ Attack
+                }
+
                 owner.SetEnemyState(EnemyState.Idle);
                 elapsedTime = 0f;
             }

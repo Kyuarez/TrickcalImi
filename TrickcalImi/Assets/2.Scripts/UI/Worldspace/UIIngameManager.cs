@@ -20,11 +20,12 @@ public class UIIngameManager : MonoSingleton<UIIngameManager>
         DepolySlotManager = GetComponentInChildren<UIDepolySlotManager>();
         BillboardManager = GetComponentInChildren<UIBillboardManager>();
 
-        DepolySlotManager.InitDepoly();
+        DepolySlotManager.InitDepoly(); 
 
         //TODO : 지금은 그냥 넣는데, 앞으로는 챕터 실행 시, 스테이지 들어가면 그 때 연결 해제하는 작업 필요
         StageManager.Instance.OnSetupAction += OnSetupAction;
         StageManager.Instance.OnCombatAction += OnCombatAction;
+        StageManager.Instance.OnResetAction += OnResetAction;
     }
 
     public void OnSetupAction()
@@ -37,4 +38,9 @@ public class UIIngameManager : MonoSingleton<UIIngameManager>
         DepolySlotManager.SetActivePanel(false);
     }
 
+    public void OnResetAction()
+    {
+        DepolySlotManager.ResetStage();
+        BillboardManager.ResetStage();
+    }
 }

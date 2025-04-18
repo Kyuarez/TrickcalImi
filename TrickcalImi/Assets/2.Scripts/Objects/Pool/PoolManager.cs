@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 /* [25.04.09]
  컨셉 : Resources 폴더에서 필요한 객체들 Count 만큼 생성해서, Pool 기능 구현
@@ -12,6 +13,7 @@ public class PoolManager : MonoSingleton<PoolManager>
     //@tk 임시 변수 : 나중엔 json으로 처린
     [SerializeField] private int enemyCount;
     [SerializeField] private int fxCount;
+    [SerializeField] private int uiCount;
 
     private Transform parent_Enemy;
     private Transform parent_FX;
@@ -34,20 +36,35 @@ public class PoolManager : MonoSingleton<PoolManager>
         GameObject[] enemies = Resources.LoadAll<GameObject>("Prefabs/Objects/Enemy")
             .Where(obj => obj.GetComponent<EnemyManager>() != null)
             .ToArray();
-
-        foreach (var enemy in enemies)
+        if(enemies != null && enemies.Length > 0)
         {
-            GameObject poolObj = new GameObject($"Pool:{enemy.name}");
-            poolObj.transform.SetParent(parent_Enemy);
+            foreach (var enemy in enemies)
+            {
+                GameObject poolObj = new GameObject($"Pool:{enemy.name}");
+                poolObj.transform.SetParent(parent_Enemy);
 
-            Pool pool = new Pool();
-            pool.LoadObject(poolObj.transform, enemy, enemyCount);
-            AddPool(enemy.name, pool);
+                Pool pool = new Pool();
+                pool.LoadObject(poolObj.transform, enemy, enemyCount);
+                AddPool(enemy.name, pool);
+            }
         }
 
         //FX
 
         //UI
+        GameObject[] uiArr = Resources.LoadAll<GameObject>(Define.Res_UI_Pool);
+        if (uiArr != null && uiArr.Length > 0)
+        {
+            foreach (var ui in uiArr)
+            {
+                GameObject poolObj = new GameObject($"Pool:{ui.name}");
+                poolObj.transform.SetParent(parent_UI);
+
+                Pool pool = new Pool();
+                pool.LoadObject(poolObj.transform, ui, uiCount);
+                AddPool(ui.name, pool);
+            }
+        }
     }
 
     private void AddPool(string path, IPool pool)
@@ -61,6 +78,15 @@ public class PoolManager : MonoSingleton<PoolManager>
         poolDict.Add(path, pool);
     }
 
+    public GameObject SpawnObject(string path, Action<GameObject> action = null)
+    {
+        if (poolDict.ContainsKey(path) == false)
+        {
+            return null;
+        }
+
+        return poolDict[path]?.SpawnObject(Vector3.zero, action);
+    }
     public GameObject SpawnObject(string path ,Vector2 worldPos, Action<GameObject> action = null)
     {
         if (poolDict.ContainsKey(path) == false)
@@ -82,8 +108,6 @@ public class PoolManager : MonoSingleton<PoolManager>
         poolDict[path].DespawnObject(obj);
     }
 
-
-    
 
     private Dictionary<string, IPool> poolDict = new Dictionary<string, IPool>();
 

@@ -17,8 +17,9 @@ public static class Define
     public static readonly int OrderLayer_HeroThird = 3;
 
     #region Res
+    public static readonly string Res_UI_Pool = "Prefabs/UI/Pool";
     public static readonly string Res_UI_LobbyBackground = "Sprites/UI/Lobby/BackgroundImage";
-    public static readonly string Res_UI_LobbyStageSlot = "Prefabs/UI/Lobby/UIStageSlot";
+    public static readonly string Res_UI_LobbyStageSlot = "Prefabs/UI/Pool/Lobby/UIStageSlot";
     #endregion
 
     #region Color
@@ -61,6 +62,7 @@ public enum HeroState
     Attack,
     Hit,
     Die,
+    None = 99,
 }
 
 public enum EnemyState 
@@ -71,6 +73,7 @@ public enum EnemyState
     Attack,
     Hit,
     Die,
+    None = 99,
 }
 
 public enum HealthType

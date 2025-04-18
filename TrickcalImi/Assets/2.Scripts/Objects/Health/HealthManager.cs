@@ -8,11 +8,7 @@ public class HealthManager
     private float currentMP;
     private float maxMP;
 
-    public float CurrentHP => currentHP;
-    public float CurrentMP => currentMP;
-
-    private Action<HealthType> OnDecreased;
-    private Action<HealthType> OnIncreased;
+    private Action<HealthType, float, float> OnUpdateHealth; //type, current, max
 
     /*@tk : 나중에 Health Data로 전달하게 하기*/
     public HealthManager(float maxHp, float maxMp)
@@ -25,17 +21,12 @@ public class HealthManager
 
     public void ResetHealthManager()
     {
-        OnIncreased = null;
-        OnDecreased = null;
+        OnUpdateHealth = null;
     }
 
-    public void RegisterOnDecreased(Action<HealthType> action)
+    public void RegisterOnUpdateHealth(Action<HealthType, float, float> action)
     {
-        OnDecreased += OnDecreased;
-    }
-    public void RegisterOnIncreased(Action<HealthType> action)
-    {
-        OnIncreased += action;
+        OnUpdateHealth += action;
     }
 
     public void OnDecreasedHealth(HealthType type, float amount)
@@ -44,15 +35,16 @@ public class HealthManager
         {
             case HealthType.HP:
                 currentHP = Mathf.Min(0f, currentHP - amount);
+                OnUpdateHealth?.Invoke(type, currentHP, maxHP);
                 break;
             case HealthType.MP:
                 currentMP = Mathf.Min(0f, currentMP - amount);
+                OnUpdateHealth?.Invoke(type, currentMP, maxMP);
                 break;
             default:
                 break;
         }
 
-        OnDecreased?.Invoke(type);
     }
     public void OnIncreasedHealth(HealthType type, float amount)
     {
@@ -60,15 +52,15 @@ public class HealthManager
         {
             case HealthType.HP:
                 currentHP = Mathf.Max(currentHP + amount, maxHP);
+                OnUpdateHealth?.Invoke(type, currentHP, maxHP);
                 break;
             case HealthType.MP:
                 currentMP = Mathf.Max(currentMP + amount, maxMP);
+                OnUpdateHealth?.Invoke(type, currentMP, maxMP);
                 break;
             default:
                 break;
         }
-
-        OnIncreased?.Invoke(type);
     }
 
     public bool IsDead()
