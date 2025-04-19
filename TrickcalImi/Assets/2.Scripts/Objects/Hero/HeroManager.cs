@@ -13,14 +13,33 @@ public class HeroManager : IngameObject
     private float moveSpeed = 2.0f;
     private float chaseSpeed = 5.0f;
 
-    private bool isAutoBattle;
-
     private HeroState currentState;
     private StateManager<HeroManager> stateManager;
     private State<HeroManager>[] states;
 
     private EnemyManager currentTarget;
     private float distanceToTarget;
+    private float trackingRange = 10.0f;
+    private float attackRange = 2.5f;
+    private float attackDelay = 0.75f;
+
+    public bool IsPossibleChase
+    {
+        get { return distanceToTarget <= trackingRange; }
+    }
+    public bool IsPossibleAttack
+    {
+        get
+        {
+            if (currentTarget != null)
+            {
+                return distanceToTarget <= attackRange;
+            }
+            return false;
+        }
+    }
+    public EnemyManager CurrentTarget => currentTarget;
+    public float AttackDelay => this.attackDelay;
 
     protected override void Awake()
     {
@@ -33,12 +52,14 @@ public class HeroManager : IngameObject
         states = new State<HeroManager>[]
         {
             new HeroIdleState(),
-            new HeroWalkState(),
-            new HeroChaseState(),
+            new HeroWalkState(moveSpeed),
+            new HeroChaseState(chaseSpeed),
             new HeroAttackState(),
             new HeroHitState(),
+            new HeroDeadState(),
         };
 
+        OnDead += OnDeadAction;
     }
 
     protected override void OnEnable()
@@ -48,7 +69,10 @@ public class HeroManager : IngameObject
         //@tk : 임시 데이터, 나중에 json으로 처리
         healthManager = new HealthManager(100f, 100f);
         stateManager = new StateManager<HeroManager>();
-        SetHeroState(HeroState.Idle);
+        attackManager = new AttackManager(20f);
+
+        currentState = HeroState.Idle;
+        stateManager.Setup(this, states[(int)HeroState.Idle]);
 
         StageManager.Instance.OnSetupAction += OnSetupAction;
         StageManager.Instance.OnCombatAction += OnCombatAction;
@@ -63,6 +87,8 @@ public class HeroManager : IngameObject
 
         healthManager.ResetHealthManager();
         healthManager = null;
+
+        attackManager = null;
 
         ResetHeroState();
     }
@@ -93,14 +119,17 @@ public class HeroManager : IngameObject
     {
         if(stateManager != null)
         {
-            stateManager.Excute();
+            if (IsDead != true)
+            {
+                stateManager.Excute();
+            }
         }
     }
 
     public void OnSetupAction()
     {
         //TODO : 이거 원 위치 복구해야 함.
-        SetHeroState(HeroState.Walk);
+        SetHeroState(HeroState.Idle);
     }
 
     public void OnCombatAction()
@@ -131,8 +160,9 @@ public class HeroManager : IngameObject
         anim.Play(state.ToString());
     }
 
-    public void TestMove()
+    public void OnDeadAction()
     {
-        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+        Destroy(gameObject, 1f);
+        //PoolManager.Instance.DespawnObject("TestEnemy", gameObject);
     }
 }

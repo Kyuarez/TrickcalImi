@@ -66,10 +66,33 @@ public class StageManager : MonoSingleton<StageManager>
             {
                 OnFailureMode();
             }
+            if(currentEnemyList.Count == 0) //모든 적 죽임
+            {
+                OnSetupMode();
+            }
         }
 
         if(currentHeros.Count > 0)
         {
+            List<int> removeKeyList = new List<int>();
+            foreach (KeyValuePair<int, HeroManager> kv in currentHeros)
+            {
+                if (kv.Value.IsDead == true)
+                {
+                    removeKeyList.Add(kv.Key);
+                }
+            }
+
+            foreach (int key in removeKeyList)
+            {
+                if(currentHeros.ContainsKey(key) == true)
+                {
+                    HeroManager deadHero = currentHeros[key];
+                    currentHeros.Remove(key);
+                    deadHero.SetHeroState(HeroState.Dead);
+                }
+            }
+
             foreach (HeroManager hero in currentHeros.Values)
             {
                 hero.Updated();
@@ -78,9 +101,19 @@ public class StageManager : MonoSingleton<StageManager>
 
         if(currentEnemyList.Count > 0)
         {
-            foreach (EnemyManager enemy in currentEnemyList)
+            //@tk InvaildOperationException 막기위해 역순 처리
+            for (int i = currentEnemyList.Count - 1; i >= 0; i--)
             {
-                enemy.Updated();
+                if (currentEnemyList[i].IsDead == true)
+                {
+                    EnemyManager deadEnemy = currentEnemyList[i];
+                    RemoveCurrentEnemy(currentEnemyList[i]);
+                    deadEnemy.SetEnemyState(EnemyState.Dead);
+                }
+                else
+                {
+                    currentEnemyList[i].Updated();
+                }
             }
         }
     }
@@ -108,6 +141,11 @@ public class StageManager : MonoSingleton<StageManager>
     {
         if (currentMode == IngameModeType.Setup)
         {
+            return;
+        }
+        if(currentWaveCount + 1 > totalWaveCount)
+        {
+            OnSuccessMode();
             return;
         }
 
@@ -148,7 +186,7 @@ public class StageManager : MonoSingleton<StageManager>
             EnemyManager enemy = PoolManager.Instance.SpawnObject("TestEnemy", worldPos).GetComponent<EnemyManager>();
             if(enemy != null)
             {
-                currentEnemyList.Add(enemy);
+                AddCurrentEnemy(enemy);
                 UIIngameManager.BillboardManager.OnSpawnIngameObject(enemy, false);
             }
         }
@@ -211,12 +249,23 @@ public class StageManager : MonoSingleton<StageManager>
 
         currentHeros.Add(index, hero);
     }
+    public void RemoveCurrentHeros(int index)
+    {
+        if (currentHeros.ContainsKey(index) == false)
+        {
+            Debug.Assert(false, "This hero is not in current Hero");
+            return;
+        }
+
+        currentHeros.Remove(index);
+    }
 
     public void AddCurrentEnemy(EnemyManager enemy)
     {
         if(currentEnemyList != null)
         {
             currentEnemyList.Add(enemy);
+            enemy.OnDead += () => { RemoveCurrentEnemy(enemy); };
         }
     }
     public void RemoveCurrentEnemy(EnemyManager enemy)
@@ -268,6 +317,7 @@ public class StageManager : MonoSingleton<StageManager>
             AddCurrentHeros(slotIndex, hero);
             UIIngameManager.BillboardManager.OnSpawnIngameObject(hero);
             UIIngameManager.DepolySlotManager.SetSlotDeployState(slotIndex);
+            hero.OnDead += () => { RemoveCurrentHeros(slotIndex); };
         }
         else
         {

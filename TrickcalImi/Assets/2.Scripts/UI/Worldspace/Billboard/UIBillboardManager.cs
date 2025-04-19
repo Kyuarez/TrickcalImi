@@ -14,8 +14,6 @@ public class UIBillboardManager : MonoBehaviour
         }
     }
 
-    
-
     public void OnSpawnIngameObject(IngameObject obj, bool isHero = true)
     {
         UIHealth uiHealth = PoolManager.Instance.SpawnObject("UIHealth").GetComponent<UIHealth>();
@@ -25,6 +23,10 @@ public class UIBillboardManager : MonoBehaviour
             uiHealth.SetUIHealth(obj, isHero);
             uiHealth.transform.SetParent(transform, false);
             obj.HealthManager.RegisterOnUpdateHealth(uiHealth.OnUpdateHealthUI);
+            obj.OnDead += () =>
+            {
+                OnDespawnIngameObject(obj);
+            };
         }
     }
     public void OnDespawnIngameObject(IngameObject obj)

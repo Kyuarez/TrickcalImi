@@ -16,6 +16,8 @@ public static class Define
     public static readonly int OrderLayer_HeroSecond = 2;
     public static readonly int OrderLayer_HeroThird = 3;
 
+    public static readonly float Default_Enemy_NormalDamage = 5.0f;
+
     #region Res
     public static readonly string Res_UI_Pool = "Prefabs/UI/Pool";
     public static readonly string Res_UI_LobbyBackground = "Sprites/UI/Lobby/BackgroundImage";
@@ -61,7 +63,7 @@ public enum HeroState
     Chase,
     Attack,
     Hit,
-    Die,
+    Dead,
     None = 99,
 }
 
@@ -72,7 +74,7 @@ public enum EnemyState
     Chase,
     Attack,
     Hit,
-    Die,
+    Dead,
     None = 99,
 }
 

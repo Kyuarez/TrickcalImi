@@ -21,8 +21,21 @@ public class IngameObject : MonoBehaviour
 
     public Transform Mark_Star => mark_Up;
     public Transform Mark_Health => mark_Health;
+    public bool IsDead
+    {
+        get
+        {
+            if(healthManager == null)
+            {
+                Debug.Assert(false, "healthManager is null");
+                return false;
+            }
 
-    protected Action OnDead;
+            return healthManager.IsDead();
+        }
+    }
+
+    public Action OnDead;
 
     protected virtual void Awake()
     {
@@ -46,23 +59,26 @@ public class IngameObject : MonoBehaviour
     }
 
 
-    protected virtual void Damage(float amount)
+    public virtual void Damage(float amount)
     {
         healthManager.OnDecreasedHealth(HealthType.HP, amount);
     }
-    protected virtual void Heal(float amount)
+    public virtual void Heal(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.HP, amount);
     }
-    protected virtual void HealMP(float amount)
+    public virtual void HealMP(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.MP, amount);
     }
-    protected virtual void UseMP(float amount)
+    public virtual void UseMP(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.MP, amount);
     }
 
+
+
+    #region Action
     public void OnRegisterDeadAction(Action action)
     {
         OnDead += action;
@@ -71,4 +87,5 @@ public class IngameObject : MonoBehaviour
     {
         OnDead = null;
     }
+    #endregion
 }

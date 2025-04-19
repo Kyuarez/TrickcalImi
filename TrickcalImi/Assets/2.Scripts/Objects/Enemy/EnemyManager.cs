@@ -40,6 +40,7 @@ public class EnemyManager : IngameObject
             return false;
         } 
     }
+    public HeroManager CurrentTarget => currentTarget;
     public float AttackDelay => this.attackDelay;
 
     protected override void Awake()
@@ -52,11 +53,13 @@ public class EnemyManager : IngameObject
         states = new State<EnemyManager>[]
         {
             new EnemyIdleState(),
-            new EnemyWalkState(),
-            new EnemyChaseState(),
+            new EnemyWalkState(moveSpeed),
+            new EnemyChaseState(chaseSpeed),
             new EnemyAttackState(),
             new EnemyHitState(),
+            new EnemyDeadState(),
         };
+
     }
 
     protected override void OnEnable()
@@ -65,6 +68,9 @@ public class EnemyManager : IngameObject
 
         stateManager = new StateManager<EnemyManager>();
         healthManager = new HealthManager(100f, 100f);
+        attackManager = new AttackManager();
+
+        OnDead += OnDeadAction;
 
         if (isFirstCall == true)
         {
@@ -90,6 +96,10 @@ public class EnemyManager : IngameObject
 
         healthManager.ResetHealthManager();
         healthManager = null;
+
+        attackManager = null;
+
+        OnDead -= OnDeadAction;
 
         ResetEnemyState();
 
@@ -119,7 +129,10 @@ public class EnemyManager : IngameObject
     {
         if (stateManager != null)
         {
-            stateManager.Excute();
+            if (IsDead != true)
+            {
+                stateManager.Excute();
+            }
         }
     }
 
@@ -139,20 +152,13 @@ public class EnemyManager : IngameObject
         stateManager = null;
     }
 
-    public void TestMove()
-    {
-        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-    }
-
-    public void TestChase()
-    {
-        Vector3 currentPosition = transform.position;
-        Vector3 targetPosition = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y, currentPosition.z);
-        transform.position = Vector3.Lerp(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
-    }
-
     public void PlayAnim(EnemyState state)
     {
         anim.Play(state.ToString());
+    }
+
+    public void OnDeadAction()
+    {
+        PoolManager.Instance.DespawnObject("TestEnemy", gameObject);
     }
 }

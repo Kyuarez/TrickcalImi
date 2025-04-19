@@ -39,6 +39,17 @@ namespace FSM
 
     public class EnemyWalkState : State<EnemyManager>
     {
+        protected float moveSpeed;
+
+        public EnemyWalkState()
+        {
+            this.moveSpeed = 2.0f; //Default
+        }
+        public EnemyWalkState(float moveSpeed)
+        {
+            this.moveSpeed = moveSpeed;
+        }   
+
         public override void Enter(EnemyManager owner)
         {
             owner.PlayAnim(EnemyState.Walk);
@@ -64,17 +75,30 @@ namespace FSM
                 owner.SetEnemyState(EnemyState.Idle);
             }
 
-            owner.TestMove();           
+            EnemyBaseWalk(owner);
         }
 
         public override void Exit(EnemyManager owner)
         {
+        }
 
+        protected virtual void EnemyBaseWalk(EnemyManager owner)
+        {
+            owner.transform.position += Vector3.left * moveSpeed * Time.deltaTime;
         }
     }
 
     public class EnemyChaseState : State<EnemyManager>
     {
+        protected float chaseSpeed;
+        public EnemyChaseState()
+        {
+            this.chaseSpeed = 2.0f; //Default
+        }
+        public EnemyChaseState(float chaseSpeed)
+        {
+            this.chaseSpeed = chaseSpeed;
+        }
         public override void Enter(EnemyManager owner)
         {
             owner.PlayAnim(EnemyState.Chase);
@@ -97,7 +121,7 @@ namespace FSM
                     owner.SetEnemyState(EnemyState.Walk);
                 }
 
-                owner.TestChase();
+                EnemyBaseChase(owner);
             }
             else
             {
@@ -110,15 +134,30 @@ namespace FSM
         {
 
         }
+
+        protected virtual void EnemyBaseChase(EnemyManager owner)
+        {
+            Transform target = owner.CurrentTarget.transform;
+            Vector3 currentPosition = owner.transform.position;
+            Vector3 targetPosition = new Vector3(target.position.x, target.position.y, currentPosition.z);
+            owner.transform.position = Vector3.Lerp(currentPosition, targetPosition, chaseSpeed * Time.deltaTime);
+        }
     }
 
     public class EnemyAttackState : State<EnemyManager>
     {
-        private float elapsedTime;
+        private float elapsedTime = 0f;
 
         public override void Enter(EnemyManager owner)
         {
-            owner.PlayAnim(EnemyState.Attack);
+            if(owner.IsPossibleAttack == true)
+            {
+                owner.PlayAnim(EnemyState.Attack);
+            }
+            else
+            {
+                owner.SetEnemyState(EnemyState.Idle);
+            }
         }
 
         public override void Excute(EnemyManager owner)
@@ -126,9 +165,10 @@ namespace FSM
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= owner.AttackDelay)
             {
-                if(owner.AttackManager != null /* && owner.*/)
+                if(owner.AttackManager != null  && owner.IsPossibleAttack == true)
                 {
                     //Target¿¡ Attack
+                    owner.AttackManager.OnNormalAttack(owner.CurrentTarget);
                 }
 
                 owner.SetEnemyState(EnemyState.Idle);
@@ -147,6 +187,26 @@ namespace FSM
         public override void Enter(EnemyManager owner)
         {
             owner.PlayAnim(EnemyState.Hit);
+        }
+
+        public override void Excute(EnemyManager owner)
+        {
+
+        }
+
+        public override void Exit(EnemyManager owner)
+        {
+
+        }
+    }
+
+
+    public class EnemyDeadState : State<EnemyManager>
+    {
+        public override void Enter(EnemyManager owner)
+        {
+            owner.PlayAnim(EnemyState.Dead);
+            owner.OnDead?.Invoke();
         }
 
         public override void Excute(EnemyManager owner)

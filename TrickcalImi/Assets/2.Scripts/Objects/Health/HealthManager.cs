@@ -34,11 +34,11 @@ public class HealthManager
         switch (type)
         {
             case HealthType.HP:
-                currentHP = Mathf.Min(0f, currentHP - amount);
+                currentHP = Mathf.Max(0f, currentHP - amount);
                 OnUpdateHealth?.Invoke(type, currentHP, maxHP);
                 break;
             case HealthType.MP:
-                currentMP = Mathf.Min(0f, currentMP - amount);
+                currentMP = Mathf.Max(0f, currentMP - amount);
                 OnUpdateHealth?.Invoke(type, currentMP, maxMP);
                 break;
             default:
@@ -51,11 +51,11 @@ public class HealthManager
         switch (type)
         {
             case HealthType.HP:
-                currentHP = Mathf.Max(currentHP + amount, maxHP);
+                currentHP = Mathf.Min(currentHP + amount, maxHP);
                 OnUpdateHealth?.Invoke(type, currentHP, maxHP);
                 break;
             case HealthType.MP:
-                currentMP = Mathf.Max(currentMP + amount, maxMP);
+                currentMP = Mathf.Min(currentMP + amount, maxMP);
                 OnUpdateHealth?.Invoke(type, currentMP, maxMP);
                 break;
             default:
