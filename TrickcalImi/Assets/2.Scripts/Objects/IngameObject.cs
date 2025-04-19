@@ -27,8 +27,8 @@ public class IngameObject : MonoBehaviour
         {
             if(healthManager == null)
             {
-                Debug.Assert(false, "healthManager is null");
-                return false;
+                //@tk : 죽을 때 healthManger null로 하니까 true
+                return true;
             }
 
             return healthManager.IsDead();

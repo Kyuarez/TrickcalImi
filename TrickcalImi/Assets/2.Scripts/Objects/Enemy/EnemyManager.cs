@@ -114,7 +114,7 @@ public class EnemyManager : IngameObject
             return;
         }
 
-        if(currentTarget == null)
+        if(currentTarget == null || currentTarget.IsDead == true)
         {
             currentTarget = StageManager.Instance.GetNearestHero(transform.position);
         }
