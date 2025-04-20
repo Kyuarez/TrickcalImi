@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 /* [25.04.09]
  컨셉 : Resources 폴더에서 필요한 객체들 Count 만큼 생성해서, Pool 기능 구현
@@ -50,6 +49,20 @@ public class PoolManager : MonoSingleton<PoolManager>
         }
 
         //FX
+        GameObject[] fxArr = Resources.LoadAll<GameObject>("FX");
+
+        if (fxArr != null && fxArr.Length > 0)
+        {
+            foreach (var fx in fxArr)
+            {
+                GameObject poolObj = new GameObject($"Pool:{fx.name}");
+                poolObj.transform.SetParent(parent_FX);
+
+                Pool pool = new Pool();
+                pool.LoadObject(poolObj.transform, fx, fxCount);
+                AddPool(fx.name, pool);
+            }
+        }
 
         //UI
         GameObject[] uiArr = Resources.LoadAll<GameObject>(Define.Res_UI_Pool);

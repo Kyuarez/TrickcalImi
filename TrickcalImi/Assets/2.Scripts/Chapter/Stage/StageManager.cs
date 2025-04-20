@@ -12,10 +12,6 @@ public class StageManager : MonoSingleton<StageManager>
     public int testEnemyCount = 5;
     #endregion
 
-    [Header("Elements")]
-    [SerializeField] private SpriteRenderer backgroundSpr;
-
-
     private IngameModeType currentMode;
     //@tk 이거 나중에 챕터로부터 받기
     private int currentWaveCount = 0; 
@@ -46,7 +42,6 @@ public class StageManager : MonoSingleton<StageManager>
     protected override void Awake()
     {
         base.Awake();
-        backgroundSpr.sortingOrder = Define.OrderLayer_background;
 
         spawnArea = GetComponentInChildren<StageSpawnArea>();
         

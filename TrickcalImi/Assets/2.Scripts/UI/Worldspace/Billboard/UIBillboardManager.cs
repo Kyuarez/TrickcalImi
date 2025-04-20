@@ -5,6 +5,12 @@ using UnityEngine;
 public class UIBillboardManager : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
+    private Transform hpBarParent;
+
+    private void Awake()
+    {
+        hpBarParent = transform.FindRecursiveChild("@hpBarParent");
+    }
 
     public void SetActivePanel(bool active)
     {
@@ -21,7 +27,7 @@ public class UIBillboardManager : MonoBehaviour
         {
             uiHealthDict.Add(obj, uiHealth);
             uiHealth.SetUIHealth(obj, isHero);
-            uiHealth.transform.SetParent(transform, false);
+            uiHealth.transform.SetParent(hpBarParent, false);
             obj.HealthManager.RegisterOnUpdateHealth(uiHealth.OnUpdateHealthUI);
             obj.OnDead += () =>
             {

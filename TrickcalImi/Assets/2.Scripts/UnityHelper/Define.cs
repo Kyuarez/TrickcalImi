@@ -83,4 +83,13 @@ public enum HealthType
     HP,
     MP,
 }
+
+public enum FXType
+{
+    Click,
+    Hit_Red,
+    Hit_Yellow,
+    Hit_Ice,
+    Hit,Fire,
+}
 #endregion
