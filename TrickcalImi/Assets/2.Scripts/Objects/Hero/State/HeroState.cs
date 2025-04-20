@@ -63,7 +63,6 @@ namespace FSM
                     if (owner.IsPossibleAttack == true)
                     {
                         owner.SetHeroState(HeroState.Attack);
-                        FXManager.Instance.OnEffect(FXType.Hit_Yellow, owner.CurrentTarget.transform.position);
                         return;
                     }
 
@@ -167,6 +166,7 @@ namespace FSM
                 {
                     //Target¿¡ Attack
                     owner.AttackManager.OnNormalAttack(owner.CurrentTarget);
+                    FXManager.Instance.OnEffect(FXType.Hit_Yellow, owner.CurrentTarget.transform.position);
                 }
 
                 owner.SetHeroState(HeroState.Idle);
