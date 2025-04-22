@@ -204,6 +204,7 @@ namespace FSM
         {
             owner.PlayAnim(HeroState.Dead);
             owner.OnDead?.Invoke();
+            owner.OnDeadAction();
         }
 
         public override void Excute(HeroManager owner)

@@ -8,11 +8,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get 
         {
-            if (instance == null)
-            {
-                Debug.Assert(false, $"{typeof(T).Name} is null");
-                throw new NullReferenceException();
-            }
             return instance; 
         }
     }

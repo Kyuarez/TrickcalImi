@@ -2,6 +2,7 @@ using UnityEngine;
 
 public static class Define 
 {
+    public static readonly string Name_Pool_Hero = "@Hero";
     public static readonly string Name_Pool_Enemy = "@Enemy";
     public static readonly string Name_Pool_FX = "@FX";
     public static readonly string Name_Pool_UI = "@UI";

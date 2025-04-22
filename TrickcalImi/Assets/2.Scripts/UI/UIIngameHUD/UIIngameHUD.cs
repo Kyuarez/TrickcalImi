@@ -5,8 +5,8 @@ public class UIIngameHUD : MonoBehaviour
     [SerializeField] private GameObject panel;
 
     private UIIngameTimer ingameTimer;
-    private UIIngameHUD ingameHUD;
     private UIWaveHUD waveHUD;
+    private UICostCountHUD costCountHUD;
 
     public void SetActivePanel(bool isActive)
     {
@@ -19,8 +19,8 @@ public class UIIngameHUD : MonoBehaviour
     private void Awake()
     {
         ingameTimer = GetComponentInChildren<UIIngameTimer>();
-        ingameHUD = GetComponent<UIIngameHUD>();
         waveHUD = GetComponentInChildren<UIWaveHUD>();
+        costCountHUD = GetComponentInChildren<UICostCountHUD>();
 
     }
     //Stage

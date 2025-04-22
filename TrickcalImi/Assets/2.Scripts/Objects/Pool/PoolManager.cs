@@ -10,10 +10,12 @@ using UnityEngine;
 public class PoolManager : MonoSingleton<PoolManager>
 {
     //@tk 임시 변수 : 나중엔 json으로 처린
+    [SerializeField] private int heroCount;
     [SerializeField] private int enemyCount;
     [SerializeField] private int fxCount;
     [SerializeField] private int uiCount;
 
+    private Transform parent_Hero;
     private Transform parent_Enemy;
     private Transform parent_FX;
     private Transform parent_UI;
@@ -22,6 +24,7 @@ public class PoolManager : MonoSingleton<PoolManager>
     {
         base.Awake();
         //Casting
+        parent_Hero = transform.FindRecursiveChild(Define.Name_Pool_Hero);
         parent_Enemy = transform.FindRecursiveChild(Define.Name_Pool_Enemy);
         parent_FX = transform.FindRecursiveChild(Define.Name_Pool_FX);
         parent_UI = transform.FindRecursiveChild(Define.Name_Pool_UI);
@@ -31,6 +34,23 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     private void InitPoolManager()
     {
+        //Hero
+        GameObject[] heros = Resources.LoadAll<GameObject>("Prefabs/Objects/Hero")
+            .Where(obj => obj.GetComponent<HeroManager>() != null)
+            .ToArray();
+        if (heros != null && heros.Length > 0)
+        {
+            foreach (var hero in heros)
+            {
+                GameObject poolObj = new GameObject($"Pool:{hero.name}");
+                poolObj.transform.SetParent(parent_Hero);
+
+                Pool pool = new Pool();
+                pool.LoadObject(poolObj.transform, hero, heroCount);
+                AddPool(hero.name, pool);
+            }
+        }
+
         //Enemy
         GameObject[] enemies = Resources.LoadAll<GameObject>("Prefabs/Objects/Enemy")
             .Where(obj => obj.GetComponent<EnemyManager>() != null)

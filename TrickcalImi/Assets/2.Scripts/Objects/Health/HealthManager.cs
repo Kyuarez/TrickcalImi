@@ -62,7 +62,22 @@ public class HealthManager
                 break;
         }
     }
-
+    public void OnIncreasedHealthRatio(HealthType type, float ratio)
+    {
+        switch (type)
+        {
+            case HealthType.HP:
+                currentHP = Mathf.Min(currentHP + currentHP * ratio, maxHP);
+                OnUpdateHealth?.Invoke(type, currentHP, maxHP);
+                break;
+            case HealthType.MP:
+                currentMP = Mathf.Min(currentMP + currentMP * ratio, maxMP);
+                OnUpdateHealth?.Invoke(type, currentMP, maxMP);
+                break;
+            default:
+                break;
+        }
+    }
     public bool IsDead()
     {
         if(currentHP <= 0)

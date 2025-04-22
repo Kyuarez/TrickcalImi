@@ -58,8 +58,6 @@ public class HeroManager : IngameObject
             new HeroHitState(),
             new HeroDeadState(),
         };
-
-        OnDead += OnDeadAction;
     }
 
     protected override void OnEnable()
@@ -74,16 +72,22 @@ public class HeroManager : IngameObject
         currentState = HeroState.Idle;
         stateManager.Setup(this, states[(int)HeroState.Idle]);
 
-        StageManager.Instance.OnSetupAction += OnSetupAction;
-        StageManager.Instance.OnCombatAction += OnCombatAction;
+        if(StageManager.Instance != null)
+        {
+            StageManager.Instance.OnSetupAction += OnSetupAction;
+            StageManager.Instance.OnCombatAction += OnCombatAction;
+        }
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
 
-        StageManager.Instance.OnSetupAction -= OnSetupAction;
-        StageManager.Instance.OnCombatAction -= OnCombatAction;
+        if(StageManager.Instance != null)
+        {
+            StageManager.Instance.OnSetupAction -= OnSetupAction;
+            StageManager.Instance.OnCombatAction -= OnCombatAction;
+        }
 
         healthManager.ResetHealthManager();
         healthManager = null;
@@ -162,7 +166,6 @@ public class HeroManager : IngameObject
 
     public void OnDeadAction()
     {
-        Destroy(gameObject, 1f);
-        //PoolManager.Instance.DespawnObject("TestEnemy", gameObject);
+        PoolManager.Instance.DespawnObject("TestHero", gameObject);
     }
 }

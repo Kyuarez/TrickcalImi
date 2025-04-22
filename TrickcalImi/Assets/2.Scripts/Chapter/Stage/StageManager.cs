@@ -19,6 +19,9 @@ public class StageManager : MonoSingleton<StageManager>
     private float setupLimitTime = 60.0f;
     private float combatLimitTime = 70.0f;
 
+    private int defaultCost = 80;
+    private int currentCost = 0;
+
     private StageSpawnArea spawnArea;
     private LocalTimer timer;
 
@@ -37,7 +40,6 @@ public class StageManager : MonoSingleton<StageManager>
     public int TotalWaveCount => totalWaveCount;
     public float SetupLimitTime => setupLimitTime;
     public float CombatLimitTime => combatLimitTime;
-
 
     protected override void Awake()
     {
@@ -153,6 +155,14 @@ public class StageManager : MonoSingleton<StageManager>
         timer.OnTimeOver = null;
         timer.OnTimeOver += OnCombatMode;
         timer.OnTimer(setupLimitTime);
+
+        if (currentHeros.Count > 0) //턴 지날때마다 체력 회복
+        {
+            foreach (HeroManager hero in currentHeros.Values)
+            {
+                hero.HealthManager.OnIncreasedHealthRatio(HealthType.HP, 0.5f); // 50% 회복
+            }
+        }
 
         OnSetupAction?.Invoke();
     }
@@ -304,8 +314,8 @@ public class StageManager : MonoSingleton<StageManager>
 
         if((spawnPosition != null || spawnPosition != Vector3.zero) && slotIndex != -1)
         {
-            GameObject obj = Resources.Load<GameObject>("Prefabs/Objects/Hero/TestHero");
-            HeroManager hero = Instantiate(obj).GetComponent<HeroManager>();
+            GameObject obj = PoolManager.Instance.SpawnObject("TestHero");
+            HeroManager hero = obj.GetComponent<HeroManager>();
             hero.transform.position = spawnPosition;
             hero.transform.localRotation = Quaternion.identity;
 

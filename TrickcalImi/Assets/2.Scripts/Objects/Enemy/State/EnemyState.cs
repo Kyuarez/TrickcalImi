@@ -138,6 +138,12 @@ namespace FSM
 
         protected virtual void EnemyBaseChase(EnemyManager owner)
         {
+            //@tk 임시 코드 : 본질적으로 막아야함.
+            if(owner.CurrentTarget == null)
+            {
+                return;
+            }
+
             Transform target = owner.CurrentTarget.transform;
             Vector3 currentPosition = owner.transform.position;
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, currentPosition.z);
