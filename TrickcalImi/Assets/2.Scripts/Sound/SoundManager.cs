@@ -1,26 +1,110 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
-    private Dictionary<int, AudioClip> bgmDict;
-    private Dictionary<int, AudioClip> sfxDict;
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
 
-    [RuntimeInitializeOnLoadMethod]
-    public static void OnLoadSoundData()
+    private Coroutine currentBGMCoroutine;
+
+    private Dictionary<string, AudioClip> bgmClipDict = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> sfxClipDict = new Dictionary<string, AudioClip>();
+
+
+    protected override void Awake()
     {
-
+        base.Awake();
+        InitializeAudioClip();
     }
 
-    public void PlayBGM()
+    private void InitializeAudioClip()
     {
-
+        //
     }
 
-    public void PlaySFX()
+    public void PlayBGM(string name, float fadeDuration = 1.0f)
     {
+        if (bgmClipDict.ContainsKey(name) == false)
+        {
+            return;
+        }
 
+        if (currentBGMCoroutine != null)
+        {
+            StopCoroutine(currentBGMCoroutine);
+            currentBGMCoroutine = null;
+        }
+
+        StartCoroutine(FadeOutBGMCo(fadeDuration, () =>
+        {
+            bgmSource.clip = bgmClipDict[name];
+            bgmSource.Play();
+            currentBGMCoroutine = StartCoroutine(FadeInBGMCo(fadeDuration));
+        }));
     }
 
+    public void PlaySFX(string name)
+    {
+        if (sfxClipDict.ContainsKey(name) == false)
+        {
+            return;
+        }
 
+        sfxSource.PlayOneShot(sfxClipDict[name]);
+    }
+    public void PlaySFX(string name, Vector3 position)
+    {
+        if (sfxClipDict.ContainsKey(name) == false)
+        {
+            return;
+        }
+
+        AudioSource.PlayClipAtPoint(sfxClipDict[name], position);
+    }
+    public void PauseBGM()
+    {
+        bgmSource.Stop();
+    }
+    public void PauseSFX()
+    {
+        sfxSource.Stop();
+    }
+    public void SetBGMVolume(float volume)
+    {
+        bgmSource.volume = Mathf.Clamp(volume, 0f, 1f);
+    }
+    public void SetSFXVolume(float volume)
+    {
+        sfxSource.volume = Mathf.Clamp(volume, 0f, 1f);
+    }
+
+    private IEnumerator FadeOutBGMCo(float duration, Action onFadeCompleted)
+    {
+        float startVolume = bgmSource.volume;
+
+        for (float time = 0; time < duration; time++)
+        {
+            bgmSource.volume = Mathf.Lerp(startVolume, 0f, time / duration);
+            yield return null;
+        }
+
+        bgmSource.volume = 0;
+        onFadeCompleted?.Invoke();
+    }
+    private IEnumerator FadeInBGMCo(float duration)
+    {
+        float startVolume = 0;
+        bgmSource.volume = 0;
+
+        for (float time = 0; time < duration; time++)
+        {
+            bgmSource.volume = Mathf.Lerp(startVolume, 1f, time / duration);
+            yield return null;
+        }
+
+        bgmSource.volume = 1f;
+    }
 }
