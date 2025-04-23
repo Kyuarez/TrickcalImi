@@ -20,7 +20,8 @@ public class StageManager : MonoSingleton<StageManager>
     private float setupLimitTime = 60.0f;
     private float combatLimitTime = 70.0f;
 
-    private int defaultCost = 80;
+    private int setupCost = 0;
+    private int chargeCost = 0;
     private int currentCost = 0;
 
     private StageSpawnArea spawnArea;
@@ -41,6 +42,19 @@ public class StageManager : MonoSingleton<StageManager>
     public int TotalWaveCount => totalWaveCount;
     public float SetupLimitTime => setupLimitTime;
     public float CombatLimitTime => combatLimitTime;
+
+
+    public Action<int> OnChangedCost;
+    public int CurrentCost 
+    {
+        get {  return currentCost; }
+        set
+        {
+            currentCost = value;
+            OnChangedCost?.Invoke(currentCost);
+        }
+    }
+
 
     protected override void Awake()
     {
@@ -116,14 +130,24 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
 
-    public void OnStage() //stage 진입
+    public void OnStage(JsonStage jsonData) //stage 진입
     {
         UIManager.Instance.OnIngame();
+
+        setupCost = jsonData.SetupCost;
+        chargeCost = jsonData.ChargeCost;
+        currentCost = 0;
+
         OnSetupMode(); 
     }
 
     public void ResetStage() //Stage Reset
     {
+        //cost Reset
+        currentCost = 0;
+        chargeCost = 0;
+        setupCost = 0;
+
         //Timer Reset
         timer.ResetTimer();
         timer.OnTick = null;
@@ -149,6 +173,15 @@ public class StageManager : MonoSingleton<StageManager>
 
         currentMode = IngameModeType.Setup;
         currentWaveCount = Mathf.Min(totalWaveCount, ++currentWaveCount);
+        if(CurrentWaveCount == 1)
+        {
+            currentCost += setupCost;
+        }
+        else
+        {
+            currentCost += chargeCost;
+        }
+
 
         timer.OnTick = null;
         timer.OnTick += UpdateOnTick;

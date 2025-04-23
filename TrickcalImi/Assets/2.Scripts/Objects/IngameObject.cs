@@ -84,6 +84,7 @@ public class IngameObject : MonoBehaviour
         DefaultMP = data.MP;
         NormalDamage = data.NormalDamage;
         NormalAttackDelay = data.NormalAttackDelay;
+        attackType = data.AttackType;
     }
 
 

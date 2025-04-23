@@ -63,7 +63,6 @@ namespace FSM
                     if (owner.IsPossibleAttack == true)
                     {
                         owner.SetHeroState(HeroState.Attack);
-                        FXManager.Instance.OnEffect(FXType.Hit_Yellow, owner.CurrentTarget.transform.position);
                         return;
                     }
 

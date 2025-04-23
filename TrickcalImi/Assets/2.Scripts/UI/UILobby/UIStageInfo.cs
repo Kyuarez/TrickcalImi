@@ -15,12 +15,17 @@ public class UIStageInfo : MonoBehaviour
     [SerializeField] private Button btn_Absolution;
     [SerializeField] private Button btn_SelectDeque;
 
+    private int currentStageID;
+
     private void Awake()
     {
         btn_Exit.onClick.AddListener(OnClickExit);
         exitArea.onClick.AddListener(OnClickExit);
         btn_Absolution.onClick.AddListener(OnClickAbsolution);
         btn_SelectDeque.onClick.AddListener(OnClickSelectDeque);
+
+        btn_Absolution.interactable = false; //일단 막기
+        currentStageID = -1;
     }
 
     private void Start()
@@ -40,11 +45,13 @@ public class UIStageInfo : MonoBehaviour
     public void SetUIStageInfo(UIStageSlot slot)
     {
         SetActivePanel(true);
+        currentStageID = slot.StageNumber;
         stageHeaderText.text = slot.StageData.StageName;
         stageDescText.text = string.Empty;
     }
     public void ResetUIStageInfo()
     {
+        currentStageID = -1;
         stageHeaderText.text = string.Empty;
         stageDescText.text = string.Empty;
     }
@@ -64,7 +71,7 @@ public class UIStageInfo : MonoBehaviour
     //@tk 일단 Deque는 나중에 구현하고, 바로 인게임으로 넘어가기
     public void OnClickSelectDeque()
     {
-        GameSceneManager.Instance.OnIngame();
+        GameSceneManager.Instance.OnIngame(currentStageID);
         SetActivePanel(false);
         ResetUIStageInfo();
     }

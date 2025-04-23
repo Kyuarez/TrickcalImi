@@ -71,7 +71,7 @@ public class UIIngameResult : MonoBehaviour
         //TODO : 다시 스테이지 시작
         panel.SetActive(false);
         StageManager.Instance.ResetStage();
-        GameSceneManager.Instance.OnIngame();
+        //GameSceneManager.Instance.OnIngame();
         Time.timeScale = 1.0f;
     }
 

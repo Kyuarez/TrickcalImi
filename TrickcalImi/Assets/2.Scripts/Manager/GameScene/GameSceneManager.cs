@@ -26,9 +26,19 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
         UIManager.Instance.OnLobby(type);
     }
 
-    public void OnIngame()
+    public void OnIngame(int stageID)
     {
-        gameSceneType = GameSceneType.Ingame;
-        StageManager.Instance.OnStage();
+        if(stageID == -1)
+        {
+            Debug.Assert(false, "Current Stage is null");
+            return;
+        }
+
+        JsonStage stageData = TableManager.Instance.FindTableData<JsonStage>(stageID);
+        if(stageData != null)
+        {
+            gameSceneType = GameSceneType.Ingame;
+            StageManager.Instance.OnStage(stageData);
+        }
     }
 }

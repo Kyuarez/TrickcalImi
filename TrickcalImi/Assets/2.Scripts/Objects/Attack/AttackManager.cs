@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AttackManager
 {
+    protected AttackType attackType;
     protected float normalDamage;
     protected float normalAttackDelay;
 
@@ -10,10 +11,10 @@ public class AttackManager
         this.normalDamage = Define.Default_Enemy_NormalDamage;
     }
 
-    public AttackManager(float normalDamage, float normalAttackDelay)
+    public AttackManager(AttackType attackType ,float normalDamage, float normalAttackDelay)
     {
+        this.attackType = attackType;
         this.normalDamage = normalDamage;
-        this.normalAttackDelay = 
         this.normalAttackDelay = normalAttackDelay;
     }
 
@@ -27,6 +28,7 @@ public class AttackManager
 
         //@TK FX 贸府
         //@TK UI 贸府
+        FXManager.Instance.OnEffect(FXType.Hit_Red, target.transform.position);
         target.Damage(normalDamage);
     }
 

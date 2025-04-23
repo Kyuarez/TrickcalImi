@@ -21,8 +21,13 @@ public class UIIngameHUD : MonoBehaviour
         ingameTimer = GetComponentInChildren<UIIngameTimer>();
         waveHUD = GetComponentInChildren<UIWaveHUD>();
         costCountHUD = GetComponentInChildren<UICostCountHUD>();
-
     }
+
+    private void Start()
+    {
+        StageManager.Instance.OnChangedCost += OnChangedCost;  
+    }
+
     //Stage
     public void OnTickAction(float remainingTime, float limitTime)
     {
@@ -41,6 +46,11 @@ public class UIIngameHUD : MonoBehaviour
     public void OnResetAction()
     {
         waveHUD.ResetWaveHUD();
+    }
+
+    public void OnChangedCost(int cost)
+    {
+        costCountHUD.OnUpdateCostCount(cost);
     }
 
 }

@@ -10,7 +10,7 @@ public class EnemyManager : IngameObject
     [SerializeField] private SpriteRenderer shadowSpr;
 
     private float moveSpeed = 2.0f;
-    private float chaseSpeed = 5.0f;
+    private float chaseSpeed = 5.0f;    
 
     private EnemyState currentState;
     private StateManager<EnemyManager> stateManager;
