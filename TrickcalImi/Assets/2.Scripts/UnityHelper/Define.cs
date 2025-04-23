@@ -102,7 +102,9 @@ public enum FXType
 
 public enum IngameCardType
 {
-    
+    PickHero,
+    Buff,
+    Item, //@tk 일단 구현 x
 }
 
 

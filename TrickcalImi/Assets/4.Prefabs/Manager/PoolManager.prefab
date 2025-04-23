@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f11d46daa0abe4a9feaa6208101048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroCount: 10
+  heroCount: 2
   enemyCount: 10
-  fxCount: 10
+  fxCount: 30
   uiCount: 30
 --- !u!1 &4179532155916848563
 GameObject:

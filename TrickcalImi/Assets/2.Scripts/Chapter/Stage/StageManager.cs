@@ -34,7 +34,7 @@ public class StageManager : MonoSingleton<StageManager>
     public Action OnResetAction; //stage reset
     public Action<float, float> OnTickAction; //local Timer
 
-    private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>();
+    private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>(); //key : slot index, value : hero
     private List<EnemyManager> currentEnemyList = new List<EnemyManager>();
 
     public IngameModeType CurrentMode => currentMode;
@@ -339,8 +339,9 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
 
-    
 
+    #region Test
+    //@tk 이제는 Deque에 있는 정보 그대로 하나씩만 소환할 것임.
     public void SpawnHeroInStage()
     {
         Vector3 spawnPosition = Vector3.zero;
@@ -363,7 +364,7 @@ public class StageManager : MonoSingleton<StageManager>
             //TODO : UI상으로 경고하기
         }
     }
-
+    #endregion 
     public HeroManager GetRandomHeroInStage()
     {
         if(currentHeros == null || currentHeros.Count == 0)
