@@ -64,5 +64,9 @@ public class UILobby : MonoBehaviour
         {
             panel.SetActive(false);
         }
+        lobbyMain.SetActivePanel(false);
+        lobbyAdventure.SetActivePanel(false); 
+        lobbySelectStage.ResetStageSelect();
+        lobbySelectStage.SetActivePanel(false);
     }
 }

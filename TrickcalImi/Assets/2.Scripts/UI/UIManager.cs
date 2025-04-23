@@ -13,6 +13,7 @@ public class UIManager : MonoSingleton<UIManager>
     public static UITest Test;
     public static UIIngameHUD IngameHUD;
     public static UIIngameResult IngameResult;
+    public static UICardDraw CardDraw;
 
     //Transition
 
@@ -31,6 +32,7 @@ public class UIManager : MonoSingleton<UIManager>
         Test = GetComponentInChildren<UITest>();
         IngameHUD = GetComponentInChildren<UIIngameHUD>();
         IngameResult = GetComponentInChildren<UIIngameResult>();
+        CardDraw = GetComponentInChildren<UICardDraw>();
     }
 
     private void Start()
@@ -48,7 +50,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void OnLobby(LobbyType type) 
     {
-        Test.SetActivePanel(false);
+        Test?.SetActivePanel(false);
         IngameHUD.SetActivePanel(false);
         IngameResult.SetActivePanel(false);
 
@@ -58,7 +60,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         Lobby.OffUILobby();
 
-        Test.SetActivePanel(true);
+        Test?.SetActivePanel(true);
         IngameHUD.SetActivePanel(true);
         IngameResult.SetActivePanel(false);
     }
@@ -71,10 +73,12 @@ public class UIManager : MonoSingleton<UIManager>
     public void OnSetupAction()
     {
         IngameHUD.OnSetupAction();
+        CardDraw.OnSetupAction();
     }
     public void OnCombatAction()
     {
         IngameHUD.OnCombatAction();
+        CardDraw.OnCombatAction();
     }
     public void OnSuccessAction() 
     {
@@ -87,5 +91,6 @@ public class UIManager : MonoSingleton<UIManager>
     public void OnResetAction()
     {
         IngameHUD.OnResetAction();
+        CardDraw.OnResetAction();
     }
 }

@@ -35,7 +35,6 @@ public class UIStageManager : MonoBehaviour
         DespawnSlots();
     }
 
-    //일단 스타트에서 스폰하되, Json 연동되면 셀렉트 스테이지 이동 순간에 스폰해서 데이터 넣는 형태로 수정해야 함.
     public void SpawnSlots(JsonChapter chapter) 
     {
         List<int> stageIDlList = chapter.StageIDList;

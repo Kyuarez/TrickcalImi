@@ -171,6 +171,7 @@ public class StageManager : MonoSingleton<StageManager>
             return;
         }
 
+        //wave data setting
         currentMode = IngameModeType.Setup;
         currentWaveCount = Mathf.Min(totalWaveCount, ++currentWaveCount);
         if(CurrentWaveCount == 1)
@@ -182,7 +183,7 @@ public class StageManager : MonoSingleton<StageManager>
             currentCost += chargeCost;
         }
 
-
+        //local timer setting
         timer.OnTick = null;
         timer.OnTick += UpdateOnTick;
 
@@ -190,6 +191,7 @@ public class StageManager : MonoSingleton<StageManager>
         timer.OnTimeOver += OnCombatMode;
         timer.OnTimer(setupLimitTime);
 
+        //체력 업데이트
         if (currentHeros.Count > 0) //턴 지날때마다 체력 회복
         {
             foreach (HeroManager hero in currentHeros.Values)
