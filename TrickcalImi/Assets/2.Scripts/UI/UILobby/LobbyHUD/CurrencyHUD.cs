@@ -1,8 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class CurrencyHUD : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
+    [SerializeField] private TextMeshProUGUI ticketText;
+    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI cashText;
 
     public void SetActivePanel(bool active)
     {
@@ -19,10 +23,17 @@ public class CurrencyHUD : MonoBehaviour
             case LobbyType.LobbyAdventure:
             case LobbyType.LobbySelectStage:
                 SetActivePanel(true);
+                SetUICurrencyData();
                 break;
             default:
                 SetActivePanel(false);
                 break;
         }
+    }
+
+    public void SetUICurrencyData()
+    {
+        int currentCoin = LocalDataManager.Instance.LocalUserData.Coin;
+        coinText.text = currentCoin.ToString();
     }
 }

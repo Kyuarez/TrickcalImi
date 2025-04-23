@@ -1,7 +1,10 @@
+using System.IO;
 using UnityEngine;
 
 public static class Define 
 {
+    public static readonly string FilePath_LocalData = Path.Combine(Application.persistentDataPath, "JsonLocalUserData.json");
+
     public static readonly string Name_Pool_Hero = "@Hero";
     public static readonly string Name_Pool_Enemy = "@Enemy";
     public static readonly string Name_Pool_FX = "@FX";

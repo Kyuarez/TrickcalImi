@@ -1,0 +1,9 @@
+{
+  "Coin": 0,
+  "ChapterData": {
+    "1": [ false, false, false, false, false, false, false, false, false, false ],
+    "2": [ false, false, false, false, false, false, false, false, false, false ]
+  },
+  "HeroList": [ 1, 2, 3, 4, 5 ],
+  "CardList": [ 1, ]
+}

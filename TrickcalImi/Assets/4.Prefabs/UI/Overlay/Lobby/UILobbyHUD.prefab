@@ -1840,6 +1840,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 3943073380944875440}
+  ticketText: {fileID: 2375475443536081336}
+  coinText: {fileID: 1447874051094182392}
+  cashText: {fileID: 7610118728945697303}
 --- !u!1 &6724894816031148797
 GameObject:
   m_ObjectHideFlags: 0

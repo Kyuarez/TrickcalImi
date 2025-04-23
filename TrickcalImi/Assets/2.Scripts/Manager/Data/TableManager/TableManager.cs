@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 
+//@tk : 시작할 때 로드할 데이터 관리 매니저
 public partial class TableManager 
 {
     #region Singletone

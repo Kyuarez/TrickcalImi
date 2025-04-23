@@ -9,6 +9,8 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
     {
         TableManager table = new TableManager();
         table.OnLoadGameAction();
+        LocalDataManager localData = new LocalDataManager();
+        localData.OnLoadGameAction();
 
         //Test
         Debug.Log((TableManager.Instance == null));
