@@ -4,6 +4,16 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
 {
     private GameSceneType gameSceneType;
 
+    [RuntimeInitializeOnLoadMethod]
+    public static void OnLoadGameAction()
+    {
+        TableManager table = new TableManager();
+        table.OnLoadGameAction();
+
+        //Test
+        Debug.Log((TableManager.Instance == null));
+    }
+
     private void Start()
     {
         //@tk 일단 타이틀 만들기 전까지는 시작 로비로

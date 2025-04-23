@@ -20,7 +20,9 @@ public class UILobbySelectStage : MonoBehaviour
 
     private void Start()
     {
-        uiStageManager.InitUIStageManager();
+        //@tk 일단 챕터 저장 없어서 임시로 챕터 1로 함.
+        JsonChapter json = TableManager.Instance.FindTableData<JsonChapter>(1);
+        uiStageManager.InitUIStageManager(json);
     }
 
     public void SetActivePanel(bool active)

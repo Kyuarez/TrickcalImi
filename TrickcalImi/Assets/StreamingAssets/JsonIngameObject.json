@@ -1,0 +1,18 @@
+{
+  "JsonIngameObject": [
+    {
+      "ObjectID": "0",
+      "CodeName": "TestHero",
+      "HP": "100",
+      "MP": "100",
+      "NormalDamage": "20"
+    },
+    {
+      "ObjectID": "1",
+      "CodeName": "TestEnemy",
+      "HP": "100",
+      "MP": "100",
+      "NormalDamage": "10"
+    }
+  ]
+}

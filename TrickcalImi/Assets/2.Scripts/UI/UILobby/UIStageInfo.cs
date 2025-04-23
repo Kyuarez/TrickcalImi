@@ -37,15 +37,16 @@ public class UIStageInfo : MonoBehaviour
         }
     }
 
-    public void SetUIStageInfo(UIStageSlot slots)
+    public void SetUIStageInfo(UIStageSlot slot)
     {
         SetActivePanel(true);
-        //stageHeaderText
-        //stageDescText
+        stageHeaderText.text = slot.StageData.StageName;
+        stageDescText.text = string.Empty;
     }
     public void ResetUIStageInfo()
     {
-
+        stageHeaderText.text = string.Empty;
+        stageDescText.text = string.Empty;
     }
 
     #region OnClick

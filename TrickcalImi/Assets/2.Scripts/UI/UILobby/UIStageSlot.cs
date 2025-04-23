@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,10 +6,13 @@ using UnityEngine.UI;
 public class UIStageSlot : MonoBehaviour
 {
     private int stageNumber;
-    private Button btn_onlick;
-    private Image lockImage;
-    private TextMeshProUGUI stageHeaderText;
+    private JsonStage stageData;
+    
+    [SerializeField] private TextMeshProUGUI stageHeaderText;
+    [SerializeField] private Image lockImage;
+    
     private RectTransform rectTransform;
+    private Button btn_onlick;
 
     public float Width => rectTransform.rect.width;
     public float Height => rectTransform.rect.height;  
@@ -19,6 +23,10 @@ public class UIStageSlot : MonoBehaviour
         get { return stageNumber; }
         set { stageNumber = value; }
     }
+    public JsonStage StageData
+    {
+        get { return stageData; }
+    }
 
     private void Awake()
     {
@@ -27,9 +35,11 @@ public class UIStageSlot : MonoBehaviour
         btn_onlick.onClick.AddListener(OnClickSlot);
     }
 
-    public void InitStageSlot(/*StageData*/)
+    public void InitStageSlot(JsonStage stage)
     {
-        
+        stageData = stage;
+        stageNumber = stage.StageID;
+        stageHeaderText.text = $"{stage.ChapterNumber} - {stage.StageID % (10 * stage.ChapterNumber)}";
     }
 
     public void SetRectPosition(float x, float y)

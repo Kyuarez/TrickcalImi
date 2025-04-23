@@ -53,6 +53,9 @@ public class UIDamagePopup : MonoBehaviour
 
     IEnumerator OnDamagePopupCo()
     {
+        //위로 뛰오르기
+
+        //아래로 떨어지면서 fade out
         yield return null;
     }
 }

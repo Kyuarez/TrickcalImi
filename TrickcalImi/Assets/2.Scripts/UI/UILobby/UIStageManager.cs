@@ -24,18 +24,19 @@ public class UIStageManager : MonoBehaviour
         UIManager.LobbySelectStage.OnSelectSlot += OnSelectSlot;
     }
 
-    public void InitUIStageManager()
+    public void InitUIStageManager(JsonChapter chapter)
     {
         stageSlotDict = new Dictionary<int, UIStageSlot>();
         currentSlot = null;
 
-        SpawnSlots();
+        SpawnSlots(chapter);
     }
 
     //일단 스타트에서 스폰하되, Json 연동되면 셀렉트 스테이지 이동 순간에 스폰해서 데이터 넣는 형태로 수정해야 함.
-    public void SpawnSlots() 
+    public void SpawnSlots(JsonChapter chapter) 
     {
-        for (int i = 1; i <= slotCount; i++)
+        List<int> stageIDlList = chapter.StageIDList;
+        for (int i = 0; i < stageIDlList.Count; i++)
         {
             GameObject slotObj = PoolManager.Instance.SpawnObject("UIStageSlot");
             if(slotObj != null)
@@ -43,10 +44,14 @@ public class UIStageManager : MonoBehaviour
                 UIStageSlot slot = slotObj.GetComponent<UIStageSlot>();
                 if(slot != null)
                 {
-                    slot.InitStageSlot();
-                    slot.transform.SetParent(contentRect, false); //이거 위치 세팅해야함..
-                    slot.StageNumber = i;
-                    stageSlotDict.Add(i, slot);
+                    JsonStage json = TableManager.Instance.FindTableData<JsonStage>(stageIDlList[i]);
+                    if(json != null)
+                    {
+                        slot.InitStageSlot(json);
+                        slot.transform.SetParent(contentRect, false); //이거 위치 세팅해야함..
+                        slot.StageNumber = stageIDlList[i];
+                        stageSlotDict.Add(slot.StageNumber, slot);
+                    }
                 }
             }
         }

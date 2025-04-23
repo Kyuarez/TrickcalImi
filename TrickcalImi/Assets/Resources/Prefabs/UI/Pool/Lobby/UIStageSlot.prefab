@@ -276,6 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa9255d1bcf3244b8711bbf405a0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageHeaderText: {fileID: 7180005047038589158}
+  lockImage: {fileID: 181827646851530035}
 --- !u!114 &5638915613761835597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7000310499522769688
 RectTransform:
   m_ObjectHideFlags: 0
