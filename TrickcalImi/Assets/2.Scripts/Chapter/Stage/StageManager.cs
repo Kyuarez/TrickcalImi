@@ -6,13 +6,14 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class StageManager : MonoSingleton<StageManager>
 {
 
+    private IngameModeType currentMode;
+    
     //@tk (25.04.09) 지금은 프로토타입 제작 때문에, 데이터를 강제로 주입했지만 이후로는 챕터로 부터 받아오기
     #region Test
     [Header("Test")]
     public int testEnemyCount = 5;
     #endregion
 
-    private IngameModeType currentMode;
     //@tk 이거 나중에 챕터로부터 받기
     private int currentWaveCount = 0; 
     private int totalWaveCount = 5;

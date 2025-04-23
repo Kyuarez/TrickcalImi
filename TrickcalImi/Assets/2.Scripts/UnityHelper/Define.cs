@@ -93,4 +93,23 @@ public enum FXType
     Hit_Ice,
     Hit,Fire,
 }
+
+public enum IngameCardType
+{
+    
+}
+
+
+
+public enum EnvironmentType
+{
+    ForestRiver,
+    TwilightShadowwood,
+    SilentSoilGrove,
+    EmeraldGlade,
+    DuskmistHollow,
+    FloatingIsles,
+    RuinCastle,
+    CursedTemple,
+}
 #endregion
