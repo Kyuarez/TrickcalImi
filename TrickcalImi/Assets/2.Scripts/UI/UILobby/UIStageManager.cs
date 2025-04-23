@@ -10,7 +10,7 @@ public class UIStageManager : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private RectTransform contentRect;
 
-    private Dictionary<int, UIStageSlot> stageSlotDict;
+    private Dictionary<int, UIStageSlot> stageSlotDict = new Dictionary<int, UIStageSlot>();
     private UIStageSlot currentSlot;
 
     private int slotCount = 10;
@@ -24,12 +24,15 @@ public class UIStageManager : MonoBehaviour
         UIManager.LobbySelectStage.OnSelectSlot += OnSelectSlot;
     }
 
-    public void InitUIStageManager(JsonChapter chapter)
+    public void SetUIStageManager(JsonChapter chapter)
     {
-        stageSlotDict = new Dictionary<int, UIStageSlot>();
         currentSlot = null;
-
         SpawnSlots(chapter);
+    }
+    public void ResetUIStageManager()
+    {
+        currentSlot = null;
+        DespawnSlots();
     }
 
     //일단 스타트에서 스폰하되, Json 연동되면 셀렉트 스테이지 이동 순간에 스폰해서 데이터 넣는 형태로 수정해야 함.
@@ -58,6 +61,19 @@ public class UIStageManager : MonoBehaviour
 
         //Sort Zigzag 정렬
         SortStageSlots();
+    }
+
+    private void DespawnSlots()
+    {
+        if(stageSlotDict.Count > 0)
+        {
+            foreach (UIStageSlot slot in stageSlotDict.Values)
+            {
+                PoolManager.Instance.DespawnObject("UIStageSlot", slot.gameObject);
+            }
+
+            stageSlotDict.Clear();
+        }
     }
 
     private void SortStageSlots()

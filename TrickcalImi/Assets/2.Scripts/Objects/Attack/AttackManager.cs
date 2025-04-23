@@ -3,15 +3,18 @@ using UnityEngine;
 public class AttackManager
 {
     protected float normalDamage;
+    protected float normalAttackDelay;
 
     public AttackManager()
     {
         this.normalDamage = Define.Default_Enemy_NormalDamage;
     }
 
-    public AttackManager(float normalDamage)
+    public AttackManager(float normalDamage, float normalAttackDelay)
     {
         this.normalDamage = normalDamage;
+        this.normalAttackDelay = 
+        this.normalAttackDelay = normalAttackDelay;
     }
 
     //@tk : ½Ì±Û Å¸°Ù¿¡ ´ëÇÑ °ø°Ý

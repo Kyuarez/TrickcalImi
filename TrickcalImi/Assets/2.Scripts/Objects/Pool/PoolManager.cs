@@ -28,6 +28,7 @@ public class PoolManager : MonoSingleton<PoolManager>
         parent_Enemy = transform.FindRecursiveChild(Define.Name_Pool_Enemy);
         parent_FX = transform.FindRecursiveChild(Define.Name_Pool_FX);
         parent_UI = transform.FindRecursiveChild(Define.Name_Pool_UI);
+    
     }
 
     private void Start()

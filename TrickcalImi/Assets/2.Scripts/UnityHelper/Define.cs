@@ -85,6 +85,12 @@ public enum HealthType
     MP,
 }
 
+public enum AttackType
+{
+    Melee,
+    Ranged,
+}
+
 public enum FXType
 {
     Click,

@@ -13,9 +13,13 @@ public class JsonIngameObject
 {
     public int ObjectID;
     public string CodeName;
+    public string Description;
     public int HP;
     public int MP;
+    public AttackType AttackType;
     public int NormalDamage;
+    public float NormalAttackDelay;
+    public List<int> SkillList;
 }
 
 public class JsonChapter

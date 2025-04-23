@@ -67,7 +67,7 @@ public class EnemyManager : IngameObject
         base.OnEnable();
 
         stateManager = new StateManager<EnemyManager>();
-        healthManager = new HealthManager(100f, 100f);
+        healthManager = new HealthManager(DefaultHP, DefaultMP);
         attackManager = new AttackManager();
 
         OnDead += OnDeadAction;
@@ -105,6 +105,14 @@ public class EnemyManager : IngameObject
 
         currentTarget = null;
         distanceToTarget = -1f;
+
+        
+    }
+
+    protected override void InitIngameObjectData(JsonIngameObject data)
+    {
+        base.InitIngameObjectData(data);
+
     }
 
     private void Update()

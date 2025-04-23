@@ -37,16 +37,19 @@ public class UILobby : MonoBehaviour
             case LobbyType.LobbyMain:
                 lobbyMain.SetActivePanel(true);
                 lobbyAdventure.SetActivePanel(false);
+                lobbySelectStage.ResetStageSelect();
                 lobbySelectStage.SetActivePanel(false);
                 break;
             case LobbyType.LobbyAdventure:
                 lobbyMain.SetActivePanel(false);
                 lobbyAdventure.SetActivePanel(true);
+                lobbySelectStage.ResetStageSelect();
                 lobbySelectStage.SetActivePanel(false);
                 break;
             case LobbyType.LobbySelectStage:
                 lobbyMain.SetActivePanel(false);
                 lobbyAdventure.SetActivePanel(false);
+                lobbySelectStage.OnStageSelect();
                 lobbySelectStage.SetActivePanel(true);
                 break;
             default:

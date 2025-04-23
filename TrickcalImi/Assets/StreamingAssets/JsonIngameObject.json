@@ -3,16 +3,148 @@
     {
       "ObjectID": "0",
       "CodeName": "TestHero",
+      "Description": "테스트 영웅",
       "HP": "100",
       "MP": "100",
-      "NormalDamage": "20"
+      "AttackType": "Melee",
+      "NormalDamage": "20",
+      "NormalAttackDelay": "0.75",
+      "SkillList": [
+        "1"
+      ]
     },
     {
       "ObjectID": "1",
-      "CodeName": "TestEnemy",
+      "CodeName": "HeroA",
+      "Description": "검",
       "HP": "100",
       "MP": "100",
-      "NormalDamage": "10"
+      "AttackType": "Melee",
+      "NormalDamage": "20",
+      "NormalAttackDelay": "0.75",
+      "SkillList": [
+        "1"
+      ]
+    },
+    {
+      "ObjectID": "2",
+      "CodeName": "HeroB",
+      "Description": "망치",
+      "HP": "100",
+      "MP": "100",
+      "AttackType": "Melee",
+      "NormalDamage": "35",
+      "NormalAttackDelay": "1",
+      "SkillList": [
+        "1"
+      ]
+    },
+    {
+      "ObjectID": "3",
+      "CodeName": "HeroC",
+      "Description": "총(단발)",
+      "HP": "100",
+      "MP": "100",
+      "AttackType": "Ranged",
+      "NormalDamage": "10",
+      "NormalAttackDelay": "1",
+      "SkillList": [
+        "1"
+      ]
+    },
+    {
+      "ObjectID": "4",
+      "CodeName": "HeroD",
+      "Description": "라이플",
+      "HP": "100",
+      "MP": "100",
+      "AttackType": "Ranged",
+      "NormalDamage": "3",
+      "NormalAttackDelay": "0.5",
+      "SkillList": [
+        "1"
+      ]
+    },
+    {
+      "ObjectID": "5",
+      "CodeName": "HeroE",
+      "Description": "폭탄",
+      "HP": "100",
+      "MP": "100",
+      "AttackType": "Ranged",
+      "NormalDamage": "30",
+      "NormalAttackDelay": "3",
+      "SkillList": [
+        "1"
+      ]
+    },
+    {
+      "ObjectID": "6",
+      "CodeName": null,
+      "Description": "Dummy",
+      "HP": "1",
+      "MP": "1",
+      "AttackType": "Melee",
+      "NormalDamage": "-1",
+      "NormalAttackDelay": "1",
+      "SkillList": null
+    },
+    {
+      "ObjectID": "7",
+      "CodeName": null,
+      "Description": "Dummy",
+      "HP": "1",
+      "MP": "1",
+      "AttackType": "Melee",
+      "NormalDamage": "-1",
+      "NormalAttackDelay": "1",
+      "SkillList": null
+    },
+    {
+      "ObjectID": "8",
+      "CodeName": null,
+      "Description": "Dummy",
+      "HP": "1",
+      "MP": "1",
+      "AttackType": "Melee",
+      "NormalDamage": "-1",
+      "NormalAttackDelay": "1",
+      "SkillList": null
+    },
+    {
+      "ObjectID": "9",
+      "CodeName": null,
+      "Description": "Dummy",
+      "HP": "1",
+      "MP": "1",
+      "AttackType": "Melee",
+      "NormalDamage": "-1",
+      "NormalAttackDelay": "1",
+      "SkillList": null
+    },
+    {
+      "ObjectID": "10",
+      "CodeName": null,
+      "Description": "Dummy",
+      "HP": "1",
+      "MP": "1",
+      "AttackType": "Melee",
+      "NormalDamage": "-1",
+      "NormalAttackDelay": "1",
+      "SkillList": null
+    },
+    {
+      "ObjectID": "11",
+      "CodeName": "TestEnemy",
+      "Description": "테스트 적",
+      "HP": "100",
+      "MP": "100",
+      "AttackType": "Melee",
+      "NormalDamage": "5",
+      "NormalAttackDelay": "0.75",
+      "SkillList": [
+        "1"
+      ]
     }
   ]
 }

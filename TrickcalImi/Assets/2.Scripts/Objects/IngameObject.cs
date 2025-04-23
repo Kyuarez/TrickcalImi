@@ -1,14 +1,24 @@
 using UnityEngine;
 using FSM;
 using System;
+using static UnityEditorInternal.ReorderableList;
 
 /// <summary>
 /// Stage 인게임에 존재하는 오브젝트(StageManager 에서 관리)
 /// </summary>
 public class IngameObject : MonoBehaviour
 {
+    [Header("IngameObject ID")]
+    [SerializeField] protected int objectID;
+
+    protected int DefaultHP;
+    protected int DefaultMP;
+    protected int NormalDamage;
+    protected float NormalAttackDelay;
+
     protected Transform mark_Up;
     protected Transform mark_Health;
+    protected AttackType attackType;
 
     protected SpriteRenderer spr;
     protected Animator anim;
@@ -44,6 +54,16 @@ public class IngameObject : MonoBehaviour
 
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        //Data Init
+        JsonIngameObject json = TableManager.Instance.FindTableData<JsonIngameObject>(objectID);
+        if (json == null)
+        {
+            Debug.AssertFormat(false, $"Object ID({objectID} is wrong)");
+            return;
+        }
+
+        InitIngameObjectData(json);
     }
     protected virtual void OnEnable()
     {
@@ -51,11 +71,19 @@ public class IngameObject : MonoBehaviour
     }
     protected virtual void Start()
     {
-
+        
     }
     protected virtual void OnDisable()
     {
         UnRegisterDeadAction();
+    }
+
+    protected virtual void InitIngameObjectData(JsonIngameObject data)
+    {
+        DefaultHP = data.HP;
+        DefaultMP = data.MP;
+        NormalDamage = data.NormalDamage;
+        NormalAttackDelay = data.NormalAttackDelay;
     }
 
 

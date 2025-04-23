@@ -65,9 +65,9 @@ public class HeroManager : IngameObject
         base.OnEnable();
 
         //@tk : 임시 데이터, 나중에 json으로 처리
-        healthManager = new HealthManager(100f, 100f);
+        healthManager = new HealthManager(DefaultHP, DefaultMP);
         stateManager = new StateManager<HeroManager>();
-        attackManager = new AttackManager(20f);
+        attackManager = new AttackManager(NormalDamage, NormalAttackDelay);
 
         currentState = HeroState.Idle;
         stateManager.Setup(this, states[(int)HeroState.Idle]);

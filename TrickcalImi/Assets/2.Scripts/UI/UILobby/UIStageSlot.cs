@@ -33,6 +33,7 @@ public class UIStageSlot : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         btn_onlick = GetComponent<Button>();
         btn_onlick.onClick.AddListener(OnClickSlot);
+
     }
 
     public void InitStageSlot(JsonStage stage)
