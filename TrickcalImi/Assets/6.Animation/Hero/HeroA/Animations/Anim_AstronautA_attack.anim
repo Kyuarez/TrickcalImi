@@ -43,7 +43,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: weapon
+    path: '@Weapon'
     classID: 1
     script: {fileID: 0}
     flags: 16
@@ -93,20 +93,22 @@ AnimationClip:
       value: {fileID: 21300000, guid: 400a0490e18945bf8e823e09f3556b90, type: 3}
     - time: 0.41666666
       value: {fileID: 21300000, guid: 715fd4a0d3f54a818ebce03706a58e37, type: 3}
-    - time: 0.5833333
+    - time: 0.5
       value: {fileID: 21300000, guid: ca77da8785194f64aa622bd11b9bf5d7, type: 3}
-    - time: 0.6666667
+    - time: 0.5833333
       value: {fileID: 21300000, guid: 48e95c0339a349f88ef5e96b3b8256bb, type: 3}
-    - time: 0.75
+    - time: 0.6666667
       value: {fileID: 21300000, guid: e5afb25784e64f09bf9188baa28c18bd, type: 3}
-    - time: 0.8333333
+    - time: 0.75
       value: {fileID: 21300000, guid: a3fff94311124250963ea3e31d84f4c4, type: 3}
-    - time: 0.9166667
+    - time: 0.8333333
       value: {fileID: 21300000, guid: 9e4484f748e7441da484d8422cdc728c, type: 3}
-    - time: 1
+    - time: 0.9166667
       value: {fileID: 21300000, guid: d8c1d62529ca4556bda0098688e208a5, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 04c135add66c4ea18dc4a67e0953fb0e, type: 3}
     attribute: m_Sprite
-    path: weapon
+    path: '@Weapon'
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -118,7 +120,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1764992998
+      path: 104507764
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -136,7 +138,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1764992998
+      path: 104507764
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -169,6 +171,7 @@ AnimationClip:
     - {fileID: 21300000, guid: a3fff94311124250963ea3e31d84f4c4, type: 3}
     - {fileID: 21300000, guid: 9e4484f748e7441da484d8422cdc728c, type: 3}
     - {fileID: 21300000, guid: d8c1d62529ca4556bda0098688e208a5, type: 3}
+    - {fileID: 21300000, guid: 04c135add66c4ea18dc4a67e0953fb0e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -216,7 +219,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: weapon
+    path: '@Weapon'
     classID: 1
     script: {fileID: 0}
     flags: 16

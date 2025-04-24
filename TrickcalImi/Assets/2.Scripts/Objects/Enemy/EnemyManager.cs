@@ -9,25 +9,19 @@ public class EnemyManager : IngameObject
 {
     [SerializeField] private SpriteRenderer shadowSpr;
 
-    private float moveSpeed = 2.0f;
-    private float chaseSpeed = 5.0f;    
-
     private EnemyState currentState;
     private StateManager<EnemyManager> stateManager;
     private State<EnemyManager>[] states;
 
     private HeroManager currentTarget;
     private float distanceToTarget = -1f;
-    private float trackingRange = 10.0f;
-    private float attackRange = 2.5f;
-    private float attackDelay = 0.75f;
-    
 
+    private GameObject weaponObj;
     private bool isFirstCall = true; //pool에서 OnEnable 막을려고 만든 코드
 
     public bool IsPossibleChase
     {
-        get { return distanceToTarget <= trackingRange; }
+        get { return distanceToTarget <= TrackingRange; }
     }
     public bool IsPossibleAttack
     {
@@ -35,26 +29,24 @@ public class EnemyManager : IngameObject
         { 
             if( currentTarget != null)
             {
-                return distanceToTarget <= attackRange;
+                return distanceToTarget <= NormalAttackRange;
             }
             return false;
         } 
     }
     public HeroManager CurrentTarget => currentTarget;
-    public float AttackDelay => this.attackDelay;
+    public float AttackDelay => this.NormalAttackDelay;
 
     protected override void Awake()
     {
         base.Awake();
-
-        spr.sortingOrder = Define.OrderLayer_HeroFirst;
-        shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
+        weaponObj = transform.FindRecursiveChild(Define.Name_Hero_Weapon).gameObject;
 
         states = new State<EnemyManager>[]
         {
             new EnemyIdleState(),
-            new EnemyWalkState(moveSpeed),
-            new EnemyChaseState(chaseSpeed),
+            new EnemyWalkState(MoveSpeed),
+            new EnemyChaseState(ChaseSpeed),
             new EnemyAttackState(),
             new EnemyHitState(),
             new EnemyDeadState(),
@@ -93,6 +85,11 @@ public class EnemyManager : IngameObject
     protected override void OnDisable()
     {
         base.OnDisable();
+        if(weaponObj.activeSelf == true)
+        {
+            weaponObj.SetActive(false);
+        }
+
 
         healthManager.ResetHealthManager();
         healthManager = null;
@@ -112,7 +109,7 @@ public class EnemyManager : IngameObject
     protected override void InitIngameObjectData(JsonIngameObject data)
     {
         base.InitIngameObjectData(data);
-
+        
     }
 
     private void Update()

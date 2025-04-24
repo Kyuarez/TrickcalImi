@@ -8,11 +8,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Melee",
+      "MoveSpeed": "2",
+      "ChaseSpeed": "5",
+      "TrackingRange": "10",
       "NormalDamage": "20",
       "NormalAttackDelay": "0.75",
+      "NormalAttackRange": "4",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "1",
@@ -22,11 +27,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Melee",
+      "MoveSpeed": "3",
+      "ChaseSpeed": "6",
+      "TrackingRange": "10",
       "NormalDamage": "20",
       "NormalAttackDelay": "0.75",
+      "NormalAttackRange": "4",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "2",
@@ -36,11 +46,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Melee",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "3",
+      "TrackingRange": "10",
       "NormalDamage": "35",
       "NormalAttackDelay": "1",
+      "NormalAttackRange": "5",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20006"
     },
     {
       "ObjectID": "3",
@@ -50,11 +65,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Ranged",
+      "MoveSpeed": "3",
+      "ChaseSpeed": "6",
+      "TrackingRange": "13",
       "NormalDamage": "10",
       "NormalAttackDelay": "1",
+      "NormalAttackRange": "12",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20011"
     },
     {
       "ObjectID": "4",
@@ -64,11 +84,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Ranged",
+      "MoveSpeed": "2",
+      "ChaseSpeed": "4",
+      "TrackingRange": "17",
       "NormalDamage": "3",
       "NormalAttackDelay": "0.5",
+      "NormalAttackRange": "15",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20012"
     },
     {
       "ObjectID": "5",
@@ -78,11 +103,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Ranged",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "2",
+      "TrackingRange": "13",
       "NormalDamage": "30",
       "NormalAttackDelay": "3",
+      "NormalAttackRange": "15",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20013"
     },
     {
       "ObjectID": "6",
@@ -92,9 +122,14 @@
       "HP": "1",
       "MP": "1",
       "AttackType": "Melee",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "1",
+      "TrackingRange": "1",
       "NormalDamage": "-1",
       "NormalAttackDelay": "1",
-      "SkillList": null
+      "NormalAttackRange": "1",
+      "SkillList": null,
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "7",
@@ -104,9 +139,14 @@
       "HP": "1",
       "MP": "1",
       "AttackType": "Melee",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "1",
+      "TrackingRange": "1",
       "NormalDamage": "-1",
       "NormalAttackDelay": "1",
-      "SkillList": null
+      "NormalAttackRange": "1",
+      "SkillList": null,
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "8",
@@ -116,9 +156,14 @@
       "HP": "1",
       "MP": "1",
       "AttackType": "Melee",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "1",
+      "TrackingRange": "1",
       "NormalDamage": "-1",
       "NormalAttackDelay": "1",
-      "SkillList": null
+      "NormalAttackRange": "1",
+      "SkillList": null,
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "9",
@@ -128,9 +173,14 @@
       "HP": "1",
       "MP": "1",
       "AttackType": "Melee",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "1",
+      "TrackingRange": "1",
       "NormalDamage": "-1",
       "NormalAttackDelay": "1",
-      "SkillList": null
+      "NormalAttackRange": "1",
+      "SkillList": null,
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "10",
@@ -140,9 +190,14 @@
       "HP": "1",
       "MP": "1",
       "AttackType": "Melee",
+      "MoveSpeed": "1",
+      "ChaseSpeed": "1",
+      "TrackingRange": "1",
       "NormalDamage": "-1",
       "NormalAttackDelay": "1",
-      "SkillList": null
+      "NormalAttackRange": "1",
+      "SkillList": null,
+      "WeaponSoundID": "20001"
     },
     {
       "ObjectID": "11",
@@ -152,11 +207,16 @@
       "HP": "100",
       "MP": "100",
       "AttackType": "Melee",
+      "MoveSpeed": "2",
+      "ChaseSpeed": "5",
+      "TrackingRange": "10",
       "NormalDamage": "5",
       "NormalAttackDelay": "0.75",
+      "NormalAttackRange": "4",
       "SkillList": [
         "1"
-      ]
+      ],
+      "WeaponSoundID": "20002"
     }
   ]
 }

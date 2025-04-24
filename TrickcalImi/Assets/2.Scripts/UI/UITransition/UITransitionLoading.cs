@@ -25,7 +25,7 @@ public class UITransitionLoading : MonoBehaviour
     public void OnTransitionLoading(float duration)
     {
         UIManager.Transition.OnEndTransitionAction += ResetTransitionLoading;
-        //TODO : 현재 가지고 있는 캐릭터 중에서 하나 랜덤 뽑아서 UI 세팅
+        SetLoadingUIByRandom();
         SetActivePanel(true);
 
         //시간 초만큼 Loading
@@ -47,6 +47,25 @@ public class UITransitionLoading : MonoBehaviour
         heroText.text = string.Empty;
 
         UIManager.Transition.OnEndTransitionAction -= ResetTransitionLoading;
+    }
+
+    public void SetLoadingUIByRandom()
+    {
+        int heroID = LocalDataManager.Instance.GetHeroIDByLocalData();
+        JsonUIIngameObject json = TableManager.Instance.FindTableData<JsonUIIngameObject>(heroID);
+
+        if (json == null)
+        {
+            return;
+        }
+
+        heroText.text = json.UIName;
+        //@tk : 이거 나중에 애니메이션 (렌더 텍스쳐)로 변경 필요
+        Sprite heroIcon = Resources.Load<Sprite>(Define.Res_UI_Icon_Hero + json.IconImagePath);
+        if (heroText != null)
+        {
+            heroImage.sprite = heroIcon;
+        }
     }
 
     public IEnumerator LoadingCo(float duration)

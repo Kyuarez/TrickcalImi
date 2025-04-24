@@ -10,9 +10,6 @@ public class HeroManager : IngameObject
 {
     [SerializeField] private SpriteRenderer shadowSpr;
 
-    private float moveSpeed = 2.0f;
-    private float chaseSpeed = 5.0f;
-
     private HeroState currentState;
     private StateManager<HeroManager> stateManager;
     private State<HeroManager>[] states;
@@ -21,14 +18,13 @@ public class HeroManager : IngameObject
     private EnemyManager currentTarget;
     private float distanceToDestination;
     private float distanceToTarget;
-    private float trackingRange = 10.0f;
-    private float attackRange = 2.5f;
-    private float attackDelay = 0.75f;
+
+    private GameObject weaponObj;
 
     public Vector3 Destination => destination;
     public bool IsPossibleChase
     {
-        get { return distanceToTarget <= trackingRange; }
+        get { return distanceToTarget <= TrackingRange; }
     }
     public bool IsPossibleAttack
     {
@@ -36,7 +32,7 @@ public class HeroManager : IngameObject
         {
             if (currentTarget != null)
             {
-                return distanceToTarget <= attackRange;
+                return distanceToTarget <= NormalAttackRange;
             }
             return false;
         }
@@ -53,21 +49,18 @@ public class HeroManager : IngameObject
         }
     }
     public EnemyManager CurrentTarget => currentTarget;
-    public float AttackDelay => this.attackDelay;
+    public float AttackDelay => this.NormalAttackDelay;
 
     protected override void Awake()
     {
         base.Awake();
-
-        //@TODO : tk 이거 이제 열마다 따로 세팅
-        spr.sortingOrder = Define.OrderLayer_HeroSecond;
-        shadowSpr.sortingOrder = Define.OrderLayer_HeroShadow;
+        weaponObj = transform.FindRecursiveChild(Define.Name_Hero_Weapon).gameObject;
 
         states = new State<HeroManager>[]
         {
             new HeroIdleState(),
-            new HeroWalkState(moveSpeed),
-            new HeroChaseState(chaseSpeed),
+            new HeroWalkState(MoveSpeed),
+            new HeroChaseState(ChaseSpeed),
             new HeroAttackState(),
             new HeroHitState(),
             new HeroDeadState(),
@@ -96,7 +89,10 @@ public class HeroManager : IngameObject
     protected override void OnDisable()
     {
         base.OnDisable();
-
+        if (weaponObj.activeSelf == true)
+        {
+            weaponObj.SetActive(false);
+        }
         if (StageManager.Instance != null)
         {
             StageManager.Instance.OnSetupAction -= OnSetupAction;

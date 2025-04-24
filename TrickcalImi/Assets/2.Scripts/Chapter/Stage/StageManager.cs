@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class StageManager : MonoSingleton<StageManager>
 {
@@ -202,7 +201,7 @@ public class StageManager : MonoSingleton<StageManager>
         {
             foreach (HeroManager hero in currentHeros.Values)   
             {
-                hero.HealRatio(0.5f); // 50% È¸º¹
+                hero.Heal(50f); 
             }
         }
 

@@ -175,6 +175,7 @@ namespace FSM
             if (owner.IsPossibleAttack == true)
             {
                 owner.PlayAnim(HeroState.Attack);
+                SoundManager.Instance.PlaySFX(owner.SoundWeaponID);
             }
             else
             {

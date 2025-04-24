@@ -1,7 +1,6 @@
 using UnityEngine;
 using FSM;
 using System;
-using static UnityEditorInternal.ReorderableList;
 
 /// <summary>
 /// Stage 인게임에 존재하는 오브젝트(StageManager 에서 관리)
@@ -14,8 +13,14 @@ public class IngameObject : MonoBehaviour
     protected string poolPath;
     protected int DefaultHP;
     protected int DefaultMP;
+    protected float MoveSpeed;
+    protected float ChaseSpeed;
+    protected float TrackingRange;
     protected int NormalDamage;
     protected float NormalAttackDelay;
+    protected float NormalAttackRange;
+
+    protected int soundWeaponID; //@TK 이거 나중에 옮겨야함.
 
     protected Transform mark_Up;
     protected Transform mark_Health;
@@ -32,6 +37,7 @@ public class IngameObject : MonoBehaviour
 
     public Transform Mark_Star => mark_Up;
     public Transform Mark_Health => mark_Health;
+    public int SoundWeaponID => soundWeaponID;
     public bool IsDead
     {
         get
@@ -85,9 +91,14 @@ public class IngameObject : MonoBehaviour
         poolPath = data.PoolPath;
         DefaultHP = data.HP;
         DefaultMP = data.MP;
+        MoveSpeed = data.MoveSpeed;
+        ChaseSpeed = data.ChaseSpeed;
+        TrackingRange = data.TrackingRange;
         NormalDamage = data.NormalDamage;
         NormalAttackDelay = data.NormalAttackDelay;
+        NormalAttackRange = data.NormalAttackRange;
         attackType = data.AttackType;
+        soundWeaponID = data.WeaponSoundID;
     }
 
 
@@ -98,21 +109,25 @@ public class IngameObject : MonoBehaviour
     public virtual void Heal(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.HP, amount);
+        SoundManager.Instance.PlaySFX(30000);
         FXManager.Instance.OnEffect(FXType.Heal_HP, transform.position);
     }
     public virtual void HealRatio(float ratio)
     {
         healthManager.OnIncreasedHealthRatio(HealthType.HP, ratio);
+        SoundManager.Instance.PlaySFX(30000);
         FXManager.Instance.OnEffect(FXType.Heal_HP, transform.position);
     }
     public virtual void HealMP(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.MP, amount);
+        SoundManager.Instance.PlaySFX(30000);
         FXManager.Instance.OnEffect(FXType.Heal_MP, transform.position);
     }
     public virtual void HealMPRatio(float ratio)
     {
         healthManager.OnIncreasedHealthRatio(HealthType.MP, ratio);
+        SoundManager.Instance.PlaySFX(30000);
         FXManager.Instance.OnEffect(FXType.Heal_MP, transform.position);
     }
     public virtual void UseMP(float amount)

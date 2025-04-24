@@ -1,0 +1,39 @@
+{
+  "JsonUIIngameObject": [
+    {
+      "IngameObjectID": "1",
+      "UIName": "우주검객",
+      "Description": "Earth 5의 실력 있는 검객이다. 『귀멸의 칼날』을 좋아해서 검사가 되었다.",
+      "IconImagePath": "Icon_HeroA",
+      "UIAnimPath": null
+    },
+    {
+      "IngameObjectID": "2",
+      "UIName": "우주오함마",
+      "Description": "Earth 5의 최고의 대장장이이다. 동시에 최고의 전사이기도 하다.",
+      "IconImagePath": "Icon_HeroB",
+      "UIAnimPath": null
+    },
+    {
+      "IngameObjectID": "3",
+      "UIName": "우주피스톨",
+      "Description": "Earth 5의 블랙 요원이다. 듣기로는 국제 사격 대회에서 입상 이력이 있다.",
+      "IconImagePath": "Icon_HeroC",
+      "UIAnimPath": null
+    },
+    {
+      "IngameObjectID": "4",
+      "UIName": "우주라이플",
+      "Description": "Earth 5의 연합 사령부 직할특동대 대장이다.",
+      "IconImagePath": "Icon_HeroD",
+      "UIAnimPath": null
+    },
+    {
+      "IngameObjectID": "5",
+      "UIName": "우주봄버",
+      "Description": "Earth 5의 연합 사령부 산하 방산 연구원 출신이다. 각종 폭탄 제조에 능하다.",
+      "IconImagePath": "Icon_HeroE",
+      "UIAnimPath": null
+    }
+  ]
+}

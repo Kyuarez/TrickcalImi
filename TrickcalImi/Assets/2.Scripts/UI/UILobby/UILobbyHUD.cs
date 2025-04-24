@@ -44,7 +44,7 @@ public class UILobbyHUD : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Appllication.Quit();
+        Application.Quit();
 #endif
     }
 }

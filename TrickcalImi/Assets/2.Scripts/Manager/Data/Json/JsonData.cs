@@ -18,11 +18,24 @@ public class JsonIngameObject
     public int HP;
     public int MP;
     public AttackType AttackType;
+    public float MoveSpeed;
+    public float ChaseSpeed;
+    public float TrackingRange;
     public int NormalDamage;
     public float NormalAttackDelay;
+    public float NormalAttackRange;
     public List<int> SkillList;
+    public int WeaponSoundID;
 }
 
+public class JsonUIIngameObject
+{
+    public int IngameObjectID;
+    public string UIName;
+    public string Description;
+    public string IconImagePath;
+    public string UIAnimPath;
+}
 public class JsonChapter
 {
     public int ChapterID;

@@ -32,7 +32,7 @@ public class UIButtonHUD : MonoBehaviour
 
     public void OnClickPause()
     {
-        SoundManager.Instance.PlaySFX(10000);
+        SoundManager.Instance.PlaySFX(10000);   
         //TODO 현재 챕터 상황 보여주고, 나가기 팝업 만들기
     }
 }

@@ -9,16 +9,12 @@ public static class Define
     public static readonly string Name_Pool_Enemy = "@Enemy";
     public static readonly string Name_Pool_FX = "@FX";
     public static readonly string Name_Pool_UI = "@UI";
+    public static readonly string Name_Hero_Weapon = "@Weapon";
+
 
     public static readonly int OrderLayer_titleUI = 10;
     public static readonly int OrderLayer_baseUI = 9;
     public static readonly int OrderLayer_ingameUI = 8;
-
-    public static readonly int OrderLayer_background = -1;
-    public static readonly int OrderLayer_HeroShadow = 0;
-    public static readonly int OrderLayer_HeroFirst = 1;
-    public static readonly int OrderLayer_HeroSecond = 2;
-    public static readonly int OrderLayer_HeroThird = 3;
 
     public static readonly float Default_Enemy_NormalDamage = 5.0f;
 
@@ -26,6 +22,8 @@ public static class Define
     public static readonly string Res_UI_Pool = "Prefabs/UI/Pool";
     public static readonly string Res_UI_LobbyBackground = "Sprites/UI/Lobby/BackgroundImage";
     public static readonly string Res_UI_LobbyStageSlot = "Prefabs/UI/Pool/Lobby/UIStageSlot";
+    public static readonly string Res_UI_Icon_Hero = "Sprites/UI/Icon/Hero/";
+    public static readonly string Res_UI_Icon_Enemy = "Sprites/UI/Icon/Enemy/";
     public static readonly string Res_Sound_BGM = "Sounds/BGM/";
     public static readonly string Res_Sound_SFX = "Sounds/SFX/";
     #endregion

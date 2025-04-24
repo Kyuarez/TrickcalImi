@@ -107,4 +107,10 @@ public class LocalDataManager
             }
         }
     }
+
+    public int GetHeroIDByLocalData()
+    {
+        int rndNum = UnityEngine.Random.Range(0, LocalUserData.HeroList.Count);
+        return LocalUserData.HeroList[rndNum];
+    }
 }

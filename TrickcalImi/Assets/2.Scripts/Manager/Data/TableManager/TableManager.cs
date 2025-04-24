@@ -30,6 +30,7 @@ public partial class TableManager
     private void LoadAllTables()
     {
         LoadTable<JsonIngameObject>("JsonIngameObject", out ingameObjectDict, x => x.ObjectID);
+        LoadTable<JsonUIIngameObject>("JsonUIIngameObject", out uiIngameObjectDict, x => x.IngameObjectID);
         LoadTable<JsonChapter>("JsonChapter", out chapterDict, x => x.ChapterID);
         LoadTable<JsonStage>("JsonStage", out stageDict, x => x.StageID);
         LoadTable<JsonSound>("JsonSound", out soundDict, x => x.SoundID);
@@ -48,7 +49,6 @@ public partial class TableManager
 #if UNITY_EDITOR || UNITY_STANDALONE
         string jsonText = File.ReadAllText(path);
 #else
-        // 안드로이드에서는 StreamingAssets가 WWW/UnityWebRequest 필요
         UnityWebRequest www = UnityWebRequest.Get(path);
         www.SendWebRequest();
         while (!www.isDone) { }
@@ -63,9 +63,6 @@ public partial class TableManager
         {
             outDict[keySelector(item)] = item;
         }
-
-        Debug.Log($"{tableName} loaded: {outDict.Count} entries");
-
         RegisterTable<T>(outDict);
     }
 
@@ -106,6 +103,7 @@ public partial class TableManager
     private Dictionary<Type, object> tableMap = new Dictionary<Type, object>();
 
     private Dictionary<int, JsonIngameObject> ingameObjectDict = new Dictionary<int, JsonIngameObject>();
+    private Dictionary<int, JsonUIIngameObject> uiIngameObjectDict = new Dictionary<int, JsonUIIngameObject>();
     private Dictionary<int, JsonChapter> chapterDict = new Dictionary<int, JsonChapter>();
     private Dictionary<int, JsonStage> stageDict = new Dictionary<int, JsonStage>();
     private Dictionary<int, JsonSound> soundDict = new Dictionary<int, JsonSound>();
