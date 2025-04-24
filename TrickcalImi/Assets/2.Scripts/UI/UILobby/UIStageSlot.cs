@@ -65,6 +65,7 @@ public class UIStageSlot : MonoBehaviour
 
     public void OnClickSlot()
     {
+        SoundManager.Instance.PlaySFX(10001);
         UIManager.LobbySelectStage.OnSelectSlot?.Invoke(this);
     }
 }

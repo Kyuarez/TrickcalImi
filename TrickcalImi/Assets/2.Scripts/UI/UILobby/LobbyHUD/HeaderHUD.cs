@@ -42,6 +42,7 @@ public class HeaderHUD : MonoBehaviour
     }
     public void OnClickBackward()
     {
+        SoundManager.Instance.PlaySFX(10002);
         GameSceneManager.Instance.OnLobby(LobbyType.LobbyMain);
     }
 }
