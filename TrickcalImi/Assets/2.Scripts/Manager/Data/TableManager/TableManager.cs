@@ -32,6 +32,7 @@ public partial class TableManager
         LoadTable<JsonIngameObject>("JsonIngameObject", out ingameObjectDict, x => x.ObjectID);
         LoadTable<JsonChapter>("JsonChapter", out chapterDict, x => x.ChapterID);
         LoadTable<JsonStage>("JsonStage", out stageDict, x => x.StageID);
+        LoadTable<JsonSound>("JsonSound", out soundDict, x => x.SoundID);
     }
 
     private void LoadTable<T>(string tableName, out Dictionary<int, T> outDict, System.Func<T, int> keySelector)
@@ -86,12 +87,28 @@ public partial class TableManager
         return null;
     }
 
+    public void SetSoundData()
+    {
+        foreach (KeyValuePair<int, JsonSound> sound in soundDict)
+        {
+            if(sound.Value.SoundType == SoundType.BGM)
+            {
+                SoundManager.Instance.AddBGMDict(sound.Key, sound.Value.SoundResPath);
+            }
+            else if(sound.Value.SoundType == SoundType.SFX)
+            {
+                SoundManager.Instance.AddSFXDict(sound.Key, sound.Value.SoundResPath);  
+            }
+        }
+    }
+
     #region DataTable
     private Dictionary<Type, object> tableMap = new Dictionary<Type, object>();
 
     private Dictionary<int, JsonIngameObject> ingameObjectDict = new Dictionary<int, JsonIngameObject>();
     private Dictionary<int, JsonChapter> chapterDict = new Dictionary<int, JsonChapter>();
     private Dictionary<int, JsonStage> stageDict = new Dictionary<int, JsonStage>();
+    private Dictionary<int, JsonSound> soundDict = new Dictionary<int, JsonSound>();
 
     #endregion
 }

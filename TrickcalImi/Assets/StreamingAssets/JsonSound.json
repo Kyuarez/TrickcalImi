@@ -1,0 +1,34 @@
+{
+  "JsonSound": [
+    {
+      "SoundID": "1",
+      "SoundType": "BGM",
+      "SoundResPath": "BGM_Title"
+    },
+    {
+      "SoundID": "2",
+      "SoundType": "BGM",
+      "SoundResPath": "BGM_LobbyMain"
+    },
+    {
+      "SoundID": "3",
+      "SoundType": "BGM",
+      "SoundResPath": "BGM_Lobby_SelectStage"
+    },
+    {
+      "SoundID": "100",
+      "SoundType": "BGM",
+      "SoundResPath": "BGM_Ingame_Boss"
+    },
+    {
+      "SoundID": "101",
+      "SoundType": "BGM",
+      "SoundResPath": "BGM_Ingame_Chapter1"
+    },
+    {
+      "SoundID": "102",
+      "SoundType": "BGM",
+      "SoundResPath": "BGM_Ingame_Chapter2"
+    }
+  ]
+}

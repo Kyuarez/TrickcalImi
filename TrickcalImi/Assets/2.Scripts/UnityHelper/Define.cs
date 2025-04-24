@@ -26,6 +26,8 @@ public static class Define
     public static readonly string Res_UI_Pool = "Prefabs/UI/Pool";
     public static readonly string Res_UI_LobbyBackground = "Sprites/UI/Lobby/BackgroundImage";
     public static readonly string Res_UI_LobbyStageSlot = "Prefabs/UI/Pool/Lobby/UIStageSlot";
+    public static readonly string Res_Sound_BGM = "Sounds/BGM/";
+    public static readonly string Res_Sound_SFX = "Sounds/SFX/";
     #endregion
 
     #region Color
@@ -135,5 +137,11 @@ public enum EnvironmentType
     FloatingIsles,
     RuinCastle,
     CursedTemple,
+}
+
+public enum SoundType
+{
+    BGM,
+    SFX,
 }
 #endregion

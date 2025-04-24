@@ -28,6 +28,7 @@ public class JsonChapter
     public int ChapterID;
     public string ChapterHeader;
     public List<int> StageIDList;
+    public int SoundID;
 }
 
 public class JsonStage
@@ -39,4 +40,11 @@ public class JsonStage
     public int SetupCost;
     public int ChargeCost;
     public List<int> EnemyList;
+}
+
+public class JsonSound
+{
+    public int SoundID;
+    public SoundType SoundType;
+    public string SoundResPath;
 }

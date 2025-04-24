@@ -35,18 +35,21 @@ public class UILobby : MonoBehaviour
         switch (lobbyType)
         {
             case LobbyType.LobbyMain:
+                SoundManager.Instance.PlayBGM(2);
                 lobbyMain.SetActivePanel(true);
                 lobbyAdventure.SetActivePanel(false);
                 lobbySelectStage.ResetStageSelect();
                 lobbySelectStage.SetActivePanel(false);
                 break;
             case LobbyType.LobbyAdventure:
+                SoundManager.Instance.PlayBGM(2);
                 lobbyMain.SetActivePanel(false);
                 lobbyAdventure.SetActivePanel(true);
                 lobbySelectStage.ResetStageSelect();
                 lobbySelectStage.SetActivePanel(false);
                 break;
             case LobbyType.LobbySelectStage:
+                SoundManager.Instance.PlayBGM(3);
                 lobbyMain.SetActivePanel(false);
                 lobbyAdventure.SetActivePanel(false);
                 lobbySelectStage.OnStageSelect();

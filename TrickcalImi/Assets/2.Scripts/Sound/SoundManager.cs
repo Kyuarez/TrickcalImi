@@ -10,24 +10,55 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private Coroutine currentBGMCoroutine;
 
-    private Dictionary<string, AudioClip> bgmClipDict = new Dictionary<string, AudioClip>();
-    private Dictionary<string, AudioClip> sfxClipDict = new Dictionary<string, AudioClip>();
+    private Dictionary<int, AudioClip> bgmClipDict = new Dictionary<int, AudioClip>();
+    private Dictionary<int, AudioClip> sfxClipDict = new Dictionary<int, AudioClip>();
 
 
     protected override void Awake()
     {
         base.Awake();
-        InitializeAudioClip();
+
+        TableManager.Instance.SetSoundData();
     }
 
-    private void InitializeAudioClip()
+    public void AddBGMDict(int soundID, string soundResPath)
     {
-        //
+        AudioClip clip = Resources.Load<AudioClip>(Define.Res_Sound_BGM + soundResPath);
+        if(clip == null)
+        {
+            Debug.LogWarningFormat($"AudioClip isn't in Resources : {soundResPath}");
+            return;
+        }
+
+        if(bgmClipDict.ContainsKey(soundID) == true)
+        {
+            Debug.Assert(false, $"Duplicated Sound ID : {soundID}");
+            return;
+        }
+
+        bgmClipDict.Add(soundID, clip);
+    }
+    public void AddSFXDict(int soundID, string soundResPath)
+    {
+        AudioClip clip = Resources.Load<AudioClip>(Define.Res_Sound_SFX + soundResPath);
+        if (clip == null)
+        {
+            Debug.LogWarningFormat($"AudioClip isn't in Resources : {soundResPath}");
+            return;
+        }
+
+        if (sfxClipDict.ContainsKey(soundID) == true)
+        {
+            Debug.Assert(false, $"Duplicated Sound ID : {soundID}");
+            return;
+        }
+
+        sfxClipDict.Add(soundID, clip);
     }
 
-    public void PlayBGM(string name, float fadeDuration = 1.0f)
+    public void PlayBGM(int soundID, float fadeDuration = 1.0f)
     {
-        if (bgmClipDict.ContainsKey(name) == false)
+        if (bgmClipDict.ContainsKey(soundID) == false)
         {
             return;
         }
@@ -40,29 +71,29 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         StartCoroutine(FadeOutBGMCo(fadeDuration, () =>
         {
-            bgmSource.clip = bgmClipDict[name];
+            bgmSource.clip = bgmClipDict[soundID];
             bgmSource.Play();
             currentBGMCoroutine = StartCoroutine(FadeInBGMCo(fadeDuration));
         }));
     }
 
-    public void PlaySFX(string name)
+    public void PlaySFX(int soundID)
     {
-        if (sfxClipDict.ContainsKey(name) == false)
+        if (sfxClipDict.ContainsKey(soundID) == false)
         {
             return;
         }
 
-        sfxSource.PlayOneShot(sfxClipDict[name]);
+        sfxSource.PlayOneShot(sfxClipDict[soundID]);
     }
-    public void PlaySFX(string name, Vector3 position)
+    public void PlaySFX(int soundID, Vector3 position)
     {
-        if (sfxClipDict.ContainsKey(name) == false)
+        if (sfxClipDict.ContainsKey(soundID) == false)
         {
             return;
         }
 
-        AudioSource.PlayClipAtPoint(sfxClipDict[name], position);
+        AudioSource.PlayClipAtPoint(sfxClipDict[soundID], position);
     }
     public void PauseBGM()
     {

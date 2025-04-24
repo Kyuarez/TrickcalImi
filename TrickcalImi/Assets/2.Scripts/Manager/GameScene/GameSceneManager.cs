@@ -5,7 +5,7 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
 {
     private GameSceneType gameSceneType;
 
-    [RuntimeInitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void OnLoadGameAction()
     {
         TableManager table = new TableManager();
@@ -40,6 +40,12 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
         JsonStage stageData = TableManager.Instance.FindTableData<JsonStage>(stageID);
         if(stageData != null)
         {
+            JsonChapter chapter = TableManager.Instance.FindTableData<JsonChapter>(stageData.ChapterNumber);
+            if(chapter != null)
+            {
+                SoundManager.Instance.PlayBGM(chapter.SoundID);
+            }
+
             gameSceneType = GameSceneType.Ingame;
             StageManager.Instance.OnStage(stageData);
         }
