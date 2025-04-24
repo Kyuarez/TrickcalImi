@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3487323920833569395}
   - component: {fileID: 7464393944195652728}
   m_Layer: 0
-  m_Name: HeroE(Bomb)
+  m_Name: HeroE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

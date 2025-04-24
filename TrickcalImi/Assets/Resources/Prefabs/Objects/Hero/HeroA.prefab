@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1667494152941628460}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.378, y: -0.595, z: 0}
+  m_LocalPosition: {x: -0.208, y: -0.221, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9ac67182453d46ac8cc8d38dbfc5e8cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04c135add66c4ea18dc4a67e0953fb0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3487323920833569395}
   - component: {fileID: 7464393944195652728}
   m_Layer: 0
-  m_Name: HeroC(Gun)
+  m_Name: HeroA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411c89d03cdd5904f96d6687ec1eb863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectID: 3
+  objectID: 1
   shadowSpr: {fileID: 4034466334336510538}
 --- !u!212 &1034157149109070036
 SpriteRenderer:
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f9cdc9420d784e58bfd021946386f9a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce7b3baa5bac4c5f908f345eea062c67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -205,7 +205,7 @@ Animator:
   m_GameObject: {fileID: 5784003282960387113}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: db368d0eb8a653c41bd899dec3aa5207, type: 2}
+  m_Controller: {fileID: 9100000, guid: 005495675bcc42b429bb7258034d4384, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

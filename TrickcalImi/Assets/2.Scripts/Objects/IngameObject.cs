@@ -11,6 +11,7 @@ public class IngameObject : MonoBehaviour
     [Header("IngameObject ID")]
     [SerializeField] protected int objectID;
 
+    protected string poolPath;
     protected int DefaultHP;
     protected int DefaultMP;
     protected int NormalDamage;
@@ -44,6 +45,7 @@ public class IngameObject : MonoBehaviour
             return healthManager.IsDead();
         }
     }
+    public string PoolPath => poolPath;
 
     public Action OnDead;
 
@@ -80,6 +82,7 @@ public class IngameObject : MonoBehaviour
 
     protected virtual void InitIngameObjectData(JsonIngameObject data)
     {
+        poolPath = data.PoolPath;
         DefaultHP = data.HP;
         DefaultMP = data.MP;
         NormalDamage = data.NormalDamage;

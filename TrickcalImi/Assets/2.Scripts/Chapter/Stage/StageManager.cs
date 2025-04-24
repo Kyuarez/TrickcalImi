@@ -141,6 +141,7 @@ public class StageManager : MonoSingleton<StageManager>
         chargeCost = jsonData.ChargeCost;
         currentCost = 0;
 
+        SpawnHeroByDeck();
         OnSetupMode(); 
     }
 
@@ -199,11 +200,13 @@ public class StageManager : MonoSingleton<StageManager>
         //체력 업데이트
         if (currentHeros.Count > 0) //턴 지날때마다 체력 회복
         {
-            foreach (HeroManager hero in currentHeros.Values)
+            foreach (HeroManager hero in currentHeros.Values)   
             {
                 hero.HealthManager.OnIncreasedHealthRatio(HealthType.HP, 0.5f); // 50% 회복
             }
         }
+
+        MoveHeroesToDeckPos();
 
         OnSetupAction?.Invoke();
     }
@@ -349,9 +352,36 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
 
+    public void SpawnHeroByDeck()
+    {
+        Dictionary<int, int> deckData = LocalDataManager.Instance.LocalUserData.HeroDeckData;
+
+        //key : slot key, value : hero id
+        foreach (KeyValuePair<int, int> kv in deckData)
+        {
+            JsonIngameObject heroData = TableManager.Instance.FindTableData<JsonIngameObject>(kv.Value);
+            if(heroData == null)
+            {
+                Debug.Assert(false, $"IngameObject ID has problem : {kv.Value}");
+                continue;
+            }
+
+            Vector3 spawnPosition = Vector3.zero;
+            GameObject heroObj = PoolManager.Instance.SpawnObject(heroData.PoolPath);
+            HeroManager hero = heroObj.GetComponent<HeroManager>();
+            hero.transform.position = UIIngameManager.DepolySlotManager.GetSpawnPosBySlotIndex(kv.Key);
+            hero.transform.localRotation = Quaternion.identity;
+            
+            AddCurrentHeros(kv.Key, hero);
+            UIIngameManager.BillboardManager.OnSpawnIngameObject(hero);
+            UIIngameManager.DepolySlotManager.SetSlotDeployState(kv.Key);
+            hero.OnDead += () => { RemoveCurrentHeros(kv.Key); };
+        }
+    }
 
     #region Test
     //@tk 이제는 Deque에 있는 정보 그대로 하나씩만 소환할 것임.
+
     public void SpawnHeroInStage()
     {
         Vector3 spawnPosition = Vector3.zero;
@@ -461,5 +491,16 @@ public class StageManager : MonoSingleton<StageManager>
         }
 
         return true;
+    }
+
+    public void MoveHeroesToDeckPos()
+    {
+        foreach (KeyValuePair<int, HeroManager> kv in currentHeros)
+        {
+            Vector3 deckPos = UIIngameManager.DepolySlotManager.GetSpawnPosBySlotIndex(kv.Key);
+            HeroManager hero = kv.Value;
+            hero.SetDestination(deckPos);
+            hero.SetHeroState(HeroState.Walk);
+        }
     }
 }

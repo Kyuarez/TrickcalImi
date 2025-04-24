@@ -45,10 +45,10 @@ public class UIDepolySlotManager : MonoBehaviour
         slotDicts.Clear();
 
         UIDepolySlot[] arr = GetComponentsInChildren<UIDepolySlot>();
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 1; i <= arr.Length; i++)
         {
-            arr[i].SlotIndex = i + 1;
-            slotDicts.Add(arr[i].SlotIndex, arr[i]);
+            arr[i - 1].SlotIndex = i;
+            slotDicts.Add(i, arr[i - 1]);
         }
     }
 
@@ -60,6 +60,18 @@ public class UIDepolySlotManager : MonoBehaviour
         }
     }
 
+    public Vector3 GetSpawnPosBySlotIndex(int slotIndex)
+    {
+        if(slotDicts.ContainsKey(slotIndex) == false)
+        {
+            Debug.Assert(false, "SlotIndex is wrong");
+            return Vector3.zero;
+        }
+
+        return slotDicts[slotIndex].GetDepolyPosition();
+    }
+
+    #region Test
     public int GetHeroDepolySlotData(ref Vector3 spawnPosition)
     {
         //Todo : 지금은 순서대로 넣지만, 나중엔 로컬 저장 위치 슬롯 대로 위치에 넣도록 수정
@@ -75,6 +87,7 @@ public class UIDepolySlotManager : MonoBehaviour
         spawnPosition = Vector3.zero;
         return -1;
     }
+    #endregion
 
     public void SetSlotDeployState(int slotIndex)
     {

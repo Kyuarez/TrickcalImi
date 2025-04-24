@@ -7,6 +7,7 @@ public class UIDepolySlot : MonoBehaviour
     [SerializeField] private Transform spawnPos_Bottom;
 
     private bool isDepoly = false;
+    private int currentHeroID = -1;
     
     public int SlotIndex
     {
@@ -19,7 +20,11 @@ public class UIDepolySlot : MonoBehaviour
         get { return isDepoly; }
         set { isDepoly = value; }
     }
-    
+    public int CurrentHeroID
+    {
+        get { return currentHeroID; }
+    }
+
 
     public Vector3 GetDepolyPosition(bool isPivotBottom = false)
     {

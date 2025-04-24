@@ -13,6 +13,7 @@ public class JsonIngameObject
 {
     public int ObjectID;
     public string CodeName;
+    public string PoolPath;
     public string Description;
     public int HP;
     public int MP;

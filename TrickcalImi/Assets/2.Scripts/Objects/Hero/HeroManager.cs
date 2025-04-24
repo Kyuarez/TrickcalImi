@@ -17,12 +17,15 @@ public class HeroManager : IngameObject
     private StateManager<HeroManager> stateManager;
     private State<HeroManager>[] states;
 
+    private Vector3 destination;
     private EnemyManager currentTarget;
+    private float distanceToDestination;
     private float distanceToTarget;
     private float trackingRange = 10.0f;
     private float attackRange = 2.5f;
     private float attackDelay = 0.75f;
 
+    public Vector3 Destination => destination;
     public bool IsPossibleChase
     {
         get { return distanceToTarget <= trackingRange; }
@@ -36,6 +39,17 @@ public class HeroManager : IngameObject
                 return distanceToTarget <= attackRange;
             }
             return false;
+        }
+    }
+    public bool IsReachedDestination
+    {
+        get
+        {
+            if(destination != null)
+            {
+                return distanceToDestination <= 0.1f;
+            }
+            return true;
         }
     }
     public EnemyManager CurrentTarget => currentTarget;
@@ -103,19 +117,25 @@ public class HeroManager : IngameObject
     }
     private void Update()
     {
-        if (StageManager.Instance.IsPossibleGetTarget() == false)
+        //Combat Mode시 적 체크
+        if (StageManager.Instance.IsPossibleGetTarget() == true)
         {
-            return;
-        }
+            if (currentTarget == null || currentTarget.IsDead == true)
+            {
+                currentTarget = StageManager.Instance.GetNearestEnemy(transform.position);
+            }
 
-        if (currentTarget == null || currentTarget.IsDead == true)
-        {
-            currentTarget = StageManager.Instance.GetNearestEnemy(transform.position);
+            if (currentTarget != null)
+            {
+                distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+            }
         }
-
-        if (currentTarget != null)
+        else
         {
-            distanceToTarget = Vector2.Distance(transform.position, currentTarget.transform.position);
+            if(destination != null)
+            {
+                distanceToDestination = Vector2.Distance(transform.position, destination);
+            }
         }
     }
 
@@ -150,6 +170,10 @@ public class HeroManager : IngameObject
 
         currentState = heroState;
         stateManager.ChangeState(states[(int)currentState]);
+    }
+    public void SetDestination(Vector3 pos)
+    {
+        destination = pos;
     }
 
     public void ResetHeroState()

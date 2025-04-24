@@ -23,9 +23,12 @@ namespace FSM
 
                     owner.SetHeroState(HeroState.Chase);
                 }
-                else
+            }
+            else
+            {
+                if(owner.IsReachedDestination == false)
                 {
-                    owner.SetHeroState(HeroState.Walk);
+                    owner.SetHeroState(HeroState.Walk); 
                 }
             }
         }
@@ -71,7 +74,10 @@ namespace FSM
             }
             else
             {
-                owner.SetHeroState(HeroState.Idle);
+                if(owner.IsReachedDestination == true)
+                {
+                    owner.SetHeroState(HeroState.Idle);
+                }
             }
 
             HeroBaseWalk(owner);
@@ -83,7 +89,16 @@ namespace FSM
         }
         protected virtual void HeroBaseWalk(HeroManager owner)
         {
-            owner.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            if(owner.Destination != null)
+            {
+                Vector3 currentPosition = owner.transform.position;
+                owner.transform.position = Vector3.Lerp(currentPosition, owner.Destination, moveSpeed * Time.deltaTime);
+
+            }
+            else
+            {
+                owner.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            }
         }
     }
 

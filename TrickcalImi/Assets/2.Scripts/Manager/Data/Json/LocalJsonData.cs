@@ -12,4 +12,5 @@ public class JsonLocalUserData
     public Dictionary<int, List<bool>> ChapterClearData; //bool¿∫ open ø©∫Œ
     public List<int> HeroList;
     public List<int> CardList;
+    public Dictionary<int, int> HeroDeckData; //key : slotNumber, value : heroID
 }

@@ -3,6 +3,7 @@
     {
       "ObjectID": "0",
       "CodeName": "TestHero",
+      "PoolPath": "TestHero",
       "Description": "테스트 영웅",
       "HP": "100",
       "MP": "100",
@@ -16,6 +17,7 @@
     {
       "ObjectID": "1",
       "CodeName": "HeroA",
+      "PoolPath": "HeroA",
       "Description": "검",
       "HP": "100",
       "MP": "100",
@@ -29,6 +31,7 @@
     {
       "ObjectID": "2",
       "CodeName": "HeroB",
+      "PoolPath": "HeroB",
       "Description": "망치",
       "HP": "100",
       "MP": "100",
@@ -42,6 +45,7 @@
     {
       "ObjectID": "3",
       "CodeName": "HeroC",
+      "PoolPath": "HeroC",
       "Description": "총(단발)",
       "HP": "100",
       "MP": "100",
@@ -55,6 +59,7 @@
     {
       "ObjectID": "4",
       "CodeName": "HeroD",
+      "PoolPath": "HeroD",
       "Description": "라이플",
       "HP": "100",
       "MP": "100",
@@ -68,6 +73,7 @@
     {
       "ObjectID": "5",
       "CodeName": "HeroE",
+      "PoolPath": "HeroE",
       "Description": "폭탄",
       "HP": "100",
       "MP": "100",
@@ -81,6 +87,7 @@
     {
       "ObjectID": "6",
       "CodeName": null,
+      "PoolPath": null,
       "Description": "Dummy",
       "HP": "1",
       "MP": "1",
@@ -92,6 +99,7 @@
     {
       "ObjectID": "7",
       "CodeName": null,
+      "PoolPath": null,
       "Description": "Dummy",
       "HP": "1",
       "MP": "1",
@@ -103,6 +111,7 @@
     {
       "ObjectID": "8",
       "CodeName": null,
+      "PoolPath": null,
       "Description": "Dummy",
       "HP": "1",
       "MP": "1",
@@ -114,6 +123,7 @@
     {
       "ObjectID": "9",
       "CodeName": null,
+      "PoolPath": null,
       "Description": "Dummy",
       "HP": "1",
       "MP": "1",
@@ -125,6 +135,7 @@
     {
       "ObjectID": "10",
       "CodeName": null,
+      "PoolPath": null,
       "Description": "Dummy",
       "HP": "1",
       "MP": "1",
@@ -136,6 +147,7 @@
     {
       "ObjectID": "11",
       "CodeName": "TestEnemy",
+      "PoolPath": "TestEnemy",
       "Description": "테스트 적",
       "HP": "100",
       "MP": "100",
