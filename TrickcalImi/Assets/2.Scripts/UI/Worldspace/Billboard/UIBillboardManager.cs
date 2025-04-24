@@ -62,6 +62,6 @@ public class UIBillboardManager : MonoBehaviour
             kv.Value.transform.position = pos;
         }
     }
-    
+
     private Dictionary<IngameObject, UIHealth> uiHealthDict = new Dictionary<IngameObject, UIHealth>();
 }

@@ -6,6 +6,7 @@ namespace FSM
     {
         public override void Enter(HeroManager owner)
         {
+            owner.ResetTurn();
             owner.PlayAnim(HeroState.Idle);
         }
 
@@ -153,6 +154,15 @@ namespace FSM
             Vector3 currentPosition = owner.transform.position;
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, currentPosition.z);
             owner.transform.position = Vector3.Lerp(currentPosition, targetPosition, chaseSpeed * Time.deltaTime);
+
+            if (owner.transform.IsFront(target) == true)
+            {
+                owner.SetTurn(false);
+            }
+            else
+            {
+                owner.SetTurn(true);
+            }
         }
     }
 

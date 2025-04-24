@@ -202,7 +202,7 @@ public class StageManager : MonoSingleton<StageManager>
         {
             foreach (HeroManager hero in currentHeros.Values)   
             {
-                hero.HealthManager.OnIncreasedHealthRatio(HealthType.HP, 0.5f); // 50% 회복
+                hero.HealRatio(0.5f); // 50% 회복
             }
         }
 

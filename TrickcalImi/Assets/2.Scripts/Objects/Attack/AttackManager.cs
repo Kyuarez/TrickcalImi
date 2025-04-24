@@ -26,9 +26,8 @@ public class AttackManager
             return;
         }
 
-        //@TK FX 贸府
-        //@TK UI 贸府
         FXManager.Instance.OnEffect(FXType.Hit_Red, target.transform.position);
+        UIIngameManager.Instance.OnDamagePopup(normalDamage, target.Mark_Star);
         target.Damage(normalDamage);
     }
 

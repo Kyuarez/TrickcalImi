@@ -154,6 +154,14 @@ public class EnemyManager : IngameObject
         currentState = enemyState;
         stateManager.ChangeState(states[(int)currentState]);
     }
+    public void ResetTurn()
+    {
+        spr.flipX = false;
+    }
+    public void SetTurn(bool isTurn)
+    {
+        spr.flipX = isTurn;
+    }
     public void ResetEnemyState()
     {
         currentState = EnemyState.None;

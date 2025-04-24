@@ -45,7 +45,7 @@ public class HeroManager : IngameObject
     {
         get
         {
-            if(destination != null)
+            if (destination != null)
             {
                 return distanceToDestination <= 0.1f;
             }
@@ -86,7 +86,7 @@ public class HeroManager : IngameObject
         currentState = HeroState.Idle;
         stateManager.Setup(this, states[(int)HeroState.Idle]);
 
-        if(StageManager.Instance != null)
+        if (StageManager.Instance != null)
         {
             StageManager.Instance.OnSetupAction += OnSetupAction;
             StageManager.Instance.OnCombatAction += OnCombatAction;
@@ -97,7 +97,7 @@ public class HeroManager : IngameObject
     {
         base.OnDisable();
 
-        if(StageManager.Instance != null)
+        if (StageManager.Instance != null)
         {
             StageManager.Instance.OnSetupAction -= OnSetupAction;
             StageManager.Instance.OnCombatAction -= OnCombatAction;
@@ -132,7 +132,7 @@ public class HeroManager : IngameObject
         }
         else
         {
-            if(destination != null)
+            if (destination != null)
             {
                 distanceToDestination = Vector2.Distance(transform.position, destination);
             }
@@ -141,7 +141,7 @@ public class HeroManager : IngameObject
 
     public void Updated()
     {
-        if(stateManager != null)
+        if (stateManager != null)
         {
             if (IsDead != true)
             {
@@ -174,6 +174,14 @@ public class HeroManager : IngameObject
     public void SetDestination(Vector3 pos)
     {
         destination = pos;
+    }
+    public void ResetTurn()
+    {
+        spr.flipX = true;
+    }
+    public void SetTurn(bool isTurn)
+    {
+        spr.flipX = isTurn;
     }
 
     public void ResetHeroState()

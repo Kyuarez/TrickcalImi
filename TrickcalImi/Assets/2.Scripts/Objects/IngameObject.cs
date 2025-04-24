@@ -98,10 +98,22 @@ public class IngameObject : MonoBehaviour
     public virtual void Heal(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.HP, amount);
+        FXManager.Instance.OnEffect(FXType.Heal_HP, transform.position);
+    }
+    public virtual void HealRatio(float ratio)
+    {
+        healthManager.OnIncreasedHealthRatio(HealthType.HP, ratio);
+        FXManager.Instance.OnEffect(FXType.Heal_HP, transform.position);
     }
     public virtual void HealMP(float amount)
     {
         healthManager.OnIncreasedHealth(HealthType.MP, amount);
+        FXManager.Instance.OnEffect(FXType.Heal_MP, transform.position);
+    }
+    public virtual void HealMPRatio(float ratio)
+    {
+        healthManager.OnIncreasedHealthRatio(HealthType.MP, ratio);
+        FXManager.Instance.OnEffect(FXType.Heal_MP, transform.position);
     }
     public virtual void UseMP(float amount)
     {

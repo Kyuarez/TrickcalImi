@@ -20,4 +20,10 @@ public static class UnityHelper
 
         return null;
     }
+
+    public static bool IsFront(this Transform owner, Transform target)
+    {
+        Vector3 toTarget = target.position - owner.position;
+        return Vector3.Dot(owner.forward, toTarget.normalized) > 0f;
+    }
 }

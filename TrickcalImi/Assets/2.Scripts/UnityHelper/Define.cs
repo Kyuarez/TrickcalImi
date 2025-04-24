@@ -97,10 +97,12 @@ public enum AttackType
 public enum FXType
 {
     Click,
+    Heal_HP,
+    Heal_MP,
     Hit_Red,
     Hit_Yellow,
     Hit_Ice,
-    Hit,Fire,
+    Hit_Fire,
 }
 
 public enum IngameCardType
