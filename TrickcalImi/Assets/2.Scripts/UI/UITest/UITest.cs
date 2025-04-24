@@ -6,11 +6,13 @@ public class UITest : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private Button btn_Depoly;
     [SerializeField] private Button btn_CombatMode;
+    [SerializeField] private Button btn_Clear;
 
     private void Awake()
     {
         btn_Depoly.onClick.AddListener(OnClickDeployHero);
         btn_CombatMode.onClick.AddListener(OnClickOnCombatMode);
+        btn_Clear.onClick.AddListener(OnClickStageClear);
     }
 
     private void Start()
@@ -53,6 +55,10 @@ public class UITest : MonoBehaviour
     public void OnClickOnCombatMode() 
     {
         StageManager.Instance.OnCombatMode();
+    }
+    public void OnClickStageClear()
+    {
+        StageManager.Instance.OnSuccessMode();
     }
     #endregion
 }

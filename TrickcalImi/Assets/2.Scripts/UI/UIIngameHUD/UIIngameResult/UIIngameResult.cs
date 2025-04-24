@@ -47,10 +47,10 @@ public class UIIngameResult : MonoBehaviour
         switch (type)
         {
             case IngameModeType.Success:
-                messageText.text = "Success";
+                messageText.text = "스테이지 클리어!";
                 break;
             case IngameModeType.Failure:
-                messageText.text = "Failure";
+                messageText.text = "스테이지 패배";
                 break;
         }
     }

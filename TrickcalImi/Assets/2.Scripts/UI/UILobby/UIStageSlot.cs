@@ -40,7 +40,22 @@ public class UIStageSlot : MonoBehaviour
     {
         stageData = stage;
         stageNumber = stage.StageID;
-        stageHeaderText.text = $"{stage.ChapterNumber} - {stage.StageID % (10 * stage.ChapterNumber)}";
+        int uiStageNumber = stage.StageID % 10;
+        stageHeaderText.text = $"{stage.ChapterNumber} - {(uiStageNumber == 0 ? 10 : uiStageNumber)}";
+
+        //Lock ¿©ºÎ 
+        bool isStageOpen = LocalDataManager.Instance.LocalUserData.ChapterOpenData[stage.ChapterNumber][(uiStageNumber == 0 ? 10 : uiStageNumber) - 1];
+        SetLock(!isStageOpen);
+    }
+
+    private void SetLock(bool active)
+    {
+        if(lockImage.gameObject.activeSelf == !active)
+        {
+            lockImage.gameObject.SetActive(active);
+        }
+
+        btn_onlick.interactable = !active;
     }
 
     public void SetRectPosition(float x, float y)

@@ -15,6 +15,8 @@ public class StageManager : MonoSingleton<StageManager>
     #endregion
 
     //@tk 이거 나중에 챕터로부터 받기
+    private JsonStage onStageData;
+
     private int currentWaveCount = 0; 
     private int totalWaveCount = 5;
     private float setupLimitTime = 60.0f;
@@ -132,6 +134,7 @@ public class StageManager : MonoSingleton<StageManager>
 
     public void OnStage(JsonStage jsonData) //stage 진입
     {
+        onStageData = jsonData;
         UIManager.Instance.OnIngame();
 
         setupCost = jsonData.SetupCost;
@@ -144,6 +147,8 @@ public class StageManager : MonoSingleton<StageManager>
     public void ResetStage() //Stage Reset
     {
         //cost Reset
+        onStageData = null;
+
         currentCost = 0;
         chargeCost = 0;
         setupCost = 0;
@@ -242,8 +247,11 @@ public class StageManager : MonoSingleton<StageManager>
 
         Time.timeScale = 0.0f;
         currentMode = IngameModeType.Success;
+        //로컬 저장
+        int stageIndex = (onStageData.StageID % 10 == 0) ? 10 : onStageData.StageID % 10;
+        LocalDataManager.Instance.UpdateLocalChapterData(onStageData.ChapterNumber, stageIndex);
+        
         OnSuccessAction?.Invoke();
-
     }
 
     public void OnFailureMode()

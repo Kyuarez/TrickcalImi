@@ -33,7 +33,12 @@ public class CurrencyHUD : MonoBehaviour
 
     public void SetUICurrencyData()
     {
-        int currentCoin = LocalDataManager.Instance.LocalUserData.Coin;
-        coinText.text = currentCoin.ToString();
+        JsonLocalUserData localData = LocalDataManager.Instance.LocalUserData;
+        if(localData != null)
+        {
+            ticketText.text = localData.Ticket.ToString();
+            coinText.text = localData.Coin.ToString();
+            cashText.text = localData.Cash.ToString();
+        }
     }
 }

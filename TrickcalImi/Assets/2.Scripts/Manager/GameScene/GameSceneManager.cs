@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//@tk 일단 게임 매니저 역할!
 public class GameSceneManager : MonoSingleton<GameSceneManager>
 {
     private GameSceneType gameSceneType;
@@ -12,8 +13,7 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
         LocalDataManager localData = new LocalDataManager();
         localData.OnLoadGameAction();
 
-        //Test
-        Debug.Log((TableManager.Instance == null));
+        //현재 챕터 계산
     }
 
     private void Start()
@@ -28,7 +28,7 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
         UIManager.Instance.OnLobby(type);
     }
 
-    public void OnIngame(int stageID)
+    public void OnIngame(int stageID) //ui stageinfo의 정보 받고
     {
         if(stageID == -1)
         {
@@ -43,6 +43,5 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
             StageManager.Instance.OnStage(stageData);
         }
     }
-
     
 }

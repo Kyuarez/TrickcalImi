@@ -28,8 +28,9 @@ public class UILobbySelectStage : MonoBehaviour
 
     public void OnStageSelect()
     {
-        //@tk 일단 챕터 저장 없어서 임시로 챕터 1로 함.
-        JsonChapter json = TableManager.Instance.FindTableData<JsonChapter>(1);
+        //@tk 일단 챕터 고르기 창 없어서 저장 챕터로 하기로 함.
+        int currentChapter = LocalDataManager.Instance.LocalUserData.CurrentChapter;
+        JsonChapter json = TableManager.Instance.FindTableData<JsonChapter>(currentChapter);
         uiStageManager.SetUIStageManager(json);
     }
 

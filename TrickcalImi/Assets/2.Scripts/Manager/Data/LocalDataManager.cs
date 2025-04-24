@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+
 
 public class LocalDataManager 
 {
@@ -14,7 +16,6 @@ public class LocalDataManager
     #endregion
     
     public JsonLocalUserData LocalUserData { get; private set; }
-
 
     public void OnLoadGameAction()
     {
@@ -57,5 +58,53 @@ public class LocalDataManager
     {
         string json = JsonConvert.SerializeObject(LocalUserData, Formatting.Indented);
         File.WriteAllText(Define.FilePath_LocalData, json);
-    }   
+    }
+
+    public void UpdateLocalChapterData(int currentChapter, int clearStage)
+    {
+        if (currentChapter > LocalUserData.ChapterOpenData.Count)
+        {
+            return;
+        }
+        List<bool> stageOpenList = LocalUserData.ChapterOpenData[currentChapter];
+        if (stageOpenList == null || stageOpenList.Count == 0 || clearStage > stageOpenList.Count)
+        {
+            return;
+        }
+        List<bool> stageClearList = LocalUserData.ChapterClearData[currentChapter];
+        if (stageClearList == null || stageClearList.Count == 0 || clearStage > stageClearList.Count)
+        {
+            return;
+        }
+
+        if (clearStage == 10)
+        {
+            if (stageClearList[clearStage - 1] == false)
+            {
+                stageClearList[clearStage - 1] = true;
+            }
+            //다음 챕터 활성화
+            if(currentChapter == LocalUserData.CurrentChapter)
+            {
+                if (currentChapter == LocalUserData.ChapterOpenData.Count) //현재 데이터 상 챕터 다 클리어
+                {
+                    //TODO : 축하
+                    return;
+                }
+
+                LocalUserData.CurrentChapter++;
+            }
+        }
+        else
+        {
+            if (stageOpenList[clearStage] == false)
+            {
+                stageOpenList[clearStage] = true;
+            }
+            if (stageClearList[clearStage - 1] == false)
+            {
+                stageClearList[clearStage - 1] = true;
+            }
+        }
+    }
 }
