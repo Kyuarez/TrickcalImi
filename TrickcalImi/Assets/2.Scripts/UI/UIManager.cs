@@ -16,6 +16,7 @@ public class UIManager : MonoSingleton<UIManager>
     public static UICardDraw CardDraw;
 
     //Transition
+    public static UITransition Transition;
 
 
     protected override void Awake()
@@ -33,6 +34,8 @@ public class UIManager : MonoSingleton<UIManager>
         IngameHUD = GetComponentInChildren<UIIngameHUD>();
         IngameResult = GetComponentInChildren<UIIngameResult>();
         CardDraw = GetComponentInChildren<UICardDraw>();
+
+        Transition = GetComponentInChildren<UITransition>();
     }
 
     private void Start()
@@ -73,12 +76,12 @@ public class UIManager : MonoSingleton<UIManager>
     public void OnSetupAction()
     {
         IngameHUD.OnSetupAction();
-        CardDraw.OnSetupAction();
+        CardDraw?.OnSetupAction();
     }
     public void OnCombatAction()
     {
         IngameHUD.OnCombatAction();
-        CardDraw.OnCombatAction();
+        CardDraw?.OnCombatAction();
     }
     public void OnSuccessAction() 
     {
@@ -91,6 +94,6 @@ public class UIManager : MonoSingleton<UIManager>
     public void OnResetAction()
     {
         IngameHUD.OnResetAction();
-        CardDraw.OnResetAction();
+        CardDraw?.OnResetAction();
     }
 }

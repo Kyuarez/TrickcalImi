@@ -36,6 +36,7 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>
             return;
         }
 
+        UIManager.Transition.OnTransition(UITransitionType.Loading);
         JsonStage stageData = TableManager.Instance.FindTableData<JsonStage>(stageID);
         if(stageData != null)
         {

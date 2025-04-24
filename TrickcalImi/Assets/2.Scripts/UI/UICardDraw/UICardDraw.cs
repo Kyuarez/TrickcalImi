@@ -57,9 +57,10 @@ public class UICardDraw : MonoBehaviour
 
     private void ResetCardDeck()
     {
-        for (int i = 0; i < cardDeck.childCount; i++)
+        UIIngameCard[] cardArr = cardDeck.transform.GetComponentsInChildren<UIIngameCard>();
+        foreach (UIIngameCard card in cardArr)
         {
-            PoolManager.Instance.DespawnObject("UIIngameCard", cardDeck.GetChild(i).gameObject);
+            PoolManager.Instance.DespawnObject("UIIngameCard", card.gameObject);
         }
     }
 

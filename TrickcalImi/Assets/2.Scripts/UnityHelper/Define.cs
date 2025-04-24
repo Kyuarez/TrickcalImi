@@ -51,6 +51,13 @@ public enum LobbyType
     LobbySelectStage,
 }
 
+public enum UITransitionType
+{
+    Loading, //로딩바
+    FadeInout, //검은색 Fade
+    StarCover, //별모양 커버
+}
+
 public enum IngameModeType
 {
     None,
@@ -112,6 +119,10 @@ public enum IngameCardType
     Item, //@tk 일단 구현 x
 }
 
+public enum BuffType
+{
+
+}
 
 
 public enum EnvironmentType
