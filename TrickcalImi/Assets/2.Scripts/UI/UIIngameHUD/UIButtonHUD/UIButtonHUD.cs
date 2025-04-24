@@ -20,16 +20,19 @@ public class UIButtonHUD : MonoBehaviour
 
     public void OnClickAutoBattle()
     {
+        SoundManager.Instance.PlaySFX(10000);
         //TODO 카드 선택 까지 알아서 자동 
     }
 
     public void OnClickIngameSpeed()
     {
+        SoundManager.Instance.PlaySFX(10000);
         //TODO 인게임 타임 스케일 올리든가 해서 속도 놉히기
     }
 
     public void OnClickPause()
     {
+        SoundManager.Instance.PlaySFX(10000);
         //TODO 현재 챕터 상황 보여주고, 나가기 팝업 만들기
     }
 }

@@ -77,7 +77,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         }));
     }
 
-    public void PlaySFX(int soundID)
+    public void PlaySFX(int soundID) //UI¿ë
     {
         if (sfxClipDict.ContainsKey(soundID) == false)
         {

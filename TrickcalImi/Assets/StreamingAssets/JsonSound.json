@@ -29,6 +29,31 @@
       "SoundID": "102",
       "SoundType": "BGM",
       "SoundResPath": "BGM_Ingame_Chapter2"
+    },
+    {
+      "SoundID": "10000",
+      "SoundType": "SFX",
+      "SoundResPath": "SFX_UI_ClickButton_Default"
+    },
+    {
+      "SoundID": "10001",
+      "SoundType": "SFX",
+      "SoundResPath": "SFX_UI_SelectStage"
+    },
+    {
+      "SoundID": "10002",
+      "SoundType": "SFX",
+      "SoundResPath": "SFX_UI_Backward"
+    },
+    {
+      "SoundID": "10003",
+      "SoundType": "SFX",
+      "SoundResPath": "SFX_UI_Load_End"
+    },
+    {
+      "SoundID": "10004",
+      "SoundType": "SFX",
+      "SoundResPath": "SFX_UI_OnCard"
     }
   ]
 }

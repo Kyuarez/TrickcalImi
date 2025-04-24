@@ -60,6 +60,7 @@ public class UIIngameResult : MonoBehaviour
     {
         //TODO : 챕터 로비로 이동
         panel.SetActive(false);
+        SoundManager.Instance.PlaySFX(10001);
         StageManager.Instance.ResetStage();
         GameSceneManager.Instance.OnLobby(LobbyType.LobbySelectStage);
         Time.timeScale = 1.0f; //@tk 이거 좋은 코딩 아님. stage매니저나 gamesc
@@ -70,6 +71,7 @@ public class UIIngameResult : MonoBehaviour
     {
         //TODO : 다시 스테이지 시작
         panel.SetActive(false);
+        SoundManager.Instance.PlaySFX(10000);
         StageManager.Instance.ResetStage();
         //GameSceneManager.Instance.OnIngame();
         Time.timeScale = 1.0f;

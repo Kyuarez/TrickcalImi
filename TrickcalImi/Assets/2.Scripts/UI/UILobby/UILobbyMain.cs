@@ -44,40 +44,42 @@ public class UILobbyMain : MonoBehaviour
     #region OnClick
     public void OnClickRecruit()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
 
     public void OnClickCashStore()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
     public void OnClickStore()
     {
+        SoundManager.Instance.PlaySFX(10000);
 
 
     }
     public void OnClickHero()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
     public void OnClickDeque()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
     public void OnClickCard()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
     public void OnClickTheater()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
     public void OnClickHouse()
     {
-
+        SoundManager.Instance.PlaySFX(10000);
     }
     public void OnClickAdventure()
     {
+        SoundManager.Instance.PlaySFX(10000);
         //TODO : UILobby type : Adventure (25.04.17) 일단 어드벤처는 넘기기. (차후 구현)
         //GameSceneManager.Instance.OnLobby(LobbyType.LobbyAdventure);
         GameSceneManager.Instance.OnLobby(LobbyType.LobbySelectStage);

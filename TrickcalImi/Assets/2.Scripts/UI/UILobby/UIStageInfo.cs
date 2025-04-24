@@ -59,6 +59,7 @@ public class UIStageInfo : MonoBehaviour
     #region OnClick
     public void OnClickExit()
     {
+        SoundManager.Instance.PlaySFX(10002);
         SetActivePanel(false);
         ResetUIStageInfo();
     }
@@ -66,11 +67,13 @@ public class UIStageInfo : MonoBehaviour
     public void OnClickAbsolution()
     {
         //TODO 나중에 구현 (면제)
+        SoundManager.Instance.PlaySFX(10000);
     }
 
     //@tk 일단 Deque는 나중에 구현하고, 바로 인게임으로 넘어가기
     public void OnClickSelectDeque()
     {
+        SoundManager.Instance.PlaySFX(10000);
         GameSceneManager.Instance.OnIngame(currentStageID);
         SetActivePanel(false);
         ResetUIStageInfo();

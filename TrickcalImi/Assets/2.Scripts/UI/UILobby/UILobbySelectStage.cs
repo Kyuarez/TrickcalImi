@@ -32,6 +32,7 @@ public class UILobbySelectStage : MonoBehaviour
         int currentChapter = LocalDataManager.Instance.LocalUserData.CurrentChapter;
         JsonChapter json = TableManager.Instance.FindTableData<JsonChapter>(currentChapter);
         uiStageManager.SetUIStageManager(json);
+        SoundManager.Instance.PlaySFX(10001);
     }
 
     public void ResetStageSelect()

@@ -49,15 +49,18 @@ public class UITest : MonoBehaviour
     #region OnClick
     public void OnClickDeployHero()
     {
+        SoundManager.Instance.PlaySFX(10000);
         StageManager.Instance.SpawnHeroInStage();
     }
 
-    public void OnClickOnCombatMode() 
+    public void OnClickOnCombatMode()
     {
+        SoundManager.Instance.PlaySFX(10000);
         StageManager.Instance.OnCombatMode();
     }
     public void OnClickStageClear()
     {
+        SoundManager.Instance.PlaySFX(10000);
         StageManager.Instance.OnSuccessMode();
     }
     #endregion
