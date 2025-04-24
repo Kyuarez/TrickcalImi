@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace FSM
 {
@@ -92,6 +93,14 @@ namespace FSM
         {
             if(owner.Destination != null)
             {
+                if (owner.transform.IsFront(owner.Destination) == true)
+                {
+                    owner.SetTurn(false);
+                }
+                else
+                {
+                    owner.SetTurn(true);
+                }
                 Vector3 currentPosition = owner.transform.position;
                 owner.transform.position = Vector3.Lerp(currentPosition, owner.Destination, moveSpeed * Time.deltaTime);
 

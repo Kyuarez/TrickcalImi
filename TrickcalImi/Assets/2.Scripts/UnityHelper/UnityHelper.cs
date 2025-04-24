@@ -26,4 +26,9 @@ public static class UnityHelper
         Vector3 toTarget = target.position - owner.position;
         return Vector3.Dot(owner.forward, toTarget.normalized) > 0f;
     }
+    public static bool IsFront(this Transform owner, Vector3 targetPos)
+    {
+        Vector3 toTarget = targetPos - owner.position;
+        return Vector3.Dot(owner.forward, toTarget.normalized) > 0f;
+    }
 }

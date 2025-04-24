@@ -24,7 +24,7 @@ public class UIIngameTimer : MonoBehaviour
 
     public void UpdateUIIngameTimer(float remainingTime, float limitTime)
     {
-        timerText.text = $"{(int)remainingTime / 60}:{(int)remainingTime % 60}";
+        timerText.text = $"{(int)remainingTime / 60:D2}:{(int)remainingTime % 60:D2}";
         timerSliderImage.fillAmount = remainingTime / limitTime;
     }
 }

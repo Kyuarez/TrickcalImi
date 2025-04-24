@@ -14,7 +14,6 @@ public static class Define
 
     public static readonly int OrderLayer_titleUI = 10;
     public static readonly int OrderLayer_baseUI = 9;
-    public static readonly int OrderLayer_ingameUI = 8;
 
     public static readonly float Default_Enemy_NormalDamage = 5.0f;
 

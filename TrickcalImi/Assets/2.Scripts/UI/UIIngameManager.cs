@@ -16,7 +16,6 @@ public class UIIngameManager : MonoSingleton<UIIngameManager>
     {
         base.Awake();
         canvas = GetComponent<Canvas>();
-        canvas.sortingOrder = Define.OrderLayer_ingameUI;
 
         //cast
         DepolySlotManager = GetComponentInChildren<UIDepolySlotManager>();
