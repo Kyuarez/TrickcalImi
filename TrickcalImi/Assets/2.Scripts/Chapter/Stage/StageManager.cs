@@ -229,18 +229,9 @@ public class StageManager : MonoSingleton<StageManager>
         
         OnCombatAction?.Invoke();
 
-        //알아서 몬스터 생성?
-        for (int i = 0; i < testEnemyCount; i++)
-        {
-            Vector3 worldPos = spawnArea.GetRandomPosByArea();
-            EnemyManager enemy = PoolManager.Instance.SpawnObject("TestEnemy", worldPos).GetComponent<EnemyManager>();
-            if(enemy != null)
-            {
-                AddCurrentEnemy(enemy);
-                UIIngameManager.BillboardManager.OnSpawnIngameObject(enemy, false);
-            }
-        }
+        SpawnMonsterPerWave(onStageData);
     }
+
 
     public void OnSuccessMode()
     {
@@ -377,6 +368,46 @@ public class StageManager : MonoSingleton<StageManager>
             UIIngameManager.BillboardManager.OnSpawnIngameObject(hero);
             UIIngameManager.DepolySlotManager.SetSlotDeployState(kv.Key);
             hero.OnDead += () => { RemoveCurrentHeros(kv.Key); };
+        }
+    }
+
+    public void SpawnMonsterPerWave(JsonStage jsonStage)
+    {
+        if(jsonStage.WaveList == null || jsonStage.WaveList.Count == 0)
+        {
+            Debug.Assert(false, "Current Stage didn't have wave List");
+            return;
+        }
+
+        int waveID = jsonStage.WaveList[currentWaveCount - 1];
+        JsonWave jsonWave = TableManager.Instance.FindTableData<JsonWave>(waveID);
+
+        if(jsonWave != null)
+        {
+            //일단 뽑자.
+            foreach (int monsterID in jsonWave.MonsterList)
+            {
+                JsonIngameObject jsonMonster = TableManager.Instance.FindTableData<JsonIngameObject>(monsterID);
+                if(jsonMonster == null)
+                {
+                    Debug.Assert(false, $"Monster ID is wrong : {monsterID}");
+                    return;
+                }
+
+                Vector3 worldPos = spawnArea.GetRandomPosBySlot();
+                GameObject monsterObj = PoolManager.Instance.SpawnObject(jsonMonster.PoolPath, worldPos);
+                if(monsterObj != null)
+                {
+                    monsterObj.transform.SetParent(null);
+
+                    EnemyManager enemy = monsterObj.GetComponent<EnemyManager>();
+                    if (enemy != null)
+                    {
+                        AddCurrentEnemy(enemy);
+                        UIIngameManager.BillboardManager.OnSpawnIngameObject(enemy, false);
+                    }
+                }
+            }
         }
     }
 

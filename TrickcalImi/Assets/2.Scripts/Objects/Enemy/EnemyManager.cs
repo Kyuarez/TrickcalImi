@@ -172,6 +172,6 @@ public class EnemyManager : IngameObject
 
     public void OnDeadAction()
     {
-        PoolManager.Instance.DespawnObject("TestEnemy", gameObject);
+        PoolManager.Instance.DespawnObject(poolPath, gameObject);
     }
 }

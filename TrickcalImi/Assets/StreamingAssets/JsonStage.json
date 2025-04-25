@@ -4,220 +4,280 @@
       "StageID": "1",
       "ChapterNumber": "1",
       "StageName": "어영부영 최전방 방어선!",
-      "WaveID": "1",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
       ]
     },
     {
       "StageID": "2",
       "ChapterNumber": "1",
       "StageName": "정신차린 뒤쪽 방어선!",
-      "WaveID": "2",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
       ]
     },
     {
       "StageID": "3",
       "ChapterNumber": "1",
       "StageName": "방심하는 그 뒤의 방어선!",
-      "WaveID": "3",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
       ]
     },
     {
       "StageID": "4",
       "ChapterNumber": "1",
       "StageName": "한숨쉬는 뒤에 뒤의 방어선!",
-      "WaveID": "4",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
       ]
     },
     {
       "StageID": "5",
       "ChapterNumber": "1",
       "StageName": "에르피엔 최후의 방어선!",
-      "WaveID": "5",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "21",
+        "22",
+        "23",
+        "24",
+        "25"
       ]
     },
     {
       "StageID": "6",
       "ChapterNumber": "1",
       "StageName": "안심 속 왕궁 기습!",
-      "WaveID": "6",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
       ]
     },
     {
       "StageID": "7",
       "ChapterNumber": "1",
       "StageName": "교단 본부 기습!",
-      "WaveID": "7",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35"
       ]
     },
     {
       "StageID": "8",
       "ChapterNumber": "1",
       "StageName": "다과 타임의 기습!",
-      "WaveID": "8",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
       ]
     },
     {
       "StageID": "9",
       "ChapterNumber": "1",
       "StageName": "요정의 마지막 자존심?",
-      "WaveID": "9",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
       ]
     },
     {
       "StageID": "10",
       "ChapterNumber": "1",
       "StageName": "제발 그만 쉬고 싸우기!",
-      "WaveID": "10",
       "SetupCost": "100",
       "ChargeCost": "100",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "46",
+        "47",
+        "48",
+        "49",
+        "50"
       ]
     },
     {
       "StageID": "11",
       "ChapterNumber": "2",
       "StageName": "소규모 잔당 추격",
-      "WaveID": "11",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "51",
+        "52",
+        "53",
+        "54",
+        "55"
       ]
     },
     {
       "StageID": "12",
       "ChapterNumber": "2",
       "StageName": "무리지은 잔당 추격",
-      "WaveID": "12",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "56",
+        "57",
+        "58",
+        "59",
+        "60"
       ]
     },
     {
       "StageID": "13",
       "ChapterNumber": "2",
       "StageName": "불어나는 잔당 추격",
-      "WaveID": "13",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "61",
+        "62",
+        "63",
+        "64",
+        "65"
       ]
     },
     {
       "StageID": "14",
       "ChapterNumber": "2",
       "StageName": "재빠른 잔당 추격",
-      "WaveID": "14",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "66",
+        "67",
+        "68",
+        "69",
+        "70"
       ]
     },
     {
       "StageID": "15",
       "ChapterNumber": "2",
       "StageName": "잔당의 함정!",
-      "WaveID": "15",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "71",
+        "72",
+        "73",
+        "74",
+        "75"
       ]
     },
     {
       "StageID": "16",
       "ChapterNumber": "2",
       "StageName": "숲지기의 도움 요청!",
-      "WaveID": "16",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "76",
+        "77",
+        "78",
+        "79",
+        "80"
       ]
     },
     {
       "StageID": "17",
       "ChapterNumber": "2",
       "StageName": "밭지기의 도움 요청!",
-      "WaveID": "17",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "81",
+        "82",
+        "83",
+        "84",
+        "85"
       ]
     },
     {
       "StageID": "18",
       "ChapterNumber": "2",
       "StageName": "언덕지기의 도움 요청!",
-      "WaveID": "18",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "86",
+        "87",
+        "88",
+        "89",
+        "90"
       ]
     },
     {
       "StageID": "19",
       "ChapterNumber": "2",
       "StageName": "설탕 농장 약탈!",
-      "WaveID": "19",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "91",
+        "92",
+        "93",
+        "94",
+        "95"
       ]
     },
     {
       "StageID": "20",
       "ChapterNumber": "2",
       "StageName": "평평 평야 탈환",
-      "WaveID": "20",
       "SetupCost": "120",
       "ChargeCost": "120",
-      "EnemyList": [
-        "1"
+      "WaveList": [
+        "96",
+        "97",
+        "98",
+        "99",
+        "100"
       ]
     }
   ]

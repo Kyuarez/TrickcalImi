@@ -49,10 +49,15 @@ public class JsonStage
     public int StageID;
     public int ChapterNumber;
     public string StageName;
-    public int WaveID;
     public int SetupCost;
     public int ChargeCost;
-    public List<int> EnemyList;
+    public List<int> WaveList;
+}
+
+public class JsonWave
+{
+    public int WaveID;
+    public List<int> MonsterList;
 }
 
 public class JsonSound

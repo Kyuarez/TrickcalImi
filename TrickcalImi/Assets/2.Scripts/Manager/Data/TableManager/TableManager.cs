@@ -33,6 +33,7 @@ public partial class TableManager
         LoadTable<JsonUIIngameObject>("JsonUIIngameObject", out uiIngameObjectDict, x => x.IngameObjectID);
         LoadTable<JsonChapter>("JsonChapter", out chapterDict, x => x.ChapterID);
         LoadTable<JsonStage>("JsonStage", out stageDict, x => x.StageID);
+        LoadTable<JsonWave>("JsonWave", out waveDict, x => x.WaveID);
         LoadTable<JsonSound>("JsonSound", out soundDict, x => x.SoundID);
     }
 
@@ -106,6 +107,7 @@ public partial class TableManager
     private Dictionary<int, JsonUIIngameObject> uiIngameObjectDict = new Dictionary<int, JsonUIIngameObject>();
     private Dictionary<int, JsonChapter> chapterDict = new Dictionary<int, JsonChapter>();
     private Dictionary<int, JsonStage> stageDict = new Dictionary<int, JsonStage>();
+    private Dictionary<int, JsonWave> waveDict = new Dictionary<int, JsonWave>();
     private Dictionary<int, JsonSound> soundDict = new Dictionary<int, JsonSound>();
 
     #endregion
