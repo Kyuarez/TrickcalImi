@@ -40,6 +40,7 @@ public class UIBillboardManager : MonoBehaviour
         UIHealth uiHealth;
         if(uiHealthDict.TryGetValue(obj, out uiHealth) == true)
         {
+            uiHealth.transform.localScale = Vector3.one;
             PoolManager.Instance.DespawnObject("UIHealth", uiHealth.gameObject);
             uiHealthDict.Remove(obj);
         }
@@ -49,8 +50,10 @@ public class UIBillboardManager : MonoBehaviour
     {
         foreach (var uiHealth in uiHealthDict.Values)
         {
+            uiHealth.ResetUIHealth();
             PoolManager.Instance.DespawnObject("UIHealth", uiHealth.gameObject);
         }
+
         uiHealthDict.Clear();
     }
 

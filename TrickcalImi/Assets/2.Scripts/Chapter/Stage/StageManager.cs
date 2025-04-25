@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class StageManager : MonoSingleton<StageManager>
 {
@@ -334,7 +336,7 @@ public class StageManager : MonoSingleton<StageManager>
         {
             foreach (HeroManager hero in currentHeros.Values)
             {
-                Destroy(hero.gameObject);
+                PoolManager.Instance.DespawnObject(hero.PoolPath, hero.gameObject);
             }
 
             currentHeros.Clear();
@@ -344,7 +346,7 @@ public class StageManager : MonoSingleton<StageManager>
         {
             foreach (EnemyManager enemy in currentEnemyList)
             {
-                PoolManager.Instance.DespawnObject("TestEnemy", enemy.gameObject);
+                PoolManager.Instance.DespawnObject(enemy.PoolPath, enemy.gameObject);
             }
 
             currentEnemyList.Clear();

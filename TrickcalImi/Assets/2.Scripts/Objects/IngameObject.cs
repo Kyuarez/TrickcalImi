@@ -1,6 +1,7 @@
 using UnityEngine;
 using FSM;
 using System;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Stage 인게임에 존재하는 오브젝트(StageManager 에서 관리)
@@ -83,7 +84,7 @@ public class IngameObject : MonoBehaviour
     }
     protected virtual void OnDisable()
     {
-        UnRegisterDeadAction();
+
     }
 
     protected virtual void InitIngameObjectData(JsonIngameObject data)
@@ -142,9 +143,9 @@ public class IngameObject : MonoBehaviour
     {
         OnDead += action;
     }
-    public void UnRegisterDeadAction()
-    {
-        OnDead = null;
-    }
+    //public void UnRegisterDeadAction()
+    //{
+    //    OnDead = null;
+    //}
     #endregion
 }

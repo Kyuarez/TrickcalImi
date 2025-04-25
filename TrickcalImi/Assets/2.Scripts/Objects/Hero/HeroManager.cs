@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using FSM;
+using Unity.Android.Gradle.Manifest;
 
 /* [25.04.10]
  영웅은 타겟팅을 후보군 중 우선 순위 점수 높은 애를 타겟팅하기
@@ -194,6 +195,6 @@ public class HeroManager : IngameObject
 
     public void OnDeadAction()
     {
-        PoolManager.Instance.DespawnObject("TestHero", gameObject);
+        PoolManager.Instance.DespawnObject(poolPath, gameObject);
     }
 }
