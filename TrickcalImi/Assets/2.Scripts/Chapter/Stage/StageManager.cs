@@ -384,9 +384,9 @@ public class StageManager : MonoSingleton<StageManager>
 
         if(jsonWave != null)
         {
-            //¿œ¥‹ ªÃ¿⁄.
-            foreach (int monsterID in jsonWave.MonsterList)
+            for (int i = 0; i < jsonWave.MonsterList.Count; i++)
             {
+                int monsterID = jsonWave.MonsterList[i];    
                 JsonIngameObject jsonMonster = TableManager.Instance.FindTableData<JsonIngameObject>(monsterID);
                 if(jsonMonster == null)
                 {
@@ -394,7 +394,8 @@ public class StageManager : MonoSingleton<StageManager>
                     return;
                 }
 
-                Vector3 worldPos = spawnArea.GetRandomPosBySlot();
+                int spawnIndex = jsonWave.SpawnIndexList[i];
+                Vector3 worldPos = spawnArea.GetPosByIndex(spawnIndex);
                 GameObject monsterObj = PoolManager.Instance.SpawnObject(jsonMonster.PoolPath, worldPos);
                 if(monsterObj != null)
                 {

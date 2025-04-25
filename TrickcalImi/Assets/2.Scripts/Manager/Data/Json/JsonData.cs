@@ -58,6 +58,7 @@ public class JsonWave
 {
     public int WaveID;
     public List<int> MonsterList;
+    public List<int> SpawnIndexList;
 }
 
 public class JsonSound
