@@ -7,6 +7,6 @@ namespace TK.BT
 {
 	public partial class Builder
 	{
-		//호홓 내가 이거 마스터했다.
+		
 	}
 }

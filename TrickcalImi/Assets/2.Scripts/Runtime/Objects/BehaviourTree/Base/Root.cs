@@ -3,6 +3,7 @@
     /// <summary>
     /// 최상단 노드, 탐색 시작점으로서 특별한 동작은 없다.
     /// </summary>
+    [ExcludeFromBuilder]
     public class Root : Node, IParentOfChild
     {
         public Root(BT tree) : base(tree) { }

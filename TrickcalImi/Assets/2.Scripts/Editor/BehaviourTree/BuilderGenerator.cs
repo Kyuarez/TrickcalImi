@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using System.Text;
 using System.IO;
+using System.Reflection;
 
 namespace TK.BT
 {
@@ -30,7 +31,27 @@ namespace TK.BT
             var sb = new StringBuilder();
             SetHeader(sb);
 
+            foreach (var type in nodeTypes)
+            {
+                if(type.Name == nameof(Builder))
+                {
+                    continue;
+                }
 
+                if(type.IsDefined(typeof(ExcludeFromBuilderAttribute), inherit: false))
+                {
+                    continue;
+                }
+
+                var constructor = SelectBestConstructor(type);
+                
+                if(constructor == null)
+                {
+                    continue;
+                }
+
+                SetMethodByConstructor(sb, type, constructor);
+            }
 
             SetBottom(sb);
 
@@ -57,6 +78,21 @@ namespace TK.BT
             sb.AppendLine("\t{");
         }
 
+        private static void SetMethodByConstructor(StringBuilder sb, Type type, ConstructorInfo info)
+        {
+            var ps = info.GetParameters()
+                .Where((p) => p.ParameterType != typeof(BT))
+                .ToArray();
+
+            string paramList = string.Join(", ", ps.Select((p) => $"{GetFriendlyTypeName(p.ParameterType)} {p.Name}"));
+            sb.AppendLine($"\t\tpublic Builder {type.Name}({paramList})");
+            sb.AppendLine("\t\t{");
+
+            sb.AppendLine("\t\t\treturn this;");
+            sb.AppendLine("\t\t}");
+            sb.AppendLine();
+        }
+
         /// <summary>
         /// 클래스랑 네임스페이스 scope 닫기
         /// </summary>
@@ -64,6 +100,30 @@ namespace TK.BT
         {
             sb.AppendLine("\t}");
             sb.AppendLine("}");
+        }
+
+        /// <summary>BehaviourTree 파라미터를 첫 인자로 받는 가장 파라미터 많은 ctor</summary>
+        private static ConstructorInfo? SelectBestConstructor(Type t)
+        {
+            return t.GetConstructors(BindingFlags.Public | BindingFlags.Instance)
+                .Where((c) =>
+                    c.GetParameters().Length > 0 &&
+                    c.GetParameters()[0].ParameterType == typeof(BT))
+                .OrderByDescending((c) => c.GetParameters().Length)
+                .FirstOrDefault();
+        }
+
+        /// <summary>System.Single → float 등 C# 키워드 변환</summary>
+        private static string GetFriendlyTypeName(Type t)
+        {
+            return t switch
+            {
+                { } when t == typeof(int) => "int",
+                { } when t == typeof(float) => "float",
+                { } when t == typeof(string) => "string",
+                { } when t == typeof(bool) => "bool",
+                _ => t.Name
+            };
         }
     }
 }
