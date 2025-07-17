@@ -38,7 +38,7 @@ public class StageManager : MonoSingleton<StageManager>
     public Action<float, float> OnTickAction; //local Timer
 
     private Dictionary<int, HeroManager> currentHeros = new Dictionary<int, HeroManager>(); //key : slot index, value : hero
-    private List<EnemyManager> currentEnemyList = new List<EnemyManager>();
+    private int currentEnemyCount = 0;
 
     public IngameModeType CurrentMode => currentMode;
     public int CurrentWaveCount => currentWaveCount;
@@ -81,7 +81,7 @@ public class StageManager : MonoSingleton<StageManager>
             {
                 OnFailureMode();
             }
-            if(currentEnemyList.Count == 0) //모든 적 죽임
+            if(currentEnemyCount == 0) //모든 적 죽임
             {
                 OnSetupMode();
             }
@@ -114,23 +114,6 @@ public class StageManager : MonoSingleton<StageManager>
             }
         }
 
-        if(currentEnemyList.Count > 0)
-        {
-            //@tk InvaildOperationException 막기위해 역순 처리
-            for (int i = currentEnemyList.Count - 1; i >= 0; i--)
-            {
-                if (currentEnemyList[i].IsDead == true)
-                {
-                    EnemyManager deadEnemy = currentEnemyList[i];
-                    RemoveCurrentEnemy(currentEnemyList[i]);
-                    deadEnemy.SetEnemyState(EnemyState.Dead);
-                }
-                else
-                {
-                    currentEnemyList[i].Updated();
-                }
-            }
-        }
     }
 
     public void OnStage(JsonStage jsonData) //stage 진입
@@ -304,20 +287,15 @@ public class StageManager : MonoSingleton<StageManager>
         currentHeros.Remove(index);
     }
 
-    public void AddCurrentEnemy(EnemyManager enemy)
+    public void AddCurrentEnemy()
     {
-        if(currentEnemyList != null)
-        {
-            currentEnemyList.Add(enemy);
-            enemy.OnDead += () => { RemoveCurrentEnemy(enemy); };
-        }
+        //TODO : 챕터의 Wave에 소환될 적 수로 변경 : 매직넘버 제거
+        currentEnemyCount = Mathf.Max(currentWaveCount + 1, testEnemyCount);
     }
-    public void RemoveCurrentEnemy(EnemyManager enemy)
+    public void RemoveCurrentEnemy()
     {
-        if (currentEnemyList != null)
-        {
-            currentEnemyList.Remove(enemy);
-        }
+        currentEnemyCount = Mathf.Min(currentWaveCount - 1, 0);
+        //TODO : 업데이트 문으로 하지 말고 여기서 0되면 넘기기
     }
 
 
@@ -333,15 +311,16 @@ public class StageManager : MonoSingleton<StageManager>
             currentHeros.Clear();
         }
 
-        if (currentEnemyList != null)
-        {
-            foreach (EnemyManager enemy in currentEnemyList)
-            {
-                PoolManager.Instance.DespawnObject(enemy.PoolPath, enemy.gameObject);
-            }
+        //TODO : 여기서 Pool로 처리하는게 맞나? 
+        //if (currentEnemyList != null)
+        //{
+        //    foreach (EnemyManager enemy in currentEnemyList)
+        //    {
+        //        PoolManager.Instance.DespawnObject(enemy.PoolPath, enemy.gameObject);
+        //    }
 
-            currentEnemyList.Clear();
-        }
+        //    currentEnemyList.Clear();
+        //}
     }
 
     public void SpawnHeroByDeck()
@@ -404,7 +383,7 @@ public class StageManager : MonoSingleton<StageManager>
                     EnemyManager enemy = monsterObj.GetComponent<EnemyManager>();
                     if (enemy != null)
                     {
-                        AddCurrentEnemy(enemy);
+                        AddCurrentEnemy();
                         UIIngameManager.BillboardManager.OnSpawnIngameObject(enemy, false);
                     }
                 }
@@ -438,79 +417,82 @@ public class StageManager : MonoSingleton<StageManager>
         }
     }
     #endregion 
-    public HeroManager GetRandomHeroInStage()
-    {
-        if(currentHeros == null || currentHeros.Count == 0)
-        {
-            return null;
-        }
+    //public HeroManager GetRandomHeroInStage()
+    //{
+    //    if(currentHeros == null || currentHeros.Count == 0)
+    //    {
+    //        return null;
+    //    }
 
-        int randNum = UnityEngine.Random.Range(1, currentHeros.Count + 1);
+    //    int randNum = UnityEngine.Random.Range(1, currentHeros.Count + 1);
 
-        if(currentHeros.ContainsKey(randNum) == false)
-        {
-            Debug.AssertFormat(false, $"currentHeros Dict's key is strange : get key ({randNum})");
-            return null;
-        }
+    //    if(currentHeros.ContainsKey(randNum) == false)
+    //    {
+    //        Debug.AssertFormat(false, $"currentHeros Dict's key is strange : get key ({randNum})");
+    //        return null;
+    //    }
 
-        return currentHeros[randNum];
-    }
+    //    return currentHeros[randNum];
+    //}
 
-    public HeroManager GetNearestHero(Vector3 enemyPosition)
-    {
-        if (currentHeros == null || currentHeros.Count == 0)
-        {
-            return null;
-        }
+    //TODO : 이거 제거하고 BT에서 처리 :: 가까운 영웅 찾기
+    //public HeroManager GetNearestHero(Vector3 enemyPosition)
+    //{
+    //    if (currentHeros == null || currentHeros.Count == 0)
+    //    {
+    //        return null;
+    //    }
 
-        HeroManager nearestHero = null;
-        float shortestDistance = float.MaxValue;
+    //    HeroManager nearestHero = null;
+    //    float shortestDistance = float.MaxValue;
 
-        foreach (KeyValuePair<int, HeroManager> kv in currentHeros)
-        {
-            HeroManager hero = kv.Value;
-            if (hero == null) 
-            {
-                continue; 
-            }
+    //    foreach (KeyValuePair<int, HeroManager> kv in currentHeros)
+    //    {
+    //        HeroManager hero = kv.Value;
+    //        if (hero == null) 
+    //        {
+    //            continue; 
+    //        }
 
-            float distance = Vector3.Distance(enemyPosition, hero.transform.position);
-            if (distance < shortestDistance)
-            {
-                shortestDistance = distance;
-                nearestHero = hero;
-            }
-        }
+    //        float distance = Vector3.Distance(enemyPosition, hero.transform.position);
+    //        if (distance < shortestDistance)
+    //        {
+    //            shortestDistance = distance;
+    //            nearestHero = hero;
+    //        }
+    //    }
 
-        return nearestHero;
-    }
-    public EnemyManager GetNearestEnemy(Vector3 heroPosition)
-    {
-        if (currentEnemyList == null || currentEnemyList.Count == 0)
-        {
-            return null;
-        }
+    //    return nearestHero;
+    //}
 
-        EnemyManager nearestEnemy = null;
-        float shortestDistance = float.MaxValue;
+    //TODO : 이거 제거하고 BT에서 처리 :: 가까운 적
+    //public EnemyManager GetNearestEnemy(Vector3 heroPosition)
+    //{
+    //    if (currentEnemyList == null || currentEnemyList.Count == 0)
+    //    {
+    //        return null;
+    //    }
 
-        foreach (EnemyManager enemy in currentEnemyList)
-        {
-            if (enemy == null)
-            {
-                continue;
-            }
+    //    EnemyManager nearestEnemy = null;
+    //    float shortestDistance = float.MaxValue;
 
-            float distance = Vector3.Distance(heroPosition, enemy.transform.position);
-            if (distance < shortestDistance)
-            {
-                shortestDistance = distance;
-                nearestEnemy = enemy;
-            }
-        }
+    //    foreach (EnemyManager enemy in currentEnemyList)
+    //    {
+    //        if (enemy == null)
+    //        {
+    //            continue;
+    //        }
 
-        return nearestEnemy;
-    }
+    //        float distance = Vector3.Distance(heroPosition, enemy.transform.position);
+    //        if (distance < shortestDistance)
+    //        {
+    //            shortestDistance = distance;
+    //            nearestEnemy = enemy;
+    //        }
+    //    }
+
+    //    return nearestEnemy;
+    //}
 
 
     /// <summary>

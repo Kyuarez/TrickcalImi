@@ -10,14 +10,14 @@ namespace TK.BT
     public class BT : MonoBehaviour
     {
         //TODO : Blackboard
-        public Blackboard blackBoard { get; private set; }
-        public Root root { get; private set; }
+        public Blackboard blackBoard { get; set; }
+        public Root root { get; set; }
 
         /// <summary>
         /// Tick이 돌고 있으면, BT 중복 실행 방지 변수
         /// </summary>
         private bool _isRunning;
-        private Stack<Node> nodeStack = new Stack<Node>();
+        public Stack<Node> nodeStack = new Stack<Node>();
 
         private void Awake()
         {

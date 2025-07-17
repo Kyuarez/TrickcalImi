@@ -1,18 +1,19 @@
 using FSM;
 using System.Collections;
+using TK.BT;
 using UnityEngine;
 
 /* [25.04.10]
  적의 타겟팅은 무조건 거리 가까운 순으로 잡기
  */
+[RequireComponent(typeof(BT))]
 public class EnemyManager : IngameObject
 {
     [SerializeField] private SpriteRenderer shadowSpr;
 
-    private EnemyState currentState;
-    private StateManager<EnemyManager> stateManager;
-    private State<EnemyManager>[] states;
+    private BT _bt;
 
+    private EnemyState currentState;
     private HeroManager currentTarget;
     private float distanceToTarget = -1f;
 
@@ -42,23 +43,15 @@ public class EnemyManager : IngameObject
         base.Awake();
         weaponObj = transform.FindRecursiveChild(Define.Name_Hero_Weapon).gameObject;
 
-        states = new State<EnemyManager>[]
-        {
-            new EnemyIdleState(),
-            new EnemyWalkState(MoveSpeed),
-            new EnemyChaseState(ChaseSpeed),
-            new EnemyAttackState(),
-            new EnemyHitState(),
-            new EnemyDeadState(),
-        };
-
+        _bt = GetComponent<BT>();
+        Builder builder = new Builder(_bt);
+        builder.Root();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        stateManager = new StateManager<EnemyManager>();
         healthManager = new HealthManager(DefaultHP, DefaultMP);
         attackManager = new AttackManager();
 
@@ -71,7 +64,6 @@ public class EnemyManager : IngameObject
         else
         {
             currentState = EnemyState.Idle;
-            stateManager.Setup(this, states[(int)EnemyState.Idle]);
         }
 
     }
@@ -98,7 +90,7 @@ public class EnemyManager : IngameObject
 
         OnDead -= OnDeadAction;
 
-        ResetEnemyState();
+        //ResetEnemyState();
 
         currentTarget = null;
         distanceToTarget = -1f;
@@ -121,7 +113,7 @@ public class EnemyManager : IngameObject
 
         if(currentTarget == null || currentTarget.IsDead == true)
         {
-            currentTarget = StageManager.Instance.GetNearestHero(transform.position);
+            //currentTarget = StageManager.Instance.GetNearestHero(transform.position);
         }
 
         if(currentTarget != null)
@@ -132,13 +124,7 @@ public class EnemyManager : IngameObject
 
     public void Updated()
     {
-        if (stateManager != null)
-        {
-            if (IsDead != true)
-            {
-                stateManager.Excute();
-            }
-        }
+        
     }
 
     public void SetEnemyState(EnemyState enemyState)
@@ -149,7 +135,6 @@ public class EnemyManager : IngameObject
         }
 
         currentState = enemyState;
-        stateManager.ChangeState(states[(int)currentState]);
     }
     public void ResetTurn()
     {
@@ -159,11 +144,11 @@ public class EnemyManager : IngameObject
     {
         spr.flipX = isTurn;
     }
-    public void ResetEnemyState()
-    {
-        currentState = EnemyState.None;
-        stateManager = null;
-    }
+    //public void ResetEnemyState()
+    //{
+    //    currentState = EnemyState.None;
+    //    stateManager = null;
+    //}
 
     public void PlayAnim(EnemyState state)
     {

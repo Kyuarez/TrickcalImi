@@ -119,7 +119,7 @@ public class HeroManager : IngameObject
         {
             if (currentTarget == null || currentTarget.IsDead == true)
             {
-                currentTarget = StageManager.Instance.GetNearestEnemy(transform.position);
+                //currentTarget = StageManager.Instance.GetNearestEnemy(transform.position);
             }
 
             if (currentTarget != null)

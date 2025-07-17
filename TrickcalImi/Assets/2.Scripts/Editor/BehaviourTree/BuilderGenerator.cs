@@ -72,6 +72,8 @@ namespace TK.BT
             sb.AppendLine(" 유니티 에디터 툴로 클래스들 생성, 직접 수정 금지");
             sb.AppendLine("*/");
             sb.AppendLine();
+            sb.AppendLine("using System;");
+            sb.AppendLine();
             sb.AppendLine("namespace TK.BT");
             sb.AppendLine("{");
             sb.AppendLine("\tpublic partial class Builder");
@@ -88,6 +90,14 @@ namespace TK.BT
             sb.AppendLine($"\t\tpublic Builder {type.Name}({paramList})");
             sb.AppendLine("\t\t{");
 
+            string argList = string.Join(", ", ps.Select(p => p.Name));
+            if (!string.IsNullOrEmpty(argList)) 
+            {
+                argList = ", " + argList;
+            }
+
+            sb.AppendLine($"\t\t\tNode node = new {type.Name}(_bt{argList});");
+            sb.AppendLine("\t\t\tAttachChild(_currentNode, node);");
             sb.AppendLine("\t\t\treturn this;");
             sb.AppendLine("\t\t}");
             sb.AppendLine();
@@ -122,6 +132,7 @@ namespace TK.BT
                 { } when t == typeof(float) => "float",
                 { } when t == typeof(string) => "string",
                 { } when t == typeof(bool) => "bool",
+                { } when t == typeof(Func<Result>) => "Func<Result>",
                 _ => t.Name
             };
         }
